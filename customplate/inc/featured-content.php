@@ -89,7 +89,7 @@ class Featured_Content {
 		add_action( 'switch_theme',                       array( __CLASS__, 'delete_transient'   )    );
 		add_action( 'save_post',                          array( __CLASS__, 'delete_transient'   )    );
 		add_action( 'delete_post_tag',                    array( __CLASS__, 'delete_post_tag'    )    );
-		add_action( 'customize_controls_enqueue_scripts', array( __CLASS__, 'enqueue_scripts'    )    );
+	//	add_action( 'customize_controls_enqueue_scripts', array( __CLASS__, 'enqueue_scripts'    )    );
 		add_action( 'pre_get_posts',                      array( __CLASS__, 'pre_get_posts'      )    );
 		add_action( 'wp_loaded',                          array( __CLASS__, 'wp_loaded'          )    );
 	}

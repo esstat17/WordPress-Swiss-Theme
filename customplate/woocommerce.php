@@ -1,10 +1,8 @@
 <?php
 /**
- * The template for displaying all pages
+ * The template for displaying WooCommerce Products
  *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages and that
- * other 'pages' on your WordPress site will use a different template.
+ * This is the template that displays all WooCommerce Related Posts.
  *
  * @package WordPress
  * @subpackage Custom_Plate
@@ -28,15 +26,11 @@ get_header(); ?>
 					// Start the Loop.
 					while ( have_posts() ) : the_post();	
 
-						// Include the page content template.
-						get_template_part( 'content', 'page' );	
+						// Woocommerce template.
+						woocommerce_content();
 
-						// If comments are open or we have at least one comment, load up the comment template.
-						/*
-						if ( comments_open() || get_comments_number() ) {
-							comments_template();
-						}
-						*/
+						// get_template_part( 'content', 'page' );	
+
 					endwhile;
 				?>	
 

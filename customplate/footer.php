@@ -13,21 +13,17 @@
 		
 		</div><!-- #main -->
 
-		<div id="footer" class="site-footer bg-color-4" role="contentinfo">
-		
-			<!-- Bootstrap kicks -->
+		<div id="footer" class="site-footer bg-color-5 color-4" role="contentinfo">
 			<div class="container">
 				<?php get_sidebar( 'footer' ); ?>	
 				<div class="copyright-notice row">
-					<?php do_action( 'customplate_credits' ); ?>
+					<?php do_action( 'customplate_foot_html_hook' ); ?>
 					<span><?php 
 						$ctp_copyright = apply_filters( 'ctp_copyright', __('Copyright &copy; 2016 - All Right Reserved.', 'customplate'));
 						echo esc_html($ctp_copyright);
 						?></span>
 				</div><!-- .site-info -->
-			</div> <!-- .container-## -->
-			<!-- Bootstrap ends -->
-		
+			</div> <!-- .container-## -->		
 		</div><!-- #colophon -->
 	</div><!-- #page -->
 

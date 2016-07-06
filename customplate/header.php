@@ -25,7 +25,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="primary-navigation" class="site-navigation primary-navigation navbar navbar-custom navbar-transparent bg-color-4" role="navigation">
+<div id="primary-navigation" class="site-navigation primary-navigation navbar navbar-custom navbar-transparent bg-color-3" role="navigation">
 	<div class="container">
 		<div class="row head-section-1">
 			<!-- LOGO OR SIMPLE TEXT -->
@@ -68,11 +68,12 @@
 <div id="page" class="wrapper hfeed site">
 	<div id="content-body" class="site-main">
 	<?php 
-		$ctp_screen_html = apply_filters( 'ctp_screen_html', ''); 
+		$ctp_screen_html = apply_filters( 'ctp_screen_html', '');
+		$ctp_wc_bg_uri = apply_filters( 'ctp_welcome_bg', get_template_directory_uri().'/images/bg-parallax.png');
 		if (is_front_page() && !empty($ctp_screen_html) && isset($ctp_screen_html)  ): 
 	?>
 	<!-- HERO: just add module-full-height class in the section for full height -->
-		<section id="hero" class="module-hero module-parallax bg-light-30" data-background="<?php echo get_template_directory_uri() ?>/images/bg-parallax.png">
+		<section id="hero" class="module-hero module-parallax bg-dark-60" data-background="<?php echo $ctp_wc_bg_uri; ?>">
 
 			<!-- HERO TEXT -->
 			<div class="hero-caption">

@@ -185,7 +185,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Main sidebar that appears on the right.', 'customplate' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title color-3">',
+		'before_title'  => '<h4 class="widget-title color-2">',
 		'after_title'   => '</h4>',
 	) );
 	register_sidebar( array(
@@ -194,7 +194,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Additional sidebar that appears on the right.', 'customplate' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title color-3">',
+		'before_title'  => '<h4 class="widget-title color-2">',
 		'after_title'   => '</h4>',
 	) );
 	register_sidebar( array(
@@ -203,7 +203,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Appears in the footer (1) section of the site.', 'customplate' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title color-3">',
+		'before_title'  => '<h4 class="widget-title color-2">',
 		'after_title'   => '</h4>',
 	) );
 	register_sidebar( array(
@@ -212,7 +212,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Appears in the footer (2) section of the site.', 'customplate' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title color-3">',
+		'before_title'  => '<h4 class="widget-title color-2">',
 		'after_title'   => '</h4>',
 	) );
 	register_sidebar( array(
@@ -221,7 +221,16 @@ function customplate_widgets_init() {
 		'description'   => __( 'Appears in the footer (3) section of the site.', 'customplate' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title color-3">',
+		'before_title'  => '<h4 class="widget-title color-2">',
+		'after_title'   => '</h4>',
+	) );
+	register_sidebar( array(
+		'name'          => __( 'Footer Widget Area (4)', 'customplate' ),
+		'id'            => 'sidebar-6',
+		'description'   => __( 'Appears in the footer (4) section of the site.', 'customplate' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h4 class="widget-title color-2">',
 		'after_title'   => '</h4>',
 	) );
 }
@@ -240,14 +249,13 @@ function customplate_font_url() {
 	 * Translators: If there are characters in your language that are not supported
 	 * by Lato, translate this to 'off'. Do not translate into your own language.
 	 */
-	if ( 'off' !== _x( 'on', 'Lato font: on or off', 'customplate' ) ) {
+	if ( 'off' !== _x( 'on', 'Open Sans font: on or off', 'customplate' ) ) {
 		$query_args = array(
-			'family' => urlencode( 'Lato:300,400,700,900,300italic,400italic,700italic' ),
+			'family' => urlencode( 'Open Sans:300,400,700,900,300italic,400italic,700italic' ),
 			'subset' => urlencode( 'latin,latin-ext' ),
 		);
 		$font_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
 	}
-
 	return $font_url;
 }
 
@@ -258,7 +266,7 @@ function customplate_font_url() {
  */
 function customplate_scripts() {
 	// Add Lato font, used in the main stylesheet.
-	// wp_enqueue_style( 'customplate-lato', customplate_font_url(), array(), null );
+	wp_enqueue_style( 'customplate-lato', customplate_font_url(), array(), null );
 	
 	// Add Bootstrap 3.0 stylesheet.
 	wp_enqueue_style( 'cpt-bootstrap-style', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '3.3.4' );
@@ -452,6 +460,7 @@ function customplate_body_class_attr( $classes ) {
 	if ( is_active_sidebar( 'sidebar-3' ) 
 		|| is_active_sidebar( 'sidebar-4' )
 		|| is_active_sidebar( 'sidebar-5' )
+		|| is_active_sidebar( 'sidebar-6' )
 	) {
 		$classes[] = 'footer-widgets';
 	}
@@ -477,9 +486,14 @@ add_filter( 'body_class', 'customplate_body_class_attr' );
  *	@return void
  */
 function customplate_primary_class_attr(){
-	$classes[] = "col-xs-12";
-	$classes[] = "col-sm-6";
-	$classes[] = "col-md-8";
+	$classes = array();
+	if (!is_front_page() || 'posts' == get_option( 'show_on_front' )){
+		$classes[] = "col-xs-12";
+		$classes[] = "col-sm-6";
+		$classes[] = "col-md-8";
+	} else {
+		$classes[] = "front-page no-right-sidebar";	
+	}
 	$plain = implode(" ", $classes);
 	echo $plain;
 }
@@ -561,6 +575,19 @@ function customplate_wp_title( $title, $sep ) {
 	return $title;
 }
 add_filter( 'wp_title', 'customplate_wp_title', 10, 2 );
+
+/**
+ * Declare WooCommerce support
+ *
+ * @since Custom Plate 1.0
+ *
+ * @global int $paged WordPress archive pagination page count.
+ * @return void
+ */
+function woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}
+add_action( 'after_setup_theme', 'woocommerce_support' );
 
 // Implement Custom Header features.
 require get_template_directory() . '/inc/custom-header.php';

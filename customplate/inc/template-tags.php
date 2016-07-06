@@ -82,14 +82,13 @@ function customplate_post_nav() {
 
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<span class="screen-reader-text"><?php _e( 'Post navigation', 'customplate' ); ?></span>
 		<div class="nav-links">
 			<?php
 			if ( is_attachment() ) :
 				previous_post_link( '%link', __( '<span class="meta-nav">Published In</span>%title', 'customplate' ) );
 			else :
-				previous_post_link( '%link', __( '<span class="meta-nav">Previous Post</span>%title', 'customplate' ) );
-				next_post_link( '%link', __( '<span class="meta-nav">Next Post</span>%title', 'customplate' ) );
+				previous_post_link( '%link', __( '<span class="meta-nav" data-prev-post="%title">Previous Post</span>', 'customplate' ) );
+				next_post_link( '%link', __( '<span class="meta-nav" data-next-post="%title">Next Post</span>', 'customplate' ) );
 			endif;
 			?>
 		</div><!-- .nav-links -->

@@ -13,14 +13,17 @@ if ( ! is_active_sidebar( 'sidebar-3' ) && ! is_active_sidebar( 'sidebar-4' ) &&
 ?>
 
 <div class="footer-widget row">
-	<div class="widget-area col-xs-6 col-sm-4" role="complementary">
+	<div class="widget-area col-xs-6 col-sm-3" role="complementary">
 		<?php dynamic_sidebar( 'sidebar-3' ); ?>
 	</div>
-	<div class="widget-area col-xs-6 col-sm-4" role="complementary">
+	<div class="widget-area col-xs-6 col-sm-3" role="complementary">
 		<?php dynamic_sidebar( 'sidebar-4' ); ?>
 	</div>
 	<div class="clearfix visible-xs-block"></div>
-	<div class="widget-area col-xs-6 col-sm-4" role="complementary">
+	<div class="widget-area col-xs-6 col-sm-3" role="complementary">
 		<?php dynamic_sidebar( 'sidebar-5' ); ?>
+	</div>
+	<div class="widget-area col-xs-6 col-sm-3" role="complementary">
+		<?php dynamic_sidebar( 'sidebar-6' ); ?>
 	</div>
 </div>

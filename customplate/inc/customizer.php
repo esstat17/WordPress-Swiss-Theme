@@ -49,10 +49,24 @@ function customplate_customize_register( $wp_customize ) {
 		),
 	) );
 
+	// Parallax Content Box in the Home Page.
+	$wp_customize->add_setting( 'front_box', array(
+		'default'           => '',
+		'sanitize_callback' => 'customplate_sanitize_empty_check',
+	) );
+
+	$wp_customize->add_control( 'front_box', array(
+		'label'   		=> __( 'Content Box', 'customplate'),
+		'description'   => __( 'You can insert HTML, shortcodes, etc. ', 'customplate'),
+		'section' 		=> 'static_front_page',
+		'type'    		=> 'textarea',
+		'active_callback' => 'is_front_page',
+	) );
+
 	// Parallax Welcome Screen in the Home Page.
 	$wp_customize->add_setting( 'parallax_screen', array(
 		'default'           => '',
-		'sanitize_callback' => 'customplate_sanitize_custom_empty_check',
+		'sanitize_callback' => 'customplate_sanitize_empty_check',
 	) );
 
 	$wp_customize->add_control( 'parallax_screen', array(
@@ -72,7 +86,7 @@ function customplate_customize_register( $wp_customize ) {
 <script type="text/javascript">
 	// Javascript inline goes here
 </script>',
-		'sanitize_callback' => 'customplate_sanitize_custom_empty_check',
+		'sanitize_callback' => 'customplate_sanitize_empty_check',
 		'transport'	=> 'refresh'
 	) );
 
@@ -86,7 +100,7 @@ function customplate_customize_register( $wp_customize ) {
 	// General Settings: Custom Code in the Footer
 	$wp_customize->add_setting( 'custom_footer', array(
 		'default'	=> '',
-		'sanitize_callback' => 'customplate_sanitize_custom_empty_check',
+		'sanitize_callback' => 'customplate_sanitize_empty_check',
 		'transport'	=> 'refresh'
 	) );
 
@@ -117,11 +131,15 @@ function customplate_customize_register( $wp_customize ) {
 	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_1', '#333333', __('Color #1', 'customplate' ), __('Insert <code>.color-1</code> or <code>.bg-color-1</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_2', '#f4e7ba', __('Color #2', 'customplate' ), __('Insert <code>.color-2</code> or <code>.bg-color-2</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_3', '#92c095', __('Color #3', 'customplate' ), __('Insert <code>.color-3</code> or <code>.bg-color-3</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
-	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_4', '#8A87A9', __('Color #4', 'customplate' ), __('Insert <code>.color-4</code> or <code>.bg-color-4</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
+	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_4', '#FFFFFF', __('Color #4', 'customplate' ), __('Insert <code>.color-4</code> or <code>.bg-color-4</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_5', '#f4bbba', __('Color #5', 'customplate' ), __('Insert <code>.color-5</code> or <code>.bg-color-5</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
 
 	// Upload Logo
-	customplate_customize_color($wp_customize, 'WP_Customize_Image_Control', 'add_logo', '', 'Upload a Logo', 'Suggested Logo Dimension 320 x 200 pixel', 'title_tagline', 'customplate_sanitize_logo_uri', 'refresh');
+	customplate_customize_color($wp_customize, 'WP_Customize_Image_Control', 'add_logo', '', 'Upload a Logo', 'Suggested Logo Dimension 320 x 200 pixel', 'title_tagline', 'customplate_sanitize_img_uri', 'refresh');
+
+	// Upload Welcome Screen Background
+	customplate_customize_color($wp_customize, 'WP_Customize_Image_Control', 'welcome_bg', '', 'Upload Welcome Screen Background', 'Suggested Dimension 2560 x 1140 px', 'static_front_page', 'customplate_sanitize_img_uri', 'refresh');
+	
 	/*
 	// Color setting and control. 5 Customized Colors.
 	$wp_customize->add_setting( 'color_1', array(
@@ -192,7 +210,7 @@ function customplate_sanitize_layout( $layout ) {
  * @param string $value Data from the Textarea in the Custom Head and Footer Section.
  * @return string $value or none.
  */
-function customplate_sanitize_custom_empty_check($value){
+function customplate_sanitize_empty_check($value){
 	if(!empty($value) && isset($value)){
 		return $value;
 	}
@@ -206,7 +224,7 @@ function customplate_sanitize_custom_empty_check($value){
  * @param string $value Data from the Textarea in the Static Front Page.
  * @return string $value or none.
  */
-function customplate_sanitize_logo_uri($value){
+function customplate_sanitize_img_uri($value){
 	$value = esc_url($value);
 	return $value;
 }
@@ -336,11 +354,24 @@ return $min_style;
  * Output Hooks
  */ 
 // Hook for Logo image URL.
-function customplate_theme_logo() {
-	$logo_url = get_theme_mod( 'add_logo', '');
-    return $logo_url;
+function customplate_theme_logo($img_url) {
+	$img_url_mod = get_theme_mod( 'add_logo');
+	if(!empty($img_url_mod) && isset($img_url_mod)){
+		$img_url = $img_url_mod;
+	}
+	return $img_url;
 }
 add_filter( 'ctp_logo', 'customplate_theme_logo' );
+
+// Hook for Welcome Screen image URL.
+function customplate_wc_screen_bg($img_url) {
+	$img_url_mod = get_theme_mod( 'welcome_bg');
+	if(!empty($img_url_mod) && isset($img_url_mod)){
+		$img_url = $img_url_mod;
+	}
+    return $img_url;
+}
+add_filter( 'ctp_welcome_bg', 'customplate_wc_screen_bg' );
 
 // Header Hook
 function customplate_head_hook() {
@@ -354,6 +385,7 @@ function customplate_foot_hook() {
 	$custom_footer = get_theme_mod( 'custom_footer', '');
 	echo $custom_footer;
 }
+add_action('wp_footer','customplate_foot_hook');
 
 // Parallax Screen Hook
 function customplate_parallax_screen_html() {
@@ -361,6 +393,13 @@ function customplate_parallax_screen_html() {
     return $html;
 }
 add_filter('ctp_screen_html','customplate_parallax_screen_html');
+
+// Conten Box in the Frontend Hook
+function customplate_parallax_front_box() {
+	$html = do_shortcode(get_theme_mod( 'front_box', ''));
+    echo $html;
+}
+add_action('ctp_front_section_before','customplate_parallax_front_box');
 
 // Hook Footer Copyright Notice
 function customplate_copyright_notice() {
