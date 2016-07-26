@@ -16,6 +16,11 @@
 		<div id="footer" class="site-footer bg-color-5 color-4" role="contentinfo">
 			<div class="container">
 				<?php get_sidebar( 'footer' ); ?>	
+			</div> <!-- .container-## -->		
+		</div><!-- #colophon -->
+	</div><!-- #page -->
+	<div id="foot-note" class="site-footer bg-color-5 color-4" role="contentinfo">
+			<div class="container">
 				<div class="copyright-notice row">
 					<?php do_action( 'customplate_foot_html_hook' ); ?>
 					<span><?php 
@@ -26,7 +31,6 @@
 			</div> <!-- .container-## -->		
 		</div><!-- #colophon -->
 	</div><!-- #page -->
-
 <!-- SCROLLTOP -->
 	<div class="scroll-up">
 		<a href="#totop"><i class="fa fa-angle-double-up"></i></a>

@@ -198,6 +198,33 @@ function customplate_widgets_init() {
 		'after_title'   => '</h4>',
 	) );
 	register_sidebar( array(
+		'name'          => __( 'Top Most Navigation', 'customplate' ),
+		'id'            => 'top-most-nav',
+		'description'   => __( 'Appears on the Top Right Section', 'customplate' ),
+		'before_widget' => '<div id="%1$s" class="widget-top %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="widget-title color-2">',
+		'after_title'   => '</h5>',
+	) );
+	register_sidebar( array(
+		'name'          => __( 'Navigation Scroll (left)', 'customplate' ),
+		'id'            => 'nav-scroll-left',
+		'description'   => __( 'Appears only when scroll down in the nav left. e.g. Logo, Icon, etc.', 'customplate' ),
+		'before_widget' => '<div id="%1$s" class="widget-top %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="widget-title color-2">',
+		'after_title'   => '</h5>',
+	) );
+	register_sidebar( array(
+		'name'          => __( 'Navigation Scroll (right)', 'customplate' ),
+		'id'            => 'nav-scroll-right',
+		'description'   => __( 'Appears only when scroll down in the nav right. e.g. Cart Icons, Call to action buttons, etc.', 'customplate' ),
+		'before_widget' => '<div id="%1$s" class="widget-top %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="widget-title color-2">',
+		'after_title'   => '</h5>',
+	) );
+	register_sidebar( array(
 		'name'          => __( 'Footer Widget Area (1)', 'customplate' ),
 		'id'            => 'sidebar-3',
 		'description'   => __( 'Appears in the footer (1) section of the site.', 'customplate' ),
@@ -433,8 +460,8 @@ endif;
  * @return array The filtered body class list.
  */
 function customplate_body_class_attr( $classes ) {
-	// Just add this as primary color
-	$classes[] = 'color-1';
+	// Just add this as text color
+	$classes[] = 'text-color';
 
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';

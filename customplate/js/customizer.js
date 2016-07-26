@@ -28,6 +28,10 @@
 				if(setting_id=='link_color'){
 					$(selector).css({ 'color': to });
 				}
+				// Text Color
+				if(setting_id=='text_color'){
+					$('.'+selector).css({ 'color': to });
+				}
 				// Site title and description.
 				if(setting_id=='blogname'){
 					$( '.site-name' ).html( to );
@@ -39,6 +43,7 @@
 		});
 	}
 	asyncPreview('link_color','a');
+	asyncPreview('text_color','text-color');
 	asyncPreview('color_1','color-1');
 	asyncPreview('color_2','color-2');
 	asyncPreview('color_3','color-3');

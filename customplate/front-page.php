@@ -14,11 +14,10 @@
 get_header(); ?>
 
 <?php
-
+	do_action( 'ctp_front_section_before' );
 	if ( 'posts' == get_option( 'show_on_front' ) ):
     	include( get_home_template() );
 	else: 
-		do_action( 'ctp_front_section_before' );
 		if ( is_front_page() && customplate_has_featured_posts() ) {
 				// Include the featured content template.
 			get_template_part( 'featured-content' );

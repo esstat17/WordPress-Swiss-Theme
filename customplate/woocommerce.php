@@ -24,14 +24,14 @@ get_header(); ?>
 			<div id="content" class="site-content" role="main">
 				<?php
 					// Start the Loop.
-					while ( have_posts() ) : the_post();	
+					if( have_posts() ) :	
 
 						// Woocommerce template.
 						woocommerce_content();
 
 						// get_template_part( 'content', 'page' );	
 
-					endwhile;
+					endif;
 				?>	
 
 			</div><!-- #content -->

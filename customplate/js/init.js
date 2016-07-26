@@ -61,16 +61,22 @@
 		function scrollHide(section) {
 			var topScroll = $(window).scrollTop();
 			if (section.length > 0) {
-				var section2 = $('#primary-menu');
+				var section2 = $('.head-section-2'),
+					naviLeft = $('.navi-scroll-left'),
+					naviRight = $('.navi-scroll-right.navi-scroll-show');
 				if (topScroll >= 5) {
 					section.hide();
-					if(!section2.hasClass('scroll-hide')){
- 						section2.addClass('scroll-hide');
+					naviLeft.show(180);
+					naviRight.show(180);
+					if(!section2.hasClass('scrolled-down')){
+ 						section2.addClass('scrolled-down');
  					}
 				} else {
 					section.show(300);
-					if(section2.hasClass('scroll-hide')){
- 						section2.removeClass('scroll-hide');
+					naviLeft.hide();
+					naviRight.hide();
+					if(section2.hasClass('scrolled-down')){
+ 						section2.removeClass('scrolled-down');
  					}
 				}
 			}

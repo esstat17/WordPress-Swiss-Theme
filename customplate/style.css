@@ -4,7 +4,7 @@ Theme URI: http://www.innovedesigns.com/
 Author: esstat17
 Author URI: http://www.innovedesigns.com/author/esstat17/
 Description: This is Twenty Fourteen Default Template w/ Bootstrap 3.0 Integrated.
-Version: 1.1
+Version: 1.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, left-sidebar, right-sidebar, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
@@ -25,9 +25,8 @@ General Styles
 
 body {
 	background: #fff;
-	font: 400 14px/1.8 "Open Sans", sans-serif;
-	color: #000;
-	margin: 0 auto;
+	font: 400 16px/1.6 "Open Sans", sans-serif;
+	color: #333;
 }
 
 img {
@@ -113,83 +112,8 @@ a:hover, a:focus {
 	outline: 0;
 }
 
-.bg-dark a {
-	color: #aaa;
-}
-
-.bg-dark a:hover,
-.bg-dark a:focus {
-	color: #fff;
-}
-
-.text-light {
-	color: rgba(255, 255, 255, 0.7);
-}
-
-.text-light h1, .text-light h2, .text-light h3, .text-light h4, .text-light h5, .text-light h6,
-.text-light .h1, .text-light .h2, .text-light .h3, .text-light .h4, .text-light .h5, .text-light .h6 {
-	color: #fff;
-}
-
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-	line-height: 1.4;
-	font-weight: 400;
-}
-
-h1 a, h2 a, h3 a {
-    color: inherit;
-}
-
-h1, .h1 {
-	font-size: 28px;
-}
-
-h2, .h2 {
-	font-size: 24px;
-}
-
-h3, .h3 {
-	font-size: 18px;
-}
-
-h4, .h4 {
-	font-size: 16px;
-}
-
-h5, .h5 {
-	font-size: 14px;
-}
-
-h6, .h6 {
-	font-size: 12px;
-}
-
-p, ol, ul, blockquote {
-	margin: 0 0 20px;
-}
-
 blockquote {
 	border-color: #f7f7f7;
-}
-
-blockquote.serif-quote {
-	border: 0;
-	padding-left: 0;
-	padding-right: 0;
-}
-
-.font-alt {
-	text-transform: uppercase;
-	letter-spacing: 2px;
-}
-
-.font-serif {
-	letter-spacing: 1px;
-	font-style: italic;
-}
-
-.rotate {
-	text-shadow: none !important;
 }
 
 /* ------------------------------------------------------------------
@@ -215,8 +139,6 @@ Forms
 .form-control:focus {
 	border-color: #111;
 }
-
-/* Form sizes */
 
 .input-lg,
 .form-horizontal .form-group-lg .form-control {
@@ -1243,10 +1165,6 @@ Navigation
 	        transition: background 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000), padding 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
 }
 
-.navbar-custom {
-	font-size: 12px;
-}
-
 .navbar-custom .navbar-brand {
 	float: none;
 	height: 60px;
@@ -1292,6 +1210,7 @@ Navigation
 #primary-navigation {
     border-bottom: 1px solid #ddd;
     margin-bottom: 0;
+    font-size: 14px;
 }
 .site-navigation {
     background-color: rgba(255, 255, 255, 1);
@@ -1300,26 +1219,49 @@ Navigation
     box-shadow: 0px 1px 10px -1px rgba(170, 170, 170, 0.35);
 }
 .nav-menu {
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
-
-#menu-newmenu li {
+.topmost-navigation li {
     float: left;
     display: inline;
     padding-right: 13px;
     font-size: 11px;
-    text-transform: capitalize;
     position: relative;
     list-style: none;
 }
-
 .topmost-navigation {
     font-size: 11px;
 }
-
 .top-menu {
     float: right;
+}
+.topmost-navigation > div {
+    float: left;
+    margin-left: 10px;
+}
+.navi-scroll-left {
+    float: left;
+    padding-right: 1%;
+}
+.navi-scroll-right {
+    float: right;
+}
+.navi-hide {
+	display: none;
+}
+.navi-middle {
+    float: left;
+}
+.nav-scroll-down {
+}
+.head-section-2.scrolled-down {
+    padding: 3px 0;
+}
+.nav-scrolled-down #primary-menu {
+    padding-top: 2%;
+}
+.head-section-2.scrolled-down .navi-middle {
+    padding-top: 1%;
 }
 
 /* ------------------------------------------------------------------
@@ -1348,49 +1290,6 @@ Hero
 	display: table-cell;
 	vertical-align: middle;
 	height: 100%;
-}
-
-/* Hero caption sizes */
-
-.mh-line-size-1,
-.mh-line-size-2,
-.mh-line-size-3,
-.mh-line-size-4,
-.mh-line-size-5,
-.mh-line-size-6 {
-	font-weight: 700;
-	opacity: 0.99;
-	margin: 0;
-}
-
-.mh-line-size-1 {
-	letter-spacing: 50px;
-	font-size: 26px;
-}
-
-.mh-line-size-2 {
-	letter-spacing: 40px;
-	font-size: 24px;
-}
-
-.mh-line-size-3 {
-	letter-spacing: 12px;
-	font-size: 22px;
-}
-
-.mh-line-size-4 {
-	letter-spacing: 8px;
-	font-size: 14px;
-}
-
-.mh-line-size-5 {
-	letter-spacing: 6px;
-	font-size: 12px;
-}
-
-.mh-line-size-6 {
-	font-weight: 400;
-	font-size: 16px;
 }
 
 /* ------------------------------------------------------------------
@@ -1786,6 +1685,11 @@ Post author
 /* ------------------------------------------------------------------
 Comments and Comment form
 ------------------------------------------------------------------- */
+#comment {
+    display: block;
+    max-width: 100%;
+    border: solid 1px #ddd;
+}
 
 .comment-avatar {
 	float: left;
@@ -1852,7 +1756,10 @@ Widgets
 	list-style: none;
 }
 
-/* Search */
+
+/* -------------------------------------------------------------------
+Search 
+------------------------------------------------------------------- */
 
 .search-box {
 	position: relative;
@@ -1874,7 +1781,9 @@ Widgets
 	color: #eee;
 }
 
-/* Recent posts */
+/* -------------------------------------------------------------------
+Recent Post
+------------------------------------------------------------------- */
 
 .widget-posts li {
 	padding-bottom: 20px;
@@ -1961,28 +1870,6 @@ Responsive Media Querries
 }
 
 @media (max-width: 992px) {
-
-	/* Hero captions */
-
-	.mh-line-size-1 {
-		letter-spacing: 40px;
-		font-size: 26px;
-	}
-
-	.mh-line-size-2 {
-		letter-spacing: 28px;
-		font-size: 20px;
-	}
-
-	.mh-line-size-3 {
-		letter-spacing: 20px;
-		font-size: 22px;
-	}
-
-	.mh-line-size-4 {
-		letter-spacing: 8px;
-		font-size: 16px;
-	}
 
 	/* Portfolio grid */
 
@@ -2257,27 +2144,6 @@ Multi-columns-row
 
 }
 
-.et-icons .box1 {
-	border: 1px solid #eee;
-	display: block;
-	width: 25%;
-	float: left;
-	padding: 0;
-	font-size: 13px;
-	margin: -1px 0 0 -1px;
-}
-
-.et-icons .box1 > span {
-	display: inline-block;
-	border-right: 1px solid #eee;
-	min-width: 60px;
-	min-height: 60px;
-	text-align: center;
-	line-height: 60px;
-	font-size: 28px;
-	margin-right: 5px;
-}
-
 /* -------------------------------------------------------------------
 Font Awesome
 ------------------------------------------------------------------- */
@@ -2482,33 +2348,31 @@ input[type=search] {
 .search-box {
   float: right;
 }
-
-.font-lucida {
-  font-family: "lucida handwriting";
-  letter-spacing: inherit;
-}
-.font-rockwell {
-  font-family: "Rockwell","serif";
-  letter-spacing: inherit;
-}
-.font-rockwell.mh-line-size-1 {
-font-size: 42px;
-}
-#comment {
-    display: block;
-    max-width: 100%;
-    border: solid 1px #ddd;
-}
 #right-sidebar {
     margin-top: 2em;
 }
 .home-intro p.lead {
   font-size: 16px;
-}
+} 
 .footer-widget {
     margin-top: 2.5em;
 }
-.scroll-hide {
-    margin-top: 1.1%;
+#footer {
+    font-weight: 100;
 }
-
+#foot-note {
+	background: #1d1d1d;
+    padding: 10px 20px;
+}
+.welcome-text {
+    font-size: 300%;
+    font-size: 4vw;
+    letter-spacing: -0.2vw;
+}
+@media (max-width: 480px){
+	.welcome-text {
+	    font-size: 300%;
+	    font-size: 8vw;
+	    letter-spacing: -0.2vw;
+	}	
+}

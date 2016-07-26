@@ -34,18 +34,19 @@ function customplate_customize_register( $wp_customize ) {
 	) );
 
 	// Add the featured content layout setting and control.
-	$wp_customize->add_setting( 'main_settings_layout', array(
-		'default'           => 'grid',
-		'sanitize_callback' => 'customplate_sanitize_layout',
+	$wp_customize->add_setting( 'show_nav_right', array(
+		'default'           => 'no',
+		'sanitize_callback' => 'customplate_sanitize_answer',
 	) );
 
-	$wp_customize->add_control( 'main_settings_layout', array(
-		'label'   		=> __( 'Layout', 'customplate' ),
+	$wp_customize->add_control( 'show_nav_right', array(
+		'label'   		=> __( 'Show Right Widget Nav', 'customplate' ),
+		'description'   => __( 'Always show right widget to the top navigation', 'customplate'),
 		'section' 		=> 'main_settings',
 		'type'    		=> 'select',
 		'choices' 		=> array(
-			'grid'   => __( 'Grid',   'customplate' ),
-			'slider' => __( 'Slider', 'customplate' ),
+			'no'   => __( 'No',   'customplate' ),
+			'yes' => __( 'Yes', 'customplate' ),
 		),
 	) );
 
@@ -128,6 +129,7 @@ function customplate_customize_register( $wp_customize ) {
 
 	// Color Settings
 	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'link_color', '#0000ff', 'Link Color', '', 'colors', 'sanitize_hex_color', 'postMessage');
+	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'text_color', '#504c4d', 'Text Color', '', 'colors', 'sanitize_hex_color', 'postMessage');
 	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_1', '#333333', __('Color #1', 'customplate' ), __('Insert <code>.color-1</code> or <code>.bg-color-1</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_2', '#f4e7ba', __('Color #2', 'customplate' ), __('Insert <code>.color-2</code> or <code>.bg-color-2</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_3', '#92c095', __('Color #3', 'customplate' ), __('Insert <code>.color-3</code> or <code>.bg-color-3</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
@@ -138,7 +140,7 @@ function customplate_customize_register( $wp_customize ) {
 	customplate_customize_color($wp_customize, 'WP_Customize_Image_Control', 'add_logo', '', 'Upload a Logo', 'Suggested Logo Dimension 320 x 200 pixel', 'title_tagline', 'customplate_sanitize_img_uri', 'refresh');
 
 	// Upload Welcome Screen Background
-	customplate_customize_color($wp_customize, 'WP_Customize_Image_Control', 'welcome_bg', '', 'Upload Welcome Screen Background', 'Suggested Dimension 2560 x 1140 px', 'static_front_page', 'customplate_sanitize_img_uri', 'refresh');
+	customplate_customize_color($wp_customize, 'WP_Customize_Image_Control', 'welcome_bg', '', 'Upload Welcome Screen Background', 'Suggested Dimension <b>1920 x 1080</b>px', 'static_front_page', 'customplate_sanitize_img_uri', 'refresh');
 	
 	/*
 	// Color setting and control. 5 Customized Colors.
@@ -189,18 +191,18 @@ function customplate_customize_color($wp_customize, $new_control, $setting_id, $
 }
 
 /**
- * Sanitize the Featured Content layout value.
+ * Sanitize Yes/No value.
  *
  * @since Custom Plate 1.0
  *
- * @param string $layout Layout type.
- * @return string Filtered layout type (grid|slider).
+ * @param string $answer Layout type.
+ * @return string Filtered answer type (no/yes).
  */
-function customplate_sanitize_layout( $layout ) {
-	if ( ! in_array( $layout, array( 'grid', 'slider' ) ) ) {
-		$layout = 'grid';
+function customplate_sanitize_answer( $answer ) {
+	if ( ! in_array( $answer, array( 'no', 'yes' ) ) ) {
+		$answer = 'no';
 	}
-	return $layout;
+	return $answer;
 }
 
 /**
@@ -248,10 +250,9 @@ add_action( 'customize_preview_init', 'customplate_customize_preview_js' );
  * @see wp_add_inline_style()
  */
 function customplate_link_color_css() {
-	// $color_scheme    = customplate_get_color_scheme();
-	// $default_color   = $color_scheme[2];
-	$background_color = get_theme_mod( 'background_color', '#fff' );
+	$background_color = get_theme_mod( 'background_color', '#ffffff' );
 	$link_color = get_theme_mod( 'link_color', '#fff' );
+	$text_color = get_theme_mod( 'text_color', '#504c4d' );
 	$color_1 = get_theme_mod( 'color_1', '#333333' );
 	$color_2 = get_theme_mod( 'color_2', '#f4e7ba' );
 	$color_3 = get_theme_mod( 'color_3', '#92c095' );
@@ -272,6 +273,7 @@ function customplate_link_color_css() {
 		'header_image'		    => $header_image,
 		'background_color'     	=> $background_color,
 		'link_color'     		=> $link_color,
+		'text_color'     		=> $text_color,
 		'color_1'     			=> $color_1,
 		'color_2'     			=> $color_2,
 		'color_3'     			=> $color_3,
@@ -297,6 +299,7 @@ function customplate_css_factory($css) {
 		'header_image'			=> '',
 		'display_header_text' 	=> '',
 		'link_color' 			=> '',
+		'text_color'       		=> '',
 		'color_1'       		=> '',
 		'color_2'       		=> '',
 		'color_3'       		=> '',
@@ -309,6 +312,9 @@ function customplate_css_factory($css) {
 }
 a{
     color: {$css['link_color']};
+}
+.text-color {
+	color: {$css['text_color']};
 }
 .color-1 {
 	color: {$css['color_1']};
@@ -372,6 +378,16 @@ function customplate_wc_screen_bg($img_url) {
     return $img_url;
 }
 add_filter( 'ctp_welcome_bg', 'customplate_wc_screen_bg' );
+
+// Always show Navigation Scroll Right show_nav_right
+function customplate_show_nav_scroll($nav_scroll) {
+	$nav_scroll_mod = get_theme_mod( 'show_nav_right');
+	if(!empty($nav_scroll_mod) && $nav_scroll_mod =="yes"){
+		$nav_scroll = 'navi-always-show';
+	}
+    echo $nav_scroll;
+}
+add_filter( 'ctp_show_nav', 'customplate_show_nav_scroll' );
 
 // Header Hook
 function customplate_head_hook() {

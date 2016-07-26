@@ -10,8 +10,13 @@ Just few of the many features
 * Bootstrap Integrated
 * Full Size Welcome Screen
 * Parallax Effects
-* Custom Code in the Footer
+* Head Custom Code
+* Footer Custom Code
+* Font Awesome Installed
+* Top Widgets
 * WooComerce Ready
+* Scroll Animation
+* Awesome Desktop Navigation
 * more to add here.. 
 
 
