@@ -106,7 +106,7 @@ class Customplate_Ephemera_Widget extends WP_Widget {
 
 			echo $args['before_widget'];
 			?>
-			<h4 class="widget-title color-2 <?php echo esc_attr( $format ); ?>">
+			<h4 class="widget-title <?php echo esc_attr( $format ); ?>">
 				<a class="entry-format" href="<?php echo esc_url( get_post_format_link( $format ) ); ?>"><?php echo esc_html( $title ); ?></a>
 			</h4>
 			<ol>
@@ -123,7 +123,7 @@ class Customplate_Ephemera_Widget extends WP_Widget {
 						<div class="entry-meta">
 							<?php
 								if ( ! has_post_format( 'link' ) ) :
-									the_title( '<h5 class="entry-title color-2"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h5>' );
+									the_title( '<h5 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h5>' );
 								endif;
 
 								printf( '<span class="entry-date"><a href="%1$s" rel="bookmark"><time class="entry-date" datetime="%2$s">%3$s</time></a></span> <span class="byline">%4$s <span class="author vcard"><a class="url fn n" href="%5$s" rel="author">%6$s</a></span></span>',

@@ -25,7 +25,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="primary-navigation" class="site-navigation primary-navigation navbar navbar-custom navbar-transparent bg-color-3" role="navigation">
+<div id="primary-navigation" class="site-navigation primary-navigation navbar navbar-custom navbar-transparent header-bg" role="navigation">
 	<div class="container">
 		<div class="row head-section-1">
 			<!-- LOGO OR SIMPLE TEXT -->
@@ -34,8 +34,8 @@
 							<?php $ctp_logo_uri = apply_filters( 'ctp_logo', get_template_directory_uri().'/images/logo@2x.png'); ?>
 							<img src="<?php echo esc_url($ctp_logo_uri); ?>" style="max-width:160px;height:auto;">
 						</a>
-						<span class="site-name color-5"><?php bloginfo( 'name' ); ?></span>
-						<span class="site-desc color-5"><?php  bloginfo( 'description'); ?></span>					
+						<span class="site-name"><?php bloginfo( 'name' ); ?></span>
+						<span class="site-desc"><?php  bloginfo( 'description'); ?></span>					
 			</div> <!-- .brand-section end -->
 			<div class="nav-menu native-nav col-xs-12 col-md-8">
 				<?php if ( has_nav_menu( 'topmost' ) ) : ?>

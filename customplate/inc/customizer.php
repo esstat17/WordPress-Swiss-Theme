@@ -128,13 +128,16 @@ function customplate_customize_register( $wp_customize ) {
 	$wp_customize->remove_control( 'header_textcolor' );
 
 	// Color Settings
-	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'link_color', '#0000ff', 'Link Color', '', 'colors', 'sanitize_hex_color', 'postMessage');
-	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'text_color', '#504c4d', 'Text Color', '', 'colors', 'sanitize_hex_color', 'postMessage');
-	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_1', '#333333', __('Color #1', 'customplate' ), __('Insert <code>.color-1</code> or <code>.bg-color-1</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
-	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_2', '#f4e7ba', __('Color #2', 'customplate' ), __('Insert <code>.color-2</code> or <code>.bg-color-2</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
-	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_3', '#92c095', __('Color #3', 'customplate' ), __('Insert <code>.color-3</code> or <code>.bg-color-3</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
-	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_4', '#FFFFFF', __('Color #4', 'customplate' ), __('Insert <code>.color-4</code> or <code>.bg-color-4</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
-	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_5', '#f4bbba', __('Color #5', 'customplate' ), __('Insert <code>.color-5</code> or <code>.bg-color-5</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
+	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'text_color', '#504c4d', __('Text Color', 'customplate' ), '', 'colors', 'sanitize_hex_color', 'postMessage');
+	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'link_color', '#4b8abb', __('Link Color', 'customplate' ), '', 'colors', 'sanitize_hex_color', 'postMessage');
+	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'htags_color', '#555555', __('H-Tags Color', 'customplate' ), '', 'colors', 'sanitize_hex_color', 'postMessage');
+	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'header_bg', '#ffffff', __('Header Background', 'customplate' ), '', 'colors', 'sanitize_hex_color', 'postMessage');
+	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'footer_bg', '#262626', __('Footer Background', 'customplate' ), '', 'colors', 'sanitize_hex_color', 'postMessage');
+	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_1', '#f68712', __('Color #1 (Unused)', 'customplate' ), __('Insert <code>.color-1</code> or <code>.bg-color-1</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
+	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_2', '#f4e7ba', __('Color #2 (Unused)', 'customplate' ), __('Insert <code>.color-2</code> or <code>.bg-color-2</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
+	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_3', '#92c095', __('Color #3 (Unused)', 'customplate' ), __('Insert <code>.color-3</code> or <code>.bg-color-3</code> class', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
+	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_4', '#eeeeee', __('Color #4', 'customplate' ), __('Insert <code>.color-4</code> or <code>.bg-color-4</code> class. Used in the Footer H-Tag.', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
+	customplate_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_5', '#bab0b0', __('Color #5', 'customplate' ), __('Insert <code>.color-5</code> or <code>.bg-color-5</code> class. Used in the Footer Text.', 'customplate'), 'colors', 'sanitize_hex_color', 'postMessage' );
 
 	// Upload Logo
 	customplate_customize_color($wp_customize, 'WP_Customize_Image_Control', 'add_logo', '', 'Upload a Logo', 'Suggested Logo Dimension 320 x 200 pixel', 'title_tagline', 'customplate_sanitize_img_uri', 'refresh');
@@ -237,7 +240,7 @@ function customplate_sanitize_img_uri($value){
  * @since Custom Plate 1.0
  */
 function customplate_customize_preview_js() {
-	wp_enqueue_script( 'customplate_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20131205', true );
+	wp_enqueue_script( 'customplate_customizer', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20131205', true );
 }
 add_action( 'customize_preview_init', 'customplate_customize_preview_js' );
 
@@ -251,28 +254,30 @@ add_action( 'customize_preview_init', 'customplate_customize_preview_js' );
  */
 function customplate_link_color_css() {
 	$background_color = get_theme_mod( 'background_color', '#ffffff' );
-	$link_color = get_theme_mod( 'link_color', '#fff' );
+	$link_color = get_theme_mod( 'link_color', '#4b8abb' );
+	$htags_color = get_theme_mod( 'htags_color', '#555555' );
+	$header_bg = get_theme_mod( 'header_bg', '#ffffff' );
+	$footer_bg = get_theme_mod( 'footer_bg', '#262626' );
 	$text_color = get_theme_mod( 'text_color', '#504c4d' );
-	$color_1 = get_theme_mod( 'color_1', '#333333' );
+	$color_1 = get_theme_mod( 'color_1', '#f68712' );
 	$color_2 = get_theme_mod( 'color_2', '#f4e7ba' );
 	$color_3 = get_theme_mod( 'color_3', '#92c095' );
-	$color_4 = get_theme_mod( 'color_4', '#8A87A9' );
-	$color_5 = get_theme_mod( 'color_5', '#f4bbba' );
+	$color_4 = get_theme_mod( 'color_4', '#eeeeee' );
+	$color_5 = get_theme_mod( 'color_5', '#bab0b0' );
 
 	// Hide or Display Site Title and Description
 	$display_header_text = display_header_text()==1?'.site-name, .site-desc{clip:auto;position:static;}':'.site-name, .site-desc{clip: rect(1px 1px 1px 1px);position: absolute;}';
 	$header_image = false==get_header_image()?'':'#primary-navigation{background-image:url("'.get_header_image().'");}';
 	
-	// Don't do anything if the current color is the default.
-	// if ( $background_color === $default_color ) {
-// 		return;
-// 	}
 
 	$css = array(
 		'display_header_text'	=> $display_header_text,
 		'header_image'		    => $header_image,
 		'background_color'     	=> $background_color,
 		'link_color'     		=> $link_color,
+		'htags_color'     		=> $htags_color,
+		'header_bg'     		=> $header_bg,
+		'footer_bg'     		=> $footer_bg,
 		'text_color'     		=> $text_color,
 		'color_1'     			=> $color_1,
 		'color_2'     			=> $color_2,
@@ -299,6 +304,9 @@ function customplate_css_factory($css) {
 		'header_image'			=> '',
 		'display_header_text' 	=> '',
 		'link_color' 			=> '',
+		'htags_color'     		=> '',
+		'header_bg'     		=> '',
+		'footer_bg'     		=> '',
 		'text_color'       		=> '',
 		'color_1'       		=> '',
 		'color_2'       		=> '',
@@ -310,25 +318,34 @@ function customplate_css_factory($css) {
 .custom-background {
 	background-color: #{$css['background_color']};
 }
-a{
-    color: {$css['link_color']};
-}
 .text-color {
 	color: {$css['text_color']};
 }
-.color-1 {
+a, a:hover, a:focus{
+    color: {$css['link_color']};
+}
+h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
+    color: {$css['htags_color']};
+}
+.header-bg {
+	background-color: {$css['header_bg']};
+}
+.footer-bg {
+	background-color: {$css['footer_bg']};
+}
+.color-1, .color-1 a {
 	color: {$css['color_1']};
 }
-.color-2{
+.color-2, .color-2 a{
 	color: {$css['color_2']};
 }
-.color-3{
+.color-3, .color-3 a{
 	color: {$css['color_3']};
 }
-.color-4{
+.color-4, .color-4 a{
 	color: {$css['color_4']};
 }
-.color-5{
+.color-5, .color-5 a{
 	color: {$css['color_5']};
 }
 .bg-color-1{

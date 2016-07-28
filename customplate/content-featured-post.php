@@ -17,6 +17,6 @@
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 
-		<?php the_title( '<h6 class="entry-title color-2"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">','</a></h6>' ); ?>
+		<?php the_title( '<h6 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">','</a></h6>' ); ?>
 	</div><!-- .entry-header -->
 </article><!-- #post-## -->

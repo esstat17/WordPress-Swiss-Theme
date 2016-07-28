@@ -12,7 +12,9 @@
 	<?php
 		// Page thumbnail and title.
 		customplate_post_thumbnail();
-		the_title( '<div class="entry-header"><h1 class="entry-title color-2">', '</h1></div><!-- .entry-header -->' );
+		if ( !is_front_page() ){
+			the_title( '<div class="entry-header"><h1 class="entry-title">', '</h1></div><!-- .entry-header -->' );
+		}
 	?>
 
 	<div class="entry-content">

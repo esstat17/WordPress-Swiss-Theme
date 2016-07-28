@@ -11,7 +11,7 @@
 	 *
 	 * param string setting_id Theme Setting ID
 	 * param string selector HTML Selector w/o prefix such as `.` and `#`
-	 */
+	 */ 
 	var asyncPreview = function(setting_id, selector){
 		api( setting_id, function( value ) {
 			value.bind( function( to ) {
@@ -21,11 +21,15 @@
 					setting_id=='color_4' ||
 					setting_id=='color_5')
 				{
-					$('.'+selector).css({ 'color': to });
+					$('.'+selector+', .'+selector+' a').css({ 'color': to });
 					$('.bg-'+selector).css({ 'background-color': to });
 				}
-				// Link Colors
-				if(setting_id=='link_color'){
+
+				if(setting_id=='header_bg' || setting_id=='footer_bg') {
+					$('.'+selector).css({ 'background-color': to });
+				}
+				// Link Colors and H-Tags Colors
+				if(setting_id=='link_color' || setting_id=='htags_color'){
 					$(selector).css({ 'color': to });
 				}
 				// Text Color
@@ -43,6 +47,9 @@
 		});
 	}
 	asyncPreview('link_color','a');
+	asyncPreview('htags_color','h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a');
+	asyncPreview('header_bg','header-bg');
+	asyncPreview('footer_bg','footer-bg');
 	asyncPreview('text_color','text-color');
 	asyncPreview('color_1','color-1');
 	asyncPreview('color_2','color-2');
@@ -85,6 +92,6 @@
 			}
 		} );
 	} );
-
+ 
 
 } )( jQuery ); 

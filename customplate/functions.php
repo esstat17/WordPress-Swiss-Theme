@@ -185,7 +185,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Main sidebar that appears on the right.', 'customplate' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title color-2">',
+		'before_title'  => '<h4 class="widget-title">',
 		'after_title'   => '</h4>',
 	) );
 	register_sidebar( array(
@@ -194,7 +194,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Additional sidebar that appears on the right.', 'customplate' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title color-2">',
+		'before_title'  => '<h4 class="widget-title">',
 		'after_title'   => '</h4>',
 	) );
 	register_sidebar( array(
@@ -203,7 +203,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Appears on the Top Right Section', 'customplate' ),
 		'before_widget' => '<div id="%1$s" class="widget-top %2$s">',
 		'after_widget'  => '</div>',
-		'before_title'  => '<h5 class="widget-title color-2">',
+		'before_title'  => '<h5 class="widget-title">',
 		'after_title'   => '</h5>',
 	) );
 	register_sidebar( array(
@@ -212,7 +212,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Appears only when scroll down in the nav left. e.g. Logo, Icon, etc.', 'customplate' ),
 		'before_widget' => '<div id="%1$s" class="widget-top %2$s">',
 		'after_widget'  => '</div>',
-		'before_title'  => '<h5 class="widget-title color-2">',
+		'before_title'  => '<h5 class="widget-title">',
 		'after_title'   => '</h5>',
 	) );
 	register_sidebar( array(
@@ -221,7 +221,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Appears only when scroll down in the nav right. e.g. Cart Icons, Call to action buttons, etc.', 'customplate' ),
 		'before_widget' => '<div id="%1$s" class="widget-top %2$s">',
 		'after_widget'  => '</div>',
-		'before_title'  => '<h5 class="widget-title color-2">',
+		'before_title'  => '<h5 class="widget-title">',
 		'after_title'   => '</h5>',
 	) );
 	register_sidebar( array(
@@ -230,7 +230,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Appears in the footer (1) section of the site.', 'customplate' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title color-2">',
+		'before_title'  => '<h4 class="widget-title color-4">',
 		'after_title'   => '</h4>',
 	) );
 	register_sidebar( array(
@@ -239,7 +239,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Appears in the footer (2) section of the site.', 'customplate' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title color-2">',
+		'before_title'  => '<h4 class="widget-title color-4">',
 		'after_title'   => '</h4>',
 	) );
 	register_sidebar( array(
@@ -248,7 +248,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Appears in the footer (3) section of the site.', 'customplate' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title color-2">',
+		'before_title'  => '<h4 class="widget-title color-4">',
 		'after_title'   => '</h4>',
 	) );
 	register_sidebar( array(
@@ -257,7 +257,7 @@ function customplate_widgets_init() {
 		'description'   => __( 'Appears in the footer (4) section of the site.', 'customplate' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title color-2">',
+		'before_title'  => '<h4 class="widget-title color-4">',
 		'after_title'   => '</h4>',
 	) );
 }
@@ -518,8 +518,9 @@ function customplate_primary_class_attr(){
 		$classes[] = "col-xs-12";
 		$classes[] = "col-sm-6";
 		$classes[] = "col-md-8";
+		$classes[] = "col-md-8";
 	} else {
-		$classes[] = "front-page no-right-sidebar";	
+		$classes[] = "col-lg-12 front-page no-right-sidebar";	
 	}
 	$plain = implode(" ", $classes);
 	echo $plain;

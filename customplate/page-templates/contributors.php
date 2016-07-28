@@ -27,7 +27,7 @@ get_header(); ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<?php
-					the_title( '<div class="entry-header"><h1 class="entry-title color-2">', '</h1></div><!-- .entry-header -->' );
+					the_title( '<div class="entry-header"><h1 class="entry-title">', '</h1></div><!-- .entry-header -->' );
 
 					// Output the authors list.
 					customplate_list_authors();

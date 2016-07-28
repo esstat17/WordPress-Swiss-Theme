@@ -107,9 +107,9 @@ a {
 }
 
 a:hover, a:focus {
-	text-decoration: none;
-	color: #111;
-	outline: 0;
+    text-decoration: none;
+    opacity: .7;
+    outline: 0;
 }
 
 blockquote {
@@ -1211,6 +1211,8 @@ Navigation
     border-bottom: 1px solid #ddd;
     margin-bottom: 0;
     font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .site-navigation {
     background-color: rgba(255, 255, 255, 1);
@@ -1225,12 +1227,12 @@ Navigation
     float: left;
     display: inline;
     padding-right: 13px;
-    font-size: 11px;
     position: relative;
     list-style: none;
 }
 .topmost-navigation {
     font-size: 11px;
+    font-size: 82%;
 }
 .top-menu {
     float: right;
@@ -1339,137 +1341,6 @@ Modules
 
 .module-title + .module-subtitle {
 	margin-top: -35px;
-}
-
-
-/* ------------------------------------------------------------------
-Works grid
-------------------------------------------------------------------- */
-
-.works-grid-wrapper {
-	margin: 0 -5px;
-}
-
-.works-grid {
-	position: relative;
-	width: 100%;
-}
-
-.work-item,
-.grid-sizer {
-	width: 25%;
-}
-
-.work-item.wide,
-.work-item.wide-tall {
-	width: 50%;
-}
-
-/* ------------------------------------------------------------------
-Works item
-------------------------------------------------------------------- */
-
-.work-item a {
-	position: absolute;
-	top: 0;
-	bottom: 10px;
-	right: 5px;
-	left: 5px;
-	overflow: hidden;
-}
-
-.work-item a:after {
-	position: absolute;
-	display: block;
-	content: "";
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	-webkit-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-	   -moz-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-	     -o-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-	        transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-}
-
-.work-item img {
-	height: auto;
-	width: 100%;
-}
-
-.work-caption {
-	position: absolute;
-	left: 0;
-	top: 100%;
-	width: 100%;
-	opacity: 0;
-	overflow: hidden;
-	padding: 20px;
-	z-index: 3;
-	text-align: center;
-	-webkit-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-	   -moz-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-	     -o-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-	        transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-}
-
-.work-title {
-	font-size: 14px;
-	color: #fff;
-	margin: 6px 0 6px;
-}
-
-.work-descr {
-	font-size: 11px;
-	color: rgba(255, 255, 255, 0.75);
-}
-
-/* White hover */
-
-.works-hover-w .work-title {
-	color: #111;
-}
-
-.works-hover-w .work-descr {
-	color: rgba(17, 17, 17, 0.75);
-}
-
-/* Work item gradien background */
-
-.works-hover-g a:after {
-	opacity: 0;
-}
-
-/* ------------------------------------------------------------------
-Works item hover
-------------------------------------------------------------------- */
-
-.work-item:hover a:after {
-	background: rgba(0, 0, 0, 0.8);
-}
-
-.works-hover-w .work-item:hover a:after {
-	background: rgba(255, 255, 255, 0.8);
-}
-
-.works-hover-g .work-item:hover a:after {
-	background: rgb(111, 226, 158);
-	background: -moz-linear-gradient(-45deg, rgba(111,226,158,0.8) 0%, rgba(91,218,209,0.8) 100%);
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(111,226,158,0.8)), color-stop(100%,rgba(91,218,209,0.8)));
-	background: -webkit-linear-gradient(-45deg, rgba(111,226,158,0.8) 0%,rgba(91,218,209,0.8) 100%);
-	background: -o-linear-gradient(-45deg, rgba(111,226,158,0.8) 0%,rgba(91,218,209,0.8) 100%);
-	background: -ms-linear-gradient(-45deg, rgba(111,226,158,0.8) 0%,rgba(91,218,209,0.8) 100%);
-	background: linear-gradient(135deg, rgba(111,226,158,0.8) 0%,rgba(91,218,209,0.8) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6fe29e', endColorstr='#5bdad1',GradientType=1 );
-	opacity: 1;
-}
-
-.work-item:hover .work-caption {
-	opacity: 1;
-	top: 50%;
-	-webkit-transform: translateY(-50%);
-	   -moz-transform: translateY(-50%);
-	        transform: translateY(-50%);
 }
 
 /* ------------------------------------------------------------------
@@ -1597,6 +1468,10 @@ Blog
 
 .post-single .post-meta {
 	margin: 0 0 20px;
+}
+
+.entry-meta {
+    font-size: 14px;
 }
 
 /* ------------------------------------------------------------------
