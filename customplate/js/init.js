@@ -13,7 +13,7 @@
 			navbar      = $('.navbar-custom'),
 			modules     = $('.module-hero, .module, .module-small'),
 			windowWidth = Math.max($(window).width(), window.innerWidth),
-			navbarTrans = true;
+			prevScroll = 0;
 		
 		/* ---------------------------------------------- /*
 		 * Full height module
@@ -36,61 +36,68 @@
 		
 		$(window).ready(initModuleHero).resize(initModuleHero);
 
-		// Transparent navbar animation
-		function navAnimate(navbar) {
-			var topScroll = $(window).scrollTop();
-			if (navbar.length > 0) {
-				if (topScroll >= 5) {
-					if(navbar.hasClass('navbar-transparent')){
-						navbar.removeClass('navbar-transparent');
-					}
-					if(!navbar.hasClass('navbar-fixed-top')){
-						navbar.addClass('navbar-fixed-top');
-					}
-				} else {
-					if(!navbar.hasClass('navbar-transparent')){
-						navbar.addClass('navbar-transparent');
-					}
-					if(navbar.hasClass('navbar-fixed-top')){
-						navbar.removeClass('navbar-fixed-top');
-					}
-				}
-			}
+		function hideIfScrollDown(me){
+			var scrolling = $(me).scrollTop();
+   			if (scrolling < prevScroll){
+   				// scroll down
+   				$("#primary-navigation").show();
+   			} else {
+   				// scroll up!
+   				$("#primary-navigation").hide();
+   			}
+   			prevScroll = scrolling;
 		}
 
-		function scrollHide(section) {
-			var topScroll = $(window).scrollTop();
-			if (section.length > 0) {
-				var section2 = $('.head-section-2'),
-					naviLeft = $('.navi-scroll-left'),
-					naviRight = $('.navi-scroll-right.navi-scroll-show');
-				if (topScroll >= 5) {
-					section.hide();
-					naviLeft.show(180);
-					naviRight.show(180);
-					if(!section2.hasClass('scrolled-down')){
- 						section2.addClass('scrolled-down');
- 					}
-				} else {
-					section.show(300);
-					naviLeft.hide();
-					naviRight.hide();
-					if(section2.hasClass('scrolled-down')){
- 						section2.removeClass('scrolled-down');
- 					}
+		// Hiding upper section of the navigation
+		function scrollHide(me) {
+			var scrolling = $(window).scrollTop();
+			var section2 = $('.head-section-2'),
+				naviLeft = $('.navi-scroll-left'),
+				naviRight = $('.navi-scroll-right.navi-scroll-show');
+					
+			if (scrolling >= 5) {
+				hideIfScrollDown(me);
+				// Hide Section 1
+				headSection.hide();
+				naviLeft.show();
+				naviRight.show();
+				if(!section2.hasClass('scrolled-down')){
+ 					section2.addClass('scrolled-down');
+ 				}
+
+ 				// Nav Scroll animation
+ 				if(navbar.hasClass('navbar-transparent')){
+					navbar.removeClass('navbar-transparent');
 				}
-			}
+				if(!navbar.hasClass('navbar-fixed-top')){
+					navbar.addClass('navbar-fixed-top');
+				}
+
+			} else {
+
+				// Hide Section 1
+				headSection.show();
+				naviLeft.hide();
+				naviRight.hide();
+				if(section2.hasClass('scrolled-down')){
+ 					section2.removeClass('scrolled-down');
+ 				}
+
+ 				// Nav Scroll animation
+ 				if(!navbar.hasClass('navbar-transparent')){
+					navbar.addClass('navbar-transparent');
+				}
+				if(navbar.hasClass('navbar-fixed-top')){
+					navbar.removeClass('navbar-fixed-top');
+				}
+			}		
 		}
-		
+
+
 		$(window).scroll(function() {
-			navAnimate(navbar);
-			scrollHide(headSection);
-		}).scroll();
-		
-		// Woocomerce Fixes
-		// $('.woocommerce #content').addClass( 'col-md-7 woocss-fix' );
-		
-		
+			scrollHide(this);
+		});
+				
 		// Navigation Menu
 		$('#primary-menu').superfish();
 		

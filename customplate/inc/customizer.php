@@ -382,7 +382,7 @@ function customplate_theme_logo($img_url) {
 	if(!empty($img_url_mod) && isset($img_url_mod)){
 		$img_url = $img_url_mod;
 	}
-	return $img_url;
+	return set_url_scheme($img_url);
 }
 add_filter( 'ctp_logo', 'customplate_theme_logo' );
 
@@ -392,7 +392,7 @@ function customplate_wc_screen_bg($img_url) {
 	if(!empty($img_url_mod) && isset($img_url_mod)){
 		$img_url = $img_url_mod;
 	}
-    return $img_url;
+    return set_url_scheme($img_url);
 }
 add_filter( 'ctp_welcome_bg', 'customplate_wc_screen_bg' );
 
