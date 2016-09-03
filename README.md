@@ -12,7 +12,6 @@ Just few of the many features
 * Parallax Effects
 * Head Custom Code
 * Footer Custom Code
-* Font Awesome Installed
 * Top Widgets
 * WooComerce Ready
 * Scroll Animation
