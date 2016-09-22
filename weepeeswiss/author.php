@@ -30,12 +30,33 @@ get_header(); ?>
 						 */
 						the_post();
 
-						printf( __( 'All posts by %s', 'weepeeswiss' ), get_the_author() );
+						// printf( __( 'Published by %s', 'weepeeswiss' ), get_the_author() );
 					?>
 				</h1>
-				<?php if ( get_the_author_meta( 'description' ) ) : ?>
-				<div class="author-description"><?php the_author_meta( 'description' ); ?></div>
-				<?php endif; ?>
+
+				<?php if ( get_the_author_meta('description') != '' && is_author() ) : ?>
+                    
+                <div id="author-meta">
+                  
+                        
+                    <div class="panel panel-default">
+  						<div class="panel-body">
+  							<div class="author-foto pull-left"> 
+  							<?php if (function_exists('get_avatar')) { echo get_avatar( get_the_author_meta('email'), '80' ); } ?> 
+  							</div>
+  							<div class="author-bio"> 
+  								<?php the_author_meta('description') ?>
+  							</div>
+  						</div>
+  						<div class="panel-footer">
+  							<div class="about-author"><?php _e('About','weepeeswiss'); ?>               
+                        		<a href="<?php the_author_meta('url') ?>" rel="me"><?php echo get_the_author(); ?></a>               
+                        	</div>
+                    	</div>
+					</div>
+				</div>
+        		<?php endif; // no description, no author's meta ?>
+
 			</div><!-- .archive-header -->
 
 			<?php

@@ -25,19 +25,20 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="primary-navigation" class="site-navigation primary-navigation navbar navbar-custom navbar-transparent header-bg header-txt" role="navigation">
+<div id="super-wrap" class="wrapper hfeed site">
+<div id="primary-navigation" class="site-navigation primary-navigation navbar navbar-custom navbar-transparent header-bg header-txt nav-off" role="navigation">
 	<div class="container">
 		<div class="row head-section-1">
 			<!-- LOGO OR SIMPLE TEXT -->
 			<div class="brand-section col-xs-6 col-md-4">
 						<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 							<?php $wps_logo_uri = apply_filters( 'wps_logo', get_template_directory_uri().'/images/logo@2x.png'); ?>
-							<img src="<?php echo esc_url($wps_logo_uri); ?>" style="max-width:160px;height:auto;">
+							<img src="<?php echo esc_url($wps_logo_uri); ?>">
 						</a>
 						<span class="site-name"><?php bloginfo( 'name' ); ?></span>
 						<span class="site-desc"><?php  bloginfo( 'description'); ?></span>					
 			</div> <!-- .brand-section end -->
-			<div class="nav-menu native-nav col-xs-12 col-md-8">
+			<div class="nav-menu native-nav col-xs-6 col-md-8">
 				<?php if ( has_nav_menu( 'topmost' ) ) : ?>
 				<div class="row row-top-menu">
 		    		<div class="top-menu">
@@ -58,25 +59,24 @@
 		</div>
 		<div class="row head-section-2">
 			<div class="col-lg-12">
-				<?php 
-				// Left Navigation Appears when Scroll Down
-					if ( is_active_sidebar( 'nav-scroll-left' ) ):
-				?>
-					<div class="navi-scroll-left navi-hide navi-left-show">
-					<?php dynamic_sidebar( 'nav-scroll-left' ); ?>
+				<div class="navi-scroll-left navi-hide navi-left-show">
+					<a class="mobile-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<?php $wps_logo_uri = apply_filters( 'wps_logo', get_template_directory_uri().'/images/mlogo@2x.png'); ?>
+						<img src="<?php echo esc_url($wps_logo_uri); ?>">
+					</a>
+				</div>
+				<?php if ( has_nav_menu( 'primary' ) ) : ?>
+					<div class="navi-menu-wrap">
+					<?php 
+						// Left Navigation Appears when Scroll Down
+						wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu sf-menu', 'menu_id' => 'primary-menu' ) );
+					?>
 					</div>
+					<?php 
+						// get_search_form(); 
+					?>
 				<?php endif; ?>	
 
-				<?php if ( has_nav_menu( 'primary' ) ) : ?>
-					<div class="navi-middle">
-						<button class="menu-toggle"><?php _e( 'Primary Menu', 'weepeeswiss' ); ?></button>
-						<a class="screen-reader-text skip-link" href="#content"><?php _e( 'Skip to content', 'weepeeswiss' ); ?></a>
-						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu sf-menu', 'menu_id' => 'primary-menu' ) ); ?>
-					</div>
-				<?php endif; ?>
-						<?php 
-						// get_search_form(); 
-						?>
 				<?php 
 				// Right Navigation Appears when Scroll Down
 				if ( is_active_sidebar( 'nav-scroll-right' ) ):
@@ -84,13 +84,13 @@
 					<div class="navi-scroll-right <?php apply_filters('wps_show_nav', 'navi-scroll-show navi-hide'); ?>">
 					<?php dynamic_sidebar( 'nav-scroll-right' ); ?>
 					</div>
-			<?php endif; ?>
+				<?php endif; ?>
+
 			</div>
 		</div>
 	</div>
 </div>			
-<div id="page" class="wrapper hfeed site">
-	<div id="content-body" class="site-main">
+<div id="content-body" class="site-main">
 	<?php 
 		$wps_screen_html = apply_filters( 'wps_screen_html', '');
 		$wps_wc_bg_uri = apply_filters( 'wps_welcome_bg', get_template_directory_uri().'/images/bg-parallax.png');

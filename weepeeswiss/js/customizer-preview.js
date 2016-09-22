@@ -96,16 +96,14 @@
 		value.bind( function( to ) {
 			if ( 'blank' === to ) {
 				$( '.site-name, .site-desc' ).css( {
-					'clip': 'rect(1px, 1px, 1px, 1px)',
-					'position': 'absolute'
+					'clip': 'auto',
+					'position': 'static',
+					'color': to
 				} );
 			} else {
 				$( '.site-name,	.site-desc' ).css( {
-					'clip': 'auto',
-					'position': 'static'
-				} );
-				$( '.site-name,	.site-desc' ).css( {
-					'color': to
+					'clip': 'rect(1px, 1px, 1px, 1px)',
+					'position': 'absolute'
 				} );
 			}
 		} );

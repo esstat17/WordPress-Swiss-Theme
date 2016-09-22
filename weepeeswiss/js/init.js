@@ -5,15 +5,17 @@
 	$(document).ready(function() {
 
 		/* ---------------------------------------------- /*
-		 * Initialization general scripts for all pages
+		 * App variables
 		/* ---------------------------------------------- */
 
 		var moduleHero  = $('#hero'),
-			headSection = $('.head-section-1'),
+			primeNav  = "#primary-navigation",
+			navHeight = $(primeNav).height(),
+			winHeight = $(window).height(),
 			navbar      = $('.navbar-custom'),
 			modules     = $('.module-hero, .module, .module-small'),
 			windowWidth = Math.max($(window).width(), window.innerWidth),
-			prevScroll = 0;
+			prevScroll = 0; 
 		
 		/* ---------------------------------------------- /*
 		 * Full height module
@@ -37,62 +39,67 @@
 		$(window).ready(initModuleHero).resize(initModuleHero);
 
 		function hideIfScrollDown(me){
-			var scrolling = $(me).scrollTop();
-   			if (scrolling < prevScroll){
-   				// scroll down
-   				$("#primary-navigation").show();
+			var scrolling = $(me).scrollTop(),
+				scrollDelay = scrolling - 5;
+			
+			// scroll down!
+   			if (scrolling > prevScroll){
+   				if(scrollDelay > prevScroll){
+   					if($(primeNav).hasClass('nav-on')){
+   						$(primeNav).removeClass('nav-on').addClass('nav-off').css({'top':-navHeight});
+   					}
+   				}
+			// scroll up!
    			} else {
-   				// scroll up!
-   				$("#primary-navigation").hide();
+   				if($(primeNav).hasClass('nav-off')){
+   					$(primeNav).removeClass('nav-off').addClass('nav-on').css({'top':'0'});
+   				}
    			}
    			prevScroll = scrolling;
 		}
 
 		// Hiding upper section of the navigation
 		function scrollHide(me) {
-			var scrolling = $(window).scrollTop();
-			var section2 = $('.head-section-2'),
+			var scrolling = $(window).scrollTop(),
+				headSection = $('.head-section-1'),
+				section2 = $('.head-section-2'),
 				naviLeft = $('.navi-scroll-left'),
 				naviRight = $('.navi-scroll-right.navi-scroll-show');
-					
-			if (scrolling >= 5) {
+			
+			// Kicks After Navigation
+			if (scrolling > navHeight) {
 				hideIfScrollDown(me);
 				// Hide Section 1
 				headSection.hide();
 				naviLeft.show();
 				naviRight.show();
-				if(!section2.hasClass('scrolled-down')){
- 					section2.addClass('scrolled-down');
+				if(!$(primeNav).hasClass('scrolled-down')){
+ 					$(primeNav).addClass('scrolled-down').css({'top':-navHeight }).addClass('navbar-fixed-top');
  				}
 
  				// Nav Scroll animation
  				if(navbar.hasClass('navbar-transparent')){
 					navbar.removeClass('navbar-transparent');
 				}
-				if(!navbar.hasClass('navbar-fixed-top')){
-					navbar.addClass('navbar-fixed-top');
-				}
-
 			} else {
 
 				// Hide Section 1
 				headSection.show();
 				naviLeft.hide();
 				naviRight.hide();
-				if(section2.hasClass('scrolled-down')){
- 					section2.removeClass('scrolled-down');
+				if( $(primeNav).hasClass('scrolled-down')){
+ 					$(primeNav).removeClass('scrolled-down').css({'top':0 }).removeClass('navbar-fixed-top'); 
  				}
 
  				// Nav Scroll animation
  				if(!navbar.hasClass('navbar-transparent')){
 					navbar.addClass('navbar-transparent');
 				}
-				if(navbar.hasClass('navbar-fixed-top')){
-					navbar.removeClass('navbar-fixed-top');
-				}
 			}		
 		}
 
+		// Min Height Fixes
+		$('#content-body').css({'min-height':winHeight+.25*winHeight});
 
 		$(window).scroll(function() {
 			scrollHide(this);
@@ -109,9 +116,9 @@
 			}
 		});
 
-		// Scroll top
+		// Back on top
 		$(window).scroll(function() {
-			if ($(this).scrollTop() > 100) {
+			if ($(this).scrollTop() > navHeight) {
 				$('.scroll-up').fadeIn();
 			} else {
 				$('.scroll-up').fadeOut();

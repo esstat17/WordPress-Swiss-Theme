@@ -22,7 +22,7 @@
  *
  * @package WordPress
  * @subpackage Weepee_Swiss
- * @since Weepee Swiss 1.0
+ * @since Weepee Swiss 1.2
  *
  * @see Interchangeable Text or String
  *	Weepee Swiss - Title in the comment header
@@ -78,7 +78,7 @@ function weepeeswiss_setup() {
 	load_theme_textdomain( 'weepeeswiss', get_template_directory() . '/languages' );
 
 	// This theme styles the visual editor to resemble the theme style.
-	add_editor_style( array( 'css/editor-style.css', weepeeswiss_font_url(), 'genericons/genericons.css' ) );
+	add_editor_style( array( 'css/editor-style.css', weepeeswiss_font_url(), 'fonts/genericons/genericons.css' ) );
 
 	// Add RSS feed links to <head> for posts and comments.
 	add_theme_support( 'automatic-feed-links' );
@@ -207,18 +207,9 @@ function weepeeswiss_widgets_init() {
 		'after_title'   => '</h5>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Navigation Scroll (left)', 'weepeeswiss' ),
-		'id'            => 'nav-scroll-left',
-		'description'   => __( 'Appears only when scroll down in the nav left. e.g. Logo, Icon, etc.', 'weepeeswiss' ),
-		'before_widget' => '<div id="%1$s" class="widget-top %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h5 class="widget-title">',
-		'after_title'   => '</h5>',
-	) );
-	register_sidebar( array(
-		'name'          => __( 'Navigation Scroll (right)', 'weepeeswiss' ),
+		'name'          => __( 'Navigation Scroll (Right)', 'weepeeswiss' ),
 		'id'            => 'nav-scroll-right',
-		'description'   => __( 'Appears only when scroll down in the nav right. e.g. Cart Icons, Call to action buttons, etc.', 'weepeeswiss' ),
+		'description'   => __( 'Appears on the right navigation. e.g. Cart Icons, Call to action buttons, etc.', 'weepeeswiss' ),
 		'before_widget' => '<div id="%1$s" class="widget-top %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h5 class="widget-title">',
@@ -321,6 +312,18 @@ function weepeeswiss_scripts() {
 	wp_enqueue_script( 'wps-init-script', get_template_directory_uri() . '/js/init.js', array( 'jquery' ), '1.0.3', false );
 }
 add_action( 'wp_enqueue_scripts', 'weepeeswiss_scripts' );
+
+
+function weepeeswiss_admin_scripts($pagenow) {
+
+	if ( 'widgets.php' != $pagenow) {
+		return;
+	}
+	// 	wp_enqueue_script( 'weepeeswiss_customizer_ajax', get_template_directory_uri() . '/js/customizer-ajax.js', array( 'customize-preview' ), '20161008', true );
+	// Add Bootstrap 3.0 stylesheet.
+	wp_enqueue_script( 'wps-admin-ajax-js', get_template_directory_uri() . '/js/customizer-ajax.js', array('jquery', 'customize-preview'), '1.0.1' );
+}
+add_action( 'admin_enqueue_scripts', 'weepeeswiss_admin_scripts' );
 
 /**
  * Enqueue Google fonts style to admin screen for custom header display.
@@ -612,10 +615,10 @@ add_filter( 'wp_title', 'weepeeswiss_wp_title', 10, 2 );
  * @global int $paged WordPress archive pagination page count.
  * @return void
  */
-function woocommerce_support() {
+function weepeeswiss_woocommerce_support() {
     add_theme_support( 'woocommerce' );
 }
-add_action( 'after_setup_theme', 'woocommerce_support' );
+add_action( 'after_setup_theme', 'weepeeswiss_woocommerce_support' );
 
 // Implement Custom Header features.
 require get_template_directory() . '/inc/custom-header.php';

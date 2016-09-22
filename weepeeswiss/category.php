@@ -18,8 +18,8 @@ get_header(); ?>
 
 			<?php if ( have_posts() ) : ?>
 
-			<div class="archive-header">
-				<h1 class="archive-title"><?php printf( __( 'Category Archives: %s', 'weepeeswiss' ), single_cat_title( '', false ) ); ?></h1>
+			<div class="archive-header page-header">
+				<h1 class="archive-title page-title"><?php printf( __( 'Category Archives: %s', 'weepeeswiss' ), single_cat_title( '', false ) ); ?></h1>
 
 				<?php
 					// Show an optional term description.
@@ -56,7 +56,6 @@ get_header(); ?>
 
 <?php get_sidebar( 'content' ); ?>
 <?php get_sidebar(); ?>
-?>
 </div> <!-- .row -->
 </div> <!-- .container -->
 <?php get_footer(); ?>

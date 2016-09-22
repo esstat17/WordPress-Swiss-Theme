@@ -5,8 +5,9 @@ Boilerplate theme for Wordpress. This comes from Twenty Fourteen Theme
 Just few of the many features
 * Cool Customizer
 * Add Logo Enabled
-* 7 Built Colors (colorpicker)
+* 13 Built Color to Choose of (colorpicker)
 * Customizable Frontpage
+* Scroll Animation & Transitions in the Naviation
 * Bootstrap Integrated
 * Full Size Welcome Screen
 * Parallax Effects
@@ -14,8 +15,8 @@ Just few of the many features
 * Footer Custom Code
 * Top Widgets
 * WooComerce Ready
-* Scroll Animation
 * Awesome Desktop Navigation
+* Minimum Content Height Fixes
 * more to add here.. 
 
 

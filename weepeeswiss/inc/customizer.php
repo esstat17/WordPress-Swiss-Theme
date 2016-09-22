@@ -1,16 +1,16 @@
 <?php
 /**
- * Custom Plate Customizer support
+ * Weepee Swiss Customizer support
  *
  * @package WordPress
  * @subpackage Custom_Plate
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  */
 
 /**
  * Implement Customizer additions and adjustments.
  *
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  * @link Customizer Advanced Topic https://developer.wordpress.org/themes/advanced-topics/customizer-api/
  * @param WP_Customize_Manager $wp_customize Customizer object.
  */
@@ -24,7 +24,7 @@ function weepeeswiss_customize_register( $wp_customize ) {
 	$wp_customize->get_control( 'header_textcolor' )->label = __( 'Site Title Color', 'weepeeswiss' );
 
 	// Rename the label to "Display Site Title & Tagline" in order to make this option extra clear.
-	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'weepeeswiss' );
+	$wp_customize->get_control( 'display_header_text' )->label = __( 'Hide Site Title &amp; Tagline', 'weepeeswiss' );
 
 	// Add the featured content section in case it's not already there.
 	$wp_customize->add_section( 'main_settings', array(
@@ -142,7 +142,10 @@ function weepeeswiss_customize_register( $wp_customize ) {
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_5', '#bab0b0', __('Color #5', 'weepeeswiss' ), __('Insert <code>.color-5</code> or <code>.bg-color-5</code> class. Used in the Footer Text.', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 
 	// Upload Logo
-	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Image_Control', 'add_logo', '', 'Upload a Logo', 'Suggested Logo Dimension 320 x 200 pixel', 'title_tagline', 'weepeeswiss_sanitize_img_uri', 'refresh');
+	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Image_Control', 'add_logo', '', 'Upload a Logo', 'Suggested Logo Dimension 320 x 200 px', 'title_tagline', 'weepeeswiss_sanitize_img_uri', 'refresh');
+
+	// Upload Mobile Logo
+	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Image_Control', 'add_mlogo', '', 'Upload Mobile Logo', 'Suggested Logo Height 80 px (min)', 'title_tagline', 'weepeeswiss_sanitize_img_uri', 'refresh');
 
 	// Upload Welcome Screen Background
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Image_Control', 'welcome_bg', '', 'Upload Welcome Screen Background', 'Suggested Dimension <b>1920 x 1080</b>px', 'static_front_page', 'weepeeswiss_sanitize_img_uri', 'refresh');
@@ -167,7 +170,7 @@ add_action( 'customize_register', 'weepeeswiss_customize_register' );
 /**
  * Color setting and controls.
  *
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  *
  * @param string $wp_customize object for theme customizer.
  * @param string $sanitize Sanitize Callback Functon
@@ -198,7 +201,7 @@ function weepeeswiss_customize_color($wp_customize, $new_control, $setting_id, $
 /**
  * Sanitize Yes/No value.
  *
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  *
  * @param string $answer Layout type.
  * @return string Filtered answer type (no/yes).
@@ -213,7 +216,7 @@ function weepeeswiss_sanitize_answer( $answer ) {
 /**
  * Sanitize Custom Code.
  *
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  * @param string $value Data from the Textarea in the Custom Head and Footer Section.
  * @return string $value or none.
  */
@@ -227,7 +230,7 @@ function weepeeswiss_sanitize_empty_check($value){
 /**
  * Sanitize Logo Image URL.
  *
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  * @param string $value Data from the Textarea in the Static Front Page.
  * @return string $value or none.
  */
@@ -239,13 +242,12 @@ function weepeeswiss_sanitize_img_uri($value){
 /**
  * Bind JS handlers to make Customizer preview reload changes asynchronously.
  *
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  */
 function weepeeswiss_customize_preview_js() {
-	wp_enqueue_script( 'weepeeswiss_customizer', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20131205', true );
+	wp_enqueue_script( 'weepeeswiss_customizer', get_template_directory_uri() . '/js/customizer-preview.js', array( 'customize-preview' ), '20161205', true );
 }
 add_action( 'customize_preview_init', 'weepeeswiss_customize_preview_js' );
-
 
 /**
  * Enqueues front-end CSS for the link color.
@@ -254,12 +256,14 @@ add_action( 'customize_preview_init', 'weepeeswiss_customize_preview_js' );
  *
  * @see wp_add_inline_style()
  */
+
+// var_dump(display_header_text());
 function weepeeswiss_link_color_css() {
 	$background_color 	= get_theme_mod( 'background_color', '#ffffff' );
 	$link_color 		= get_theme_mod( 'link_color', '#4b8abb' );
 	$htags_color 		= get_theme_mod( 'htags_color', '#555555' );
 	$header_bg 			= get_theme_mod( 'header_bg', '#ffffff' );
-	$header_txt 		= get_theme_mod( 'header_txt', '#3333333' );
+	$header_txt 		= get_theme_mod( 'header_txt', '#333333' );
 	$footer_bg 			= get_theme_mod( 'footer_bg', '#1d1d1d' );
 	$footer_txt 		= get_theme_mod( 'footer_txt', '#bab0b0' );
 	$text_color 		= get_theme_mod( 'text_color', '#504c4d' );
@@ -270,7 +274,7 @@ function weepeeswiss_link_color_css() {
 	$color_5 			= get_theme_mod( 'color_5', '#bab0b0' );
 
 	// Hide or Display Site Title and Description
-	$display_header_text = display_header_text()==1?'.site-name, .site-desc{clip:auto;position:static;}':'.site-name, .site-desc{clip: rect(1px 1px 1px 1px);position: absolute;}';
+	$display_header_text = empty(display_header_text())?'.site-name, .site-desc{clip:auto;position:static;}':'.site-name, .site-desc{clip: rect(1px 1px 1px 1px);position: absolute;}';
 	$header_image = false==get_header_image()?'':'#primary-navigation{background-image:url("'.get_header_image().'");}';
 	
 
@@ -343,7 +347,7 @@ function weepeeswiss_hex2rgba($color, $opacity = false) {
 /**
  * Customplate CSS Factory.
  *
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  *
  * @see 
  */
@@ -383,7 +387,9 @@ h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
 .header-bg {
 	background-color: {$css['header_bg']};
 }
-
+.header-txt, .header-txt a {
+	color: {$css['header_txt']};
+}
 .footer-bg {
 	background-color: {$css['footer_bg']};
 }
@@ -449,6 +455,16 @@ function weepeeswiss_theme_logo($img_url) {
 	return set_url_scheme($img_url);
 }
 add_filter( 'wps_logo', 'weepeeswiss_theme_logo' );
+
+// Hook for Mobile Logo image URL.
+function weepeeswiss_theme_mobile_logo($img_url) {
+	$img_url_mod = get_theme_mod( 'add_mlogo');
+	if(!empty($img_url_mod) && isset($img_url_mod)){
+		$img_url = $img_url_mod;
+	}
+	return set_url_scheme($img_url);
+}
+add_filter( 'wps_mlogo', 'weepeeswiss_theme_mobile_logo' );
 
 // Hook for Welcome Screen image URL.
 function weepeeswiss_wc_screen_bg($img_url) {

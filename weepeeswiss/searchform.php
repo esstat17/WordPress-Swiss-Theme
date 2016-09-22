@@ -11,7 +11,7 @@
 <form role="search" method="get" id="searchform"
     class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
     <div id="custom-search-input">
-    	<div class="input-group col-md-12">
+    	<div class="input-group">
         	<input type="text" class="form-control" placeholder="<?php _e('Search', 'weepeeswiss' ); ?>" value="<?php echo get_search_query(); ?>" name="s" id="s">
             <span class="input-group-btn">
                 <button id="searchsubmit" class="btn bg-color-1 color-2" type="submit">
