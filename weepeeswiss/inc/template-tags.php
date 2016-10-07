@@ -87,8 +87,8 @@ function weepeeswiss_post_nav() {
 			if ( is_attachment() ) :
 				previous_post_link( '%link', __( '<span class="meta-nav">Published In</span>%title', 'weepeeswiss' ) );
 			else :
-				previous_post_link( '%link', __( '<span class="meta-nav btn btn-default" data-prev-post="%title"><i class="glyphicon glyphicon-triangle-left"></i>%title</span>', 'weepeeswiss' ) );
-				next_post_link( '%link', __( '<span class="meta-nav btn btn btn-default pull-right" data-next-post="%title">%title<i class="glyphicon glyphicon-triangle-right"></i></span>', 'weepeeswiss' ) );
+				previous_post_link( '%link', __( '<span class="meta-nav btn btn-default" data-prev-post="%title"><i class="glyphicon glyphicon-menu-left"></i>%title</span>', 'weepeeswiss' ) );
+				next_post_link( '%link', __( '<span class="meta-nav btn btn btn-default pull-right" data-next-post="%title">%title<i class="glyphicon glyphicon-menu-right"></i></span>', 'weepeeswiss' ) );
 			endif;
 			?>
 		</div><!-- .nav-links -->
@@ -108,7 +108,8 @@ function weepeeswiss_posted_on() {
 		echo '<span class="featured-post">' . __( 'Sticky', 'weepeeswiss' ) . '</span>';
 	}
 
-	// Set up and print post meta information.
+	// Default: Set up and print post meta information.
+	/*
 	printf( '<span class="entry-date"><a href="%1$s" rel="bookmark"><time class="entry-date" datetime="%2$s">%3$s</time></a></span> <span class="byline"><span class="author vcard"><a class="url fn n" href="%4$s" rel="author">%5$s</a></span></span>',
 		esc_url( get_permalink() ),
 		esc_attr( get_the_date( 'c' ) ),
@@ -116,6 +117,27 @@ function weepeeswiss_posted_on() {
 		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 		get_the_author()
 	);
+	*/
+	printf( '<span class="entry-date"><i class="glyphicon glyphicon-time"></i> <span rel="bookmark"><time class="entry-date" datetime="%2$s">%3$s <span class="time-passed-label">%4$s</span></time></span> <span class="ndash">&mdash;</span> <span class="author vcard"><a class="url author-url" href="%5$s" rel="author">%6$s</a></span>',
+		esc_url( get_permalink() ),
+		esc_attr( get_the_date( 'c' ) ),
+		esc_html( weepeeswiss_convert_date(current_time('timestamp')) ),
+		__('ago', 'weepeeswiss'),
+		esc_url( get_author_posts_url( get_the_author_meta('ID') ) ),
+		get_the_author()
+	);
+}
+endif;
+
+if ( ! function_exists( 'weepeeswiss_convert_date' ) ) :
+	/**
+ * Convert Current Time to Time Ago
+ *
+ * @link Human Time Diff https://codex.wordpress.org/Function_Reference/human_time_diff
+ * @since Custom Plate 1.1
+ */
+function weepeeswiss_convert_date( $current_time ) {
+	return human_time_diff( get_the_time('U'), $current_time );
 }
 endif;
 

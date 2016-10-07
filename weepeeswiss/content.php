@@ -35,7 +35,7 @@
 
 				if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) :
 			?>
-			<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'weepeeswiss' ), __( '1 Comment', 'weepeeswiss' ), __( '% Comments', 'weepeeswiss' ) ); ?></span>
+			<span class="comments-link pull-right"><?php comments_popup_link( __( 'Leave a comment', 'weepeeswiss' ), __( '1 Comment', 'weepeeswiss' ), __( '% Comments', 'weepeeswiss' ) ); ?></span>
 			<?php
 				endif;
 

@@ -423,6 +423,9 @@ Navigation
 .navbar-transparent {
     background: transparent;
 }
+.navbar {
+    margin-bottom: 0;
+}
 @media (min-width: 768px){
 	.navbar-transparent {
 	    background: #fff;
@@ -434,7 +437,7 @@ Navigation
 	}
 }
 #primary-navigation {
-    border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #eee;
     font-size: 14px;
 }
 .nav-menu {
@@ -474,6 +477,11 @@ Navigation
     float: left;
 }
 .nav-scroll-down {
+}
+.nav-border {
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    border-top: inherit;
 }
 .scrolled-down {
     padding: 3px 0;
@@ -720,6 +728,9 @@ Content Body
 
 .entry-meta {
     font-size: 14px;
+}
+.triangle-right{
+	vertical-align: inherit;
 }
 
 /* ------------------------------------------------------------------
@@ -1443,6 +1454,10 @@ Superfish Navigation
 /* -------------------------------------------------------------------
  Logo
 ------------------------------------------------------------------- */
+.logo {
+    height: auto;
+    max-width: 160px;
+}
 .logo, .site-name, .site-desc {
     float: left;
     width: 100%;
@@ -1452,8 +1467,8 @@ Superfish Navigation
     width: auto;
 }
 .logo img {
-    height: 100px;
-    width: auto;
+    height: auto;
+    width: 100%;
 }
 /* -------------------------------------------------------------------
  Essentials
@@ -1498,6 +1513,39 @@ a.screen-reader-text.skip-link, button.menu-toggle {
 }
 
 /* -------------------------------------------------------------------
+Welcome Screen and Front Styles
+------------------------------------------------------------------- */
+.wc-text {
+    font-size: 300%;
+    font-size: 4vw;
+    letter-spacing: -0.2vw;
+}
+@media (max-width: 480px){
+	.welcome-text {
+	    font-size: 300%;
+	    font-size: 8vw;
+	    letter-spacing: -0.2vw;
+	}	
+}
+.wc-btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 300px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+hr.shorty-hr {
+    border-width: 3px;
+    max-width: 70px;
+}
+
+section.section-front {
+    padding-bottom: 5%;
+    padding-top: 3%;
+}
+
+/* -------------------------------------------------------------------
 Custom
 ------------------------------------------------------------------- */
 .search-form label span.screen-reader-text {
@@ -1525,17 +1573,5 @@ input[type=search] {
 #foot-note {
 	background: #1d1d1d;
     padding: 10px 20px;
-}
-.welcome-text {
-    font-size: 300%;
-    font-size: 4vw;
-    letter-spacing: -0.2vw;
-}
-@media (max-width: 480px){
-	.welcome-text {
-	    font-size: 300%;
-	    font-size: 8vw;
-	    letter-spacing: -0.2vw;
-	}	
 }
 

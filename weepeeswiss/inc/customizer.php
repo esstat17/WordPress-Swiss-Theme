@@ -50,20 +50,6 @@ function weepeeswiss_customize_register( $wp_customize ) {
 		),
 	) );
 
-	// Parallax Content Box in the Home Page.
-	$wp_customize->add_setting( 'front_box', array(
-		'default'           => '',
-		'sanitize_callback' => 'weepeeswiss_sanitize_empty_check',
-	) );
-
-	$wp_customize->add_control( 'front_box', array(
-		'label'   		=> __( 'Content Box', 'weepeeswiss'),
-		'description'   => __( 'You can insert HTML, shortcodes, etc. ', 'weepeeswiss'),
-		'section' 		=> 'static_front_page',
-		'type'    		=> 'textarea',
-		'active_callback' => 'is_front_page',
-	) );
-
 	// Parallax Welcome Screen in the Home Page.
 	$wp_customize->add_setting( 'parallax_screen', array(
 		'default'           => '',
@@ -73,6 +59,20 @@ function weepeeswiss_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'parallax_screen', array(
 		'label'   		=> __( 'Welcome Screen', 'weepeeswiss'),
 		'description'   => __( 'Parallax HTML content in the frontpage', 'weepeeswiss'),
+		'section' 		=> 'static_front_page',
+		'type'    		=> 'textarea',
+		'active_callback' => 'is_front_page',
+	) );
+
+	// Parallax Content Box in the Home Page.
+	$wp_customize->add_setting( 'front_box', array(
+		'default'           => '',
+		'sanitize_callback' => 'weepeeswiss_sanitize_empty_check',
+	) );
+
+	$wp_customize->add_control( 'front_box', array(
+		'label'   		=> __( 'Content Box', 'weepeeswiss'),
+		'description'   => __( 'You can insert HTML, shortcodes, etc. ', 'weepeeswiss'),
 		'section' 		=> 'static_front_page',
 		'type'    		=> 'textarea',
 		'active_callback' => 'is_front_page',
@@ -245,7 +245,7 @@ function weepeeswiss_sanitize_img_uri($value){
  * @since Weepee Swiss 1.0
  */
 function weepeeswiss_customize_preview_js() {
-	wp_enqueue_script( 'weepeeswiss_customizer', get_template_directory_uri() . '/js/customizer-preview.js', array( 'customize-preview' ), '20161205', true );
+	wp_enqueue_script( 'weepeeswiss_customizer', get_template_directory_uri() . '/js/customizer-prev.js', array( 'customize-preview' ), '20161205', true );
 }
 add_action( 'customize_preview_init', 'weepeeswiss_customize_preview_js' );
 
@@ -404,18 +404,23 @@ h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
 	color: {$footer_txt_rgba};
 }
 .color-1, .color-1 a {
+	border-color: {$css['color_1']};
 	color: {$css['color_1']};
 }
 .color-2, .color-2 a{
+	border-color: {$css['color_2']};
 	color: {$css['color_2']};
 }
 .color-3, .color-3 a{
+	border-color: {$css['color_3']};
 	color: {$css['color_3']};
 }
 .color-4, .color-4 a{
+	border-color: {$css['color_4']};
 	color: {$css['color_4']};
 }
 .color-5, .color-5 a{
+	border-color: {$css['color_5']};
 	color: {$css['color_5']};
 }
 .bg-color-1{

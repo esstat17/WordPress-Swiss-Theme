@@ -6,7 +6,7 @@
 ( function( $ ) {
  	$( document ).ready(function() {
     	console.log( "ready!" );
-    		alert($("#customize-header-actions").length);
+    		// alert($("#customize-header-actions").length);
 	});
 
 } )( jQuery ); 
