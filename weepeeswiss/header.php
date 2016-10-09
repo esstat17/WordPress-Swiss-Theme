@@ -39,22 +39,19 @@
 						<span class="site-desc"><?php  bloginfo( 'description'); ?></span>					
 			</div> <!-- .brand-section end -->
 			<div class="nav-menu native-nav col-xs-6 col-md-8">
-				<?php if ( has_nav_menu( 'topmost' ) ) : ?>
 				<div class="row row-top-menu">
 		    		<div class="top-menu">
 						<div class="topmost-navigation">
 							<?php 
 								// Better Safe
-								if ( is_active_sidebar( 'top-most-nav' ) ) {
+								// if ( is_active_sidebar( 'top-most-nav' ) ) {
 									dynamic_sidebar( 'top-most-nav' );
-								}
+								// }
 								// wp_nav_menu( array( 'theme_location' => 'topmost' ) ); 
-							?>
-						</div>
+							?></div>
 					  
 					</div>
 				</div>
-				<?php endif; ?>
 			</div> <!-- .nav-menu -->
 		</div>
 		<div class="row head-section-2">

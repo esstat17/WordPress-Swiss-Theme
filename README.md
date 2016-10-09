@@ -14,6 +14,7 @@ Just few of the many features
 * 13 Built Color to Choose of (colorpicker)
 * Customizable Frontpage
 * Scroll Animation & Transitions in the Naviation
+* Cool Modal Search Animation
 * Bootstrap Integrated
 * Full Size Welcome Screen
 * Parallax Effects
@@ -30,18 +31,18 @@ Simply just go to Theme > Customizer
 
 ## Welcome Screen Edits ##
 Go to Theme > Customizer > Static Front Page > Welcome Screen
-```
+
 <div class="wc-wrap">
 <h5 class="wc-text text-uppercase">Hello! Welcome Guest</h5>
-<hr class="shorty-hr color-1">
+<hr class="shorty-hr border-color-1">
 <p>You can check what we got here..</p>
 <a href="#more" class="btn btn-primary wc-btn">See more</a>
 </div>
-```
+
 
 ## Content Box ##
 Go to Theme > Customizer > Static Front Page > Content Box
-```
+
 <section class="section-front front-box-1">
 <div class="container">
 <div class="row">
@@ -49,5 +50,4 @@ Your Story Goes Here
 </div>
 </div>
 </section>
-```
 

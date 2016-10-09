@@ -22,7 +22,7 @@
 					setting_id=='color_5')
 				{
 					$('.'+selector+', .'+selector+' a').css({ 'color': to });
-					$('.'+selector+', .'+selector+' a').css({ 'border-color': to });
+					$('.border-'+selector).css({ 'border-color': to });
 					$('.bg-'+selector).css({ 'background-color': to });
 				}
 				// Header Inline CSS

@@ -444,11 +444,6 @@ Navigation
     letter-spacing: 0.5px;
 }
 .topmost-navigation li {
-    float: left;
-    display: inline;
-    padding-right: 13px;
-    position: relative;
-    list-style: none;
 }
 .topmost-navigation {
     font-size: 11px;
@@ -457,7 +452,7 @@ Navigation
 .top-menu {
     float: right;
 }
-.topmost-navigation > div {
+.topmost-navigation > div, .navi-scroll-right > div {
     float: left;
     margin-left: 10px;
 }
@@ -498,7 +493,7 @@ Navigation
 }
 
 /** Scroll Nav Animation */
-.nav-on {
+.nav-on, .nav-off {
     top: 0;
     transition: top 450ms ease-in-out, background 450ms ease-in-out;
     -webkit-transition: top 450ms ease-in-out, background 450ms ease-in-out;
@@ -507,14 +502,61 @@ Navigation
     -o-transition: top 450ms ease-in-out, background 450ms ease-in-out;
 }
 
-.nav-off {
-    background: rgba(41, 174, 204, 0.9);
- 	/* top: -68px; */
-    transition: top 450ms ease-in-out, background 450ms ease-in-out;
-    -webkit-transition: top 450ms ease-in-out, background 450ms ease-in-out;
-    -moz-transition: top 450ms ease-in-out, background 450ms ease-in-out;
-    -ms-transition: top 450ms ease-in-out, background 450ms ease-in-out;
-    -o-transition: top 450ms ease-in-out, background 450ms ease-in-out;
+
+/* ------------------------------------------------------------------
+Modal Override & Nav Search
+------------------------------------------------------------------- */
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .8;
+}
+.modal-dialog {
+    margin: 20% auto 0;
+}
+.modal-content {
+    background-color: #ececec;
+    border: 1px solid #bdc3c7;
+    border-radius: 0px;
+    outline: 0;
+}
+.modal-header {
+    border-bottom: 0px;
+    padding-bottom: 25px;
+}
+.modal-body {
+    position: relative;
+    padding: 5px 15px 5px 15px;
+}
+.modal-footer {
+    padding: 15px 15px 15px 15px;
+    text-align: left;
+    border-top: 0px;
+}
+.search-modal #s {
+    height: 45px;
+}
+.search-modal #searchsubmit {
+    height: 45px;
+}
+.search-modal .glyphicon-search, .search-modal .form-control {
+    font-size: 150%;
+}
+.btn-circle {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 18px;
+    line-height: 1.428571429;
+    border-radius: 20px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
 }
 
 /* ------------------------------------------------------------------
@@ -664,6 +706,9 @@ Content Body
 }
 #secondary {
     padding-top: 2%;
+}
+#content-body {
+     transition: width 2s;
 }
 .post-media {
 	position: relative;

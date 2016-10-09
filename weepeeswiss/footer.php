@@ -31,6 +31,22 @@
 <div class="scroll-up">
 	<a href="#totop"><i class="glyphicon glyphicon-menu-up"></i></a>
 </div>
+
+<!-- Modal Search -->
+<div class="search-modal modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+			</div>
+	        <div id="modal-body" class="modal-body"></div>
+	        <div class="modal-footer"></div>
+		</div>
+	</div>
+</div>
+<!-- END # Modal Search -->	
 <?php wp_footer(); ?>
 </div><!-- #super-wrap -->
 </body>

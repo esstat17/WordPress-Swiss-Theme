@@ -10,6 +10,8 @@
 
 		var moduleHero  = $('#hero'),
 			primeNav  = "#primary-navigation",
+			contentBody = "#content-body",
+			searchWidget = "#primary-navigation .widget_search",
 			navHeight = $(primeNav).height(),
 			winHeight = $(window).height(),
 			navbar      = $('.navbar-custom'),
@@ -68,6 +70,7 @@
 			
 			// Kicks After Navigation
 			if (scrolling > navHeight) {
+				$(contentBody).css({'padding-top':navHeight})
 				hideIfScrollDown(me);
 				// Hide Section 1
 				headSection.hide();
@@ -76,13 +79,8 @@
 				if(!$(primeNav).hasClass('scrolled-down')){
  					$(primeNav).addClass('scrolled-down').css({'top':-navHeight }).addClass('navbar-fixed-top');
  				}
-
- 				// Nav Scroll animation
- 				if(navbar.hasClass('navbar-transparent')){
-					navbar.removeClass('navbar-transparent');
-				}
 			} else {
-
+				$(contentBody).css({'padding-top':'inherit'})
 				// Hide Section 1
 				headSection.show();
 				naviLeft.hide();
@@ -90,26 +88,25 @@
 				if( $(primeNav).hasClass('scrolled-down')){
  					$(primeNav).removeClass('scrolled-down').css({'top':0 }).removeClass('navbar-fixed-top'); 
  				}
-
- 				// Nav Scroll animation
- 				if(!navbar.hasClass('navbar-transparent')){
-					navbar.addClass('navbar-transparent');
-				}
 			}		
 		}
-
 		// Min Height Fixes
-		$('#content-body').css({'min-height':winHeight+.25*winHeight});
+		$(contentBody).css({'min-height':winHeight+.25*winHeight});
 
 		$(window).scroll(function() {
 			scrollHide(this);
 		});
+
+		// Modal Search
+		if (searchWidget.length > 0) {
+			$(searchWidget).append('<button type="button" class="btn btn-circle color-2 bg-color-1" data-toggle="modal" data-target="#login-modal"><i class="glyphicon glyphicon-search"></i></button>');
+			$("#primary-navigation #searchform").appendTo('#modal-body');
+		}
 				
 		// Navigation Menu
 		$('#primary-menu').superfish();
 		
 		// Setting background of modules
-
 		modules.each(function() {
 			if ($(this).attr('data-background')) {
 				$(this).css('background-image', 'url(' + $(this).attr('data-background') + ')');
