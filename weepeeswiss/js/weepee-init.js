@@ -1,8 +1,21 @@
+/*	
+ * Direct JS call and initialize the scripts.js
+ */
+
 (function($){
 
 	"use strict";
 
 	$(document).ready(function() {
+
+		                
+      //  $('#navi-mobil').mlmenu({
+//        	extensions: ['slide-effects', 'pageshadow'],
+//           	slidemenu: {
+//            	navtitle: '<div id="ml-logo">LOGO</div>'
+//            }
+//      	});
+		// $('.topmost-navigation ul').addClass('sf-menu sf-arrows');
 
 		/* ---------------------------------------------- /*
 		 * App variables
@@ -97,10 +110,12 @@
 			scrollHide(this);
 		});
 
-		// Modal Search
+		// Search Form Modal
 		if (searchWidget.length > 0) {
-			$(searchWidget).append('<button type="button" class="btn btn-circle color-2 bg-color-1" data-toggle="modal" data-target="#login-modal"><i class="glyphicon glyphicon-search"></i></button>');
-			$("#primary-navigation #searchform").appendTo('#modal-body');
+			$(searchWidget).each(function(){
+				$(this).append('<button type="button" class="btn btn-circle color-2 bg-color-1" data-toggle="modal" data-target="#login-modal"><i class="glyphicon glyphicon-search"></i></button>');			
+			});
+			$("#primary-navigation #searchform:first").appendTo('#modal-body');
 		}
 				
 		// Navigation Menu

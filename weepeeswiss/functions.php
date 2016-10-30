@@ -198,18 +198,18 @@ function weepeeswiss_widgets_init() {
 		'after_title'   => '</h4>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Top Most Navigation', 'weepeeswiss' ),
+		'name'          => __( 'Top Right Navigation', 'weepeeswiss' ),
 		'id'            => 'top-most-nav',
-		'description'   => __( 'Appears on the Top Right Section', 'weepeeswiss' ),
+		'description'   => __( 'Appears in the Top Right Nav Section', 'weepeeswiss' ),
 		'before_widget' => '<div id="%1$s" class="widget-top %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h5 class="widget-title">',
 		'after_title'   => '</h5>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Navigation Scroll (Right)', 'weepeeswiss' ),
+		'name'          => __( 'Bottom Right Navigation', 'weepeeswiss' ),
 		'id'            => 'nav-scroll-right',
-		'description'   => __( 'Appears on the right navigation. e.g. Cart Icons, Call to action buttons, etc.', 'weepeeswiss' ),
+		'description'   => __( 'Appears in the Bottom Right Nav Section. e.g. Cart Icons, Call to action buttons, etc.', 'weepeeswiss' ),
 		'before_widget' => '<div id="%1$s" class="widget-top %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h5 class="widget-title">',
@@ -307,9 +307,10 @@ function weepeeswiss_scripts() {
 		wp_enqueue_script( 'weepeeswiss-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20130402', true );
 	}
 
-	wp_enqueue_script( 'wps-bootstrap-script', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '3.3.4', true );
-	wp_enqueue_script( 'wps-superfish-script', get_template_directory_uri() . '/js/superfish.min.js', array( 'jquery' ), '1.7.5', true );
-	wp_enqueue_script( 'wps-init-script', get_template_directory_uri() . '/js/init.js', array( 'jquery' ), '1.0.3', false );
+	wp_enqueue_script( 'wps-bootstrap-script', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '3.3.4', false );
+	wp_enqueue_script( 'wps-superfish-script', get_template_directory_uri() . '/js/superfish.min.js', array( 'jquery' ), '1.7.5', false );
+	wp_enqueue_script( 'wps-weepee-scripts', get_template_directory_uri() . '/js/weepee-scripts.min.js', array( 'jquery' ), '1.0.1', false );
+	wp_enqueue_script( 'wps-init-script', get_template_directory_uri() . '/js/weepee-init.js', array( 'jquery' ), '1.0.3', true );
 }
 add_action( 'wp_enqueue_scripts', 'weepeeswiss_scripts' );
 
@@ -629,6 +630,9 @@ require get_template_directory() . '/inc/template-tags.php';
 // Add Customizer functionality.
 require get_template_directory() . '/inc/customizer.php';
 
+// Add Customizer functionality.
+require get_template_directory() . '/inc/wp-footer-hooks.php';
+
 /*
  * Add Featured Content functionality.
  *
@@ -638,3 +642,5 @@ require get_template_directory() . '/inc/customizer.php';
 // if ( ! class_exists( 'Featured_Content' ) && 'plugins.php' !== $GLOBALS['pagenow'] ) {
 // 	require get_template_directory() . '/inc/featured-content.php';
 // }
+
+

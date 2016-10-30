@@ -12,13 +12,7 @@
 	<?php weepeeswiss_post_thumbnail(); ?>
 
 	<div class="entry-header">
-		<?php if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && weepeeswiss_categorized_blog() ) : ?>
-		<div class="entry-meta">
-			<span class="cat-links"><?php echo get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'weepeeswiss' ) ); ?></span>
-		</div><!-- .entry-meta -->
 		<?php
-			endif;
-
 			if ( is_single() ) :
 				the_title( '<h1 class="entry-title">', '</h1>' );
 			else :
@@ -57,6 +51,15 @@
 			) );
 		?>
 	</div><!-- .entry-content -->
-
-	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">', '', '</span></footer>' ); ?>
+	<?php 
+		if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && weepeeswiss_categorized_blog() ) : 
+		$get_cats = get_the_category_list(', ');
+		$count_cats = count(explode(",", $get_cats));
+		$cat_txt = sprintf( _n( 'Category: %s', 'Categories: %s', $count_cats, 'weepeeswiss' ), $get_cats);
+	?>
+	<div class="entry-meta">
+		<span class="cat-links"><?php echo $cat_txt; ?></span>
+	</div>
+	<?php endif; ?>
+	<?php the_tags( '<div class="entry-meta"><span class="tag-links">'. __( 'Tags: ', 'weepeeswiss' ), ', ', '</span></div>' ); ?>
 </article><!-- #post-## -->
