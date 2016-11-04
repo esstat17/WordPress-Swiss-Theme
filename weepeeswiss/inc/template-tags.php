@@ -258,26 +258,26 @@ if (!function_exists('weepeeswiss_breadcrumb_lists')) :
 function weepeeswiss_breadcrumb_lists() {
 
 	/* === OPTIONS === */
-	$text['home']     = 'Home'; // string for the 'Home' link
-	$text['category'] = 'Published in &#39;%s&#39;'; // string for a category page
-	$text['search']   = 'Query results "%s"'; // string for a search results page
-	$text['tag']      = 'Tagged in "%s"'; // string for a tag page
-	$text['author']   = 'Published by %s'; // string for an author page
-	$text['404']      = 'Page Not Found'; // string for the 404 page
+	$text['home']     = '<i class="glyphicon glyphicon-home"></i>'; // string for the 'Home' link
+	$text['category'] = __( 'Published in ', 'weepeeswiss' ) . '&#39;%s&#39;'; // string for a category page
+	$text['search']   = __( 'Query results ', 'weepeeswiss' ) . '"%s"'; // string for a search results page
+	$text['tag']      = __( 'Tagged in ', 'weepeeswiss' ) . ' "%s"'; // string for a tag page
+	$text['author']   = __( 'Published by ', 'weepeeswiss' ) . ' %s'; // string for an author page
+	$text['404']      = __( 'Page Not Found', 'weepeeswiss' ); // string for the 404 page
 
 	$show_current   = 0; // 1 - show current post, page, or category title in breadcrumbs, 0 - if you don't want to show
 	$show_on_home   = 0; // 1 - show breadcrumbs on the homepage, 0 - if you don't want to show
 	$show_home_link = 1; // 1 - show the 'Home' link, 0 - if you don't want to show
 	$show_title     = 1; // 1 - show the title for the links, 0 - if you don't want to show
 	$delimiter      = ''; // delimiter between crumbs
-	$before         = '<li class="current"><span>'; // html element before current link
-	$after          = '</span></li>'; // closing span element
+	$before         = '<div class="btn btn-default current"><span>'; // html element before current link
+	$after          = '</div></li>'; // closing span element
 	/* === END OF OPTIONS === */
 
 	global $post;
 	$home_link    = home_url('/');
-	$link_before  = '<li itemtype="http://data-vocabulary.org/Breadcrumb" itemscope>';
-	$link_after   = '</li>';
+	$link_before  = '<div class="btn btn-default" itemtype="http://data-vocabulary.org/Breadcrumb" itemscope>';
+	$link_after   = '</div>';
 	$link_attr    = ' itemprop="url"';
 	$itemproptitle_before = '<span itemprop="title">';
 	$itemproptitle_after = '</span>';
@@ -287,11 +287,11 @@ function weepeeswiss_breadcrumb_lists() {
 
 	if (is_home() || is_front_page()) {
 
-		if ($show_on_home == 1) echo '<div class="breadcrumbs"><ul>' .$link_before. '<a href="' . $home_link . '">' . $itemproptitle_before . $text['home'] . $itemproptitle_after . '</a>' .$link_after. '</div>';
+		if ($show_on_home == 1) echo '<div class="breadcrumbs btn-group btn-breadcrumb">' .$link_before. '<a href="' . $home_link . '">' . $itemproptitle_before . $text['home'] . $itemproptitle_after . '</a>' .$link_after. '</div>';
 
 	} else {
 
-		echo '<div class="breadcrumb"><ul class="ul-crumb">';
+		echo '<div class="breadcrumbs btn-group btn-breadcrumb">';
 		if ($show_home_link == 1) {
 			echo '' . $link_before . '<a href="' . $home_link . '" ' . $link_attr . '>' . $itemproptitle_before . $text['home'] . $itemproptitle_after . '</a>' . $link_after;
 			if ($frontpage_id == 0 || $parent_id != $frontpage_id) echo $delimiter;
@@ -401,11 +401,11 @@ function weepeeswiss_breadcrumb_lists() {
 
 		if ( get_query_var('paged') ) {
 			if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ' (';
-				printf( __('Page %s', 'innovedesignswp' ) . ' ' . get_query_var('paged') );
+				printf( __('Page %s', 'weepeeswiss' ) . ' ' . get_query_var('paged') );
 			if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ')';
 		}
 
-		echo '</ul></div><!-- .breadcrumbs -->';
+		echo '</div><!-- .breadcrumbs -->';
 
 	}
 } 

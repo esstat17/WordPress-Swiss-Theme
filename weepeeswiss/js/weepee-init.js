@@ -54,20 +54,21 @@
 		$(window).ready(initModuleHero).resize(initModuleHero);
 
 		function hideIfScrollDown(me){
-			var scrolling = $(me).scrollTop(),
-				scrollDelay = scrolling - 5;
-			
+			var scrolling = $(me).scrollTop();
+
 			// scroll down!
    			if (scrolling > prevScroll){
-   				if(scrollDelay > prevScroll){
+   				if(scrolling - 10 > prevScroll){
    					if($(primeNav).hasClass('nav-on')){
    						$(primeNav).removeClass('nav-on').addClass('nav-off').css({'top':-navHeight});
    					}
    				}
 			// scroll up!
    			} else {
-   				if($(primeNav).hasClass('nav-off')){
-   					$(primeNav).removeClass('nav-off').addClass('nav-on').css({'top':'0'});
+   				if(scrolling + 10 < prevScroll){
+   					if($(primeNav).hasClass('nav-off')){
+	   					$(primeNav).removeClass('nav-off').addClass('nav-on').css({'top':'0'});
+	   				}
    				}
    			}
    			prevScroll = scrolling;

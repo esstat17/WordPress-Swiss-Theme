@@ -4,7 +4,7 @@ Theme URI: http://www.innovedesigns.com/
 Author: esstat17
 Author URI: http://www.innovedesigns.com/author/esstat17/
 Description: Adopted from Twenty Fourteen Wordpress Default Theme w/ Integrated Bootstrap 3.0.
-Version: 1.2
+Version: 1.3
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, left-sidebar, right-sidebar, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
@@ -70,35 +70,6 @@ a,
 }
 
 /* ------------------------------------------------------------------
-Reset box-shadow
-------------------------------------------------------------------- */
-
-.btn,
-.well,
-.panel,
-.progress,
-.form-control, .form-control:hover, .form-control:focus {
-	-webkit-box-shadow: none;
-	   -moz-box-shadow: none;
-	    -ms-box-shadow: none;
-	     -o-box-shadow: none;
-	        box-shadow: none;
-}
-
-/* ------------------------------------------------------------------
-Reset border-radius
-------------------------------------------------------------------- */
-
-.well, .label, .alert,
-.modal-content {
-	-webkit-border-radius: 2px;
-	   -moz-border-radius: 2px;
-	    -ms-border-radius: 2px;
-	     -o-border-radius: 2px;
-	        border-radius: 2px;
-}
-
-/* ------------------------------------------------------------------
 Typography
 ------------------------------------------------------------------- */
 
@@ -110,6 +81,10 @@ a:hover, a:focus {
     text-decoration: none;
     opacity: .7;
     outline: 0;
+}
+
+h1 {
+    font-size: 180%;
 }
 
 blockquote {
@@ -743,10 +718,14 @@ Portfolio Single
 Content Body
 ------------------------------------------------------------------- */
 #primary {
-    padding-top: 2%;
 }
 #secondary {
-    padding-top: 2%;
+    margin-top: 2%;
+}
+@media (max-width: 480px) {
+	#secondary.col-xs-6 {	
+		    width: 100%;
+	}
 }
 #content-body {
      transition: width 2s;
@@ -801,7 +780,6 @@ Content Body
 }
 
 /* Single post */
-
 .post-single .post-media,
 .post-single .post-header,
 .post-single .post-entry {
@@ -815,8 +793,12 @@ Content Body
 .entry-meta {
     font-size: 14px;
 }
-.triangle-right{
-	vertical-align: inherit;
+h1.entry-title {
+    margin-top: 2%;
+}
+
+.nav-links span {
+    white-space: normal;
 }
 
 /* ------------------------------------------------------------------
@@ -927,6 +909,7 @@ Comments and Comment form
 
 #comments {
     font-size: 85%;
+    margin-top: 4%;
 }
 
 .comment-title,
@@ -1014,7 +997,11 @@ Footer
 	background: #1d1d1d;
     padding: 10px 20px;
 }
-
+@media (max-width: 480px) {
+	.footer-widget > div {
+	    width: 100%;
+	}
+}
 
 /* -------------------------------------------------------------------
 Search 
@@ -1430,33 +1417,78 @@ Font Awesome
 /* -------------------------------------------------------------------
 Breadcrumb
 ------------------------------------------------------------------- */
-.breadcrumb {
-    display: block;
+.btn-breadcrumb .btn:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
 }
-.ul-crumb {
-    padding-left: 0;
-    list-style: none;
-}
-.breadcrumb ul.ul-crumb li {
-    display: inline;
-    padding-right: 5px;
-}
-.breadcrumb ul.ul-crumb li::after {
-    content: "›";
-    font-size: 18px;
-    padding-left: 5px;
-    color: rgb(198, 198, 198);
-}
-.breadcrumb ul.ul-crumb li::after {
-    content: "›";
-    font-size: 18px;
-    padding-left: 5px;
-    color: rgb(198, 198, 198);
+.btn-breadcrumb .btn:not(:last-child):before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 3;
 }
 
-.breadcrumb ul.ul-crumb li:last-child:after {
-    content: "";
+/** The Spacing **/
+.btn-breadcrumb .btn {
+  padding:6px 12px 6px 24px;
 }
+.btn-breadcrumb .btn:first-child {
+  padding:6px 6px 6px 10px;
+}
+.btn-breadcrumb .btn:last-child {
+  padding:6px 18px 6px 24px;
+}
+
+/** Default button **/
+.btn-breadcrumb .btn.btn-default:not(:last-child):after {
+  border-left: 10px solid #fff;
+}
+.btn-breadcrumb .btn.btn-default:not(:last-child):before {
+  border-left: 10px solid #ddd;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
+  border-left: 10px solid #ebebeb;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
+  border-left: 10px solid #adadad;
+}
+.breadcrumbs a {
+    color: inherit;
+}
+.breadcrumbs .btn-default {
+    border-color: #eee;
+}
+#breadcrumb-wraps {
+    margin-top: 4%;
+}
+.home #breadcrumb-wraps {
+    display: none;
+}
+@media (max-width: 480px) {
+	#breadcrumb-wraps {
+    	margin-top: 6.5%;
+	}
+}
+
 /* -------------------------------------------------------------------
 Superfish Navigation
 ------------------------------------------------------------------- */
@@ -1497,6 +1529,12 @@ Superfish Navigation
 	display: block;
 	position: relative;
 }
+@media (max-width: 480px) {
+	.sf-menu a {
+    	padding: 10px 5px 1px 1px;
+	    letter-spacing: -0.3px;
+	}
+}
 .sf-menu ul ul {
 	top: 0;
 	left: 100%;
@@ -1512,16 +1550,20 @@ Superfish Navigation
 	border-left: 1px solid transparent;
 	border-top: 1px solid transparent; /* fallback colour must use full shorthand */
 	border-top: 1px solid transparent;
-	padding: 10px 8px 1px 1px;
+	padding: 10px 10px 0 0;
 	text-decoration: none;
 	zoom: 1; /* IE7 */
 }
 .sf-menu li {
 	background: transparent;
+	padding-left: 0;
 	white-space: nowrap; /* no need for Supersubs plugin */
 	*white-space: normal; /* ...unless you support IE7 (let it wrap) */
 	-webkit-transition: background .2s;
 	transition: background .2s;
+}
+.sf-menu ul li a {
+    padding-left: 8px;
 }
 .sf-menu ul li {
 	background: #fff;
@@ -1596,12 +1638,13 @@ Superfish Navigation
     width: 100%;
 }
 .mobile-logo img {
-    height: 42px;
-    width: auto;
+    height: auto;
+    width: 50px;
 }
 .logo img {
     height: auto;
     width: 100%;
+    min-width: 100px;
 }
 /* -------------------------------------------------------------------
  Essentials
@@ -1654,8 +1697,8 @@ Welcome Screen and Front Styles
     letter-spacing: -0.2vw;
 }
 @media (max-width: 480px){
-	.welcome-text {
-	    font-size: 300%;
+	.wc-text {
+	    font-size: 150%;
 	    font-size: 8vw;
 	    letter-spacing: -0.2vw;
 	}	
@@ -1668,9 +1711,9 @@ Welcome Screen and Front Styles
     font-weight: 700;
     text-transform: uppercase;
 }
-hr.shorty-hr {
+.shorty-hr {
     border-width: 3px;
-    max-width: 70px;
+    width: 10%;
 }
 
 section.section-front {
@@ -2257,7 +2300,7 @@ input[type=search] {
   float: right;
 }
 #right-sidebar {
-    margin-top: 2em;
+    margin-top: 2%;
 }
 .home-intro p.lead {
   font-size: 16px;
