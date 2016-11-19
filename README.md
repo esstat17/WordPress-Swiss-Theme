@@ -15,8 +15,11 @@ Just few of the many features
 * Cool Customizer
 * Add Logo Enabled
 * 13 Built Color to Choose of (colorpicker)
+* Supported 1, 2, and 3 columns
 * Customizable Frontpage
-* Scroll Animation & Transitions in the Naviation
+* Scroll Animation & Transitions in the Navigation
+* Able to Add Meta Boxes into Post (Top, Bottom, & Side Content)
+* Breadcrumbs Added	
 * Cool Modal Search Animation
 * Bootstrap Integrated
 * Full Size Welcome Screen

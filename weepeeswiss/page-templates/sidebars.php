@@ -1,10 +1,6 @@
 <?php
 /**
- * The template for displaying all pages
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages and that
- * other 'pages' on your WordPress site will use a different template.
+ * Template Name: Page With Sidebars
  *
  * @package WordPress
  * @subpackage Weepee_Swiss
@@ -15,7 +11,8 @@ get_header(); ?>
 
 <?php do_action( 'weepeeswiss_content_top', get_the_ID()); ?>
 
-<div class="content-skin page-skin page-<?php the_ID(); ?>">
+<div id="main-content" class="main-content container-page-<?php the_ID(); ?>">
+
 <?php
 	if ( is_front_page() && weepeeswiss_has_featured_posts() ) {
 		// Include the featured content template.
@@ -24,7 +21,7 @@ get_header(); ?>
 ?>
 <div class="container">
 <div class="row">
-	<div id="main-content" class="main-content col-lg-12">
+	<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array()); ?>">	
 	<?php do_action( 'weepeeswiss_content_right', get_the_ID()); ?>	
 	<?php
 		if ( is_front_page() && weepeeswiss_has_featured_posts() ) {
@@ -52,9 +49,10 @@ get_header(); ?>
 			</div><!-- #content -->
 		</div><!-- #primary -->
 	</div><!-- #main-content -->
+<?php get_sidebar(); ?>
+<?php get_sidebar( 'two' ); ?>
 </div> <!-- .row -->
 </div> <!-- .container -->
-</div>
+</div><!-- #main-content -->
 <?php do_action( 'weepeeswiss_content_bottom', get_the_ID()); ?>
 <?php get_footer();
-

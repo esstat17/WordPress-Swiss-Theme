@@ -16,6 +16,9 @@
 
 get_header(); ?>
 
+<?php do_action( 'weepeeswiss_content_top', get_the_ID()); ?>
+
+<div class="content-skin index-skin">
 <div class="container">
 <div class="row">
 	<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array()); ?>">
@@ -26,6 +29,7 @@ get_header(); ?>
 		}
 	?>	
 		<div id="primary" class="content-area ">
+			<?php do_action( 'weepeeswiss_content_right', get_the_ID()); ?>	
 			<div id="content" class="site-content" role="main">	
 
 			<?php
@@ -56,6 +60,9 @@ get_header(); ?>
 	</div><!-- #main-content -->
 
 <?php get_sidebar(); ?>
+<?php get_sidebar( 'two' ); ?>
 </div> <!-- .row -->
 </div> <!-- .container -->
+</div>
+<?php do_action( 'weepeeswiss_content_bottom', get_the_ID()); ?>
 <?php get_footer(); ?>

@@ -183,16 +183,16 @@ function weepeeswiss_widgets_init() {
 		'name'          => __( 'Right Sidebar', 'weepeeswiss' ),
 		'id'            => 'sidebar-1',
 		'description'   => __( 'Main sidebar that appears on the right.', 'weepeeswiss' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'before_widget' => '<aside id="%1$s" class="widget well %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h4 class="widget-title">',
 		'after_title'   => '</h4>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Content Sidebar', 'weepeeswiss' ),
+		'name'          => __( 'Right Sidebar 2', 'weepeeswiss' ),
 		'id'            => 'sidebar-2',
 		'description'   => __( 'Additional sidebar that appears on the right.', 'weepeeswiss' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'before_widget' => '<aside id="%1$s" class="widget well %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h4 class="widget-title">',
 		'after_title'   => '</h4>',
@@ -480,12 +480,9 @@ function weepeeswiss_body_class_attr( $classes ) {
 	if ( is_archive() || is_search() || is_home() ) {
 		$classes[] = 'list-view';
 	}
-
-	if ( ( ! is_active_sidebar( 'sidebar-2' ) )
-		|| is_page_template( 'page-templates/full-width.php' )
-		|| is_page_template( 'page-templates/contributors.php' )
-		|| is_attachment() ) {
-		$classes[] = 'full-width';
+	
+	if ( is_page_template( 'page-templates/sidebars.php' ) ) {
+		$classes[] = 'with-sidebars';
 	}
 
 	if ( is_active_sidebar( 'sidebar-3' ) 
@@ -519,10 +516,16 @@ add_filter( 'body_class', 'weepeeswiss_body_class_attr' );
 function weepeeswiss_primary_class_attr(){
 	$classes = array();
 	if (!is_front_page() || 'posts' == get_option( 'show_on_front' )){
-		$classes[] = "col-xs-12";
-		$classes[] = "col-sm-6";
-		$classes[] = "col-md-8";
-		$classes[] = "col-md-8";
+
+		// if sidebars are not active
+		if ( is_active_sidebar( 'sidebar-1' ) && is_active_sidebar( 'sidebar-2' ) ){
+			$classes[] = "col-xs-12 col-sm-6";			
+		} elseif ( is_active_sidebar( 'sidebar-1' ) || is_active_sidebar( 'sidebar-2' )){
+			$classes[] = "col-xs-12 col-sm-6 col-md-8";
+		} else {
+			$classes[] = "col-lg-12 no-sidebar";
+		}
+
 	} else {
 		$classes[] = "col-lg-12 front-page no-right-sidebar";	
 	}
@@ -532,18 +535,45 @@ function weepeeswiss_primary_class_attr(){
 add_filter( 'primary_class', 'weepeeswiss_primary_class_attr' );
 
 /**
- * Dynamic Class in the Secondary Content
+ * Dynamic Class in the Secondary or Sidebar
  *
  *  @since Weepee Swiss 1.0
  *	@return void
  */
 function weepeeswiss_secondary_class_attr(){
-	$classes[] = "col-xs-6";
-	$classes[] = "col-md-4";
+
+	// if sidebar 2 is not active
+	if ( !is_active_sidebar( 'sidebar-2' ) ){
+		$classes[] = "col-xs-6 col-md-4";
+	} else {
+		$classes[] = "col-xs-6 col-sm-3";
+	}
+	$plain = implode(" ", $classes);
+	echo $plain;
+
+}
+add_filter( 'secondary_class', 'weepeeswiss_secondary_class_attr' );
+
+
+/**
+ * Dynamic Class in the Secondary or Sidebar 2
+ *
+ *  @since Weepee Swiss 1.0
+ *	@return void
+ */
+
+
+function weepeeswiss_secondary2_class_attr(){
+	// if sidebar 1 is not active
+	if ( !is_active_sidebar( 'sidebar-1' ) ){
+		$classes[] = "col-xs-6 col-md-4";
+	} else {
+		$classes[] = "col-xs-6 col-sm-3";	
+	}
 	$plain = implode(" ", $classes);
 	echo $plain;
 }
-add_filter( 'secondary_class', 'weepeeswiss_secondary_class_attr' );
+add_filter( 'secondary2_class', 'weepeeswiss_secondary2_class_attr' );
 
 /**
  * Dynamic Class in the Secondary Content / Sidebar
@@ -632,6 +662,12 @@ require get_template_directory() . '/inc/customizer.php';
 
 // Add Customizer functionality.
 require get_template_directory() . '/inc/wp-footer-hooks.php';
+
+// Add Metaboxes.
+require get_template_directory() . '/inc/metabox.php';
+
+// Contend Hooks
+require get_template_directory() . '/inc/content-hooks.php';
 
 /*
  * Add Featured Content functionality.

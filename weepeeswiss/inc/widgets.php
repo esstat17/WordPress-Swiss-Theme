@@ -68,7 +68,7 @@ class Weepeeswiss_Ephemera_Widget extends WP_Widget {
 				break;
 			case 'link':
 				$format_string      = __( 'Links', 'weepeeswiss' );
-				$format_string_more = __( 'More links', 'Wwepeeswiss' );
+				$format_string_more = __( 'More links', 'weepeeswiss' );
 				break;
 			case 'gallery':
 				$format_string      = __( 'Galleries', 'weepeeswiss' );

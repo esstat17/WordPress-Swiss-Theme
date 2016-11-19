@@ -36,10 +36,10 @@ get_header(); ?>
 
 			</div><!-- #content -->
 		</div><!-- #primary -->
-		<?php get_sidebar( 'content' ); ?>
 	</div><!-- #main-content -->
 
 <?php get_sidebar(); ?>
+<?php get_sidebar( 'two' ); ?>
 </div> <!-- .row -->
 </div> <!-- .container -->
 <?php get_footer();

@@ -9,15 +9,19 @@
 
 get_header(); ?>
 
-<div id="main-content" class="main-content <?php apply_filters('primary_class', ''); ?>">
+<?php do_action( 'weepeeswiss_content_top', get_the_ID()); ?>
 
+<div class="content-skin page-skin page-<?php the_ID(); ?>">
 <?php
 	if ( is_front_page() && weepeeswiss_has_featured_posts() ) {
 		// Include the featured content template.
 		get_template_part( 'featured-content' );
 	}
 ?>
-
+<div class="container">
+<div class="row">
+	<div id="main-content" class="main-content col-lg-12">
+	<?php do_action( 'weepeeswiss_content_right', get_the_ID()); ?>	
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 			<?php
@@ -43,10 +47,13 @@ get_header(); ?>
 					// }
 				endwhile;
 			?>
-		</div><!-- #content -->
-	</div><!-- #primary -->
-</div><!-- #main-content -->
+			</div><!-- #content -->
+		</div><!-- #primary -->
+	</div><!-- #main-content -->
+</div> <!-- .row -->
+</div> <!-- .container -->
+</div>
+<?php do_action( 'weepeeswiss_content_bottom', get_the_ID()); ?>
+<?php get_footer();
 
-<?php
-get_sidebar();
-get_footer();
+

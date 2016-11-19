@@ -202,10 +202,10 @@ function weepeeswiss_post_thumbnail() {
 
 	<div class="post-thumbnail">
 	<?php
-		if ( ( ! is_active_sidebar( 'sidebar-2' ) || is_page_template( 'page-templates/full-width.php' ) ) ) {
-			the_post_thumbnail( 'weepeeswiss-full-width' );
+		if ( ( ! is_active_sidebar( 'sidebar-1' ) && ! is_active_sidebar( 'sidebar-2' ) ) || is_page_template( 'page-templates/sidebars.php' ) ) {
+			the_post_thumbnail();	
 		} else {
-			the_post_thumbnail();
+			the_post_thumbnail( 'weepeeswiss-full-width' );
 		}
 	?>
 	</div>
@@ -214,10 +214,10 @@ function weepeeswiss_post_thumbnail() {
 
 	<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true">
 	<?php
-		if ( ( ! is_active_sidebar( 'sidebar-2' ) || is_page_template( 'page-templates/full-width.php' ) ) ) {
-			the_post_thumbnail( 'weepeeswiss-full-width' );
-		} else {
+		if ( ( ! is_active_sidebar( 'sidebar-1' ) && ! is_active_sidebar( 'sidebar-2' ) ) || is_page_template( 'page-templates/sidebars.php' ) ) {
 			the_post_thumbnail( 'post-thumbnail', array( 'alt' => get_the_title() ) );
+		} else {
+			the_post_thumbnail( 'weepeeswiss-full-width' );
 		}
 	?>
 	</a>
@@ -267,6 +267,7 @@ function weepeeswiss_breadcrumb_lists() {
 
 	$show_current   = 0; // 1 - show current post, page, or category title in breadcrumbs, 0 - if you don't want to show
 	$show_on_home   = 0; // 1 - show breadcrumbs on the homepage, 0 - if you don't want to show
+	$show_no_child =  1; // 1 - show the 'Home' link in the page even there's no child, 0 - if you don't want to show
 	$show_home_link = 1; // 1 - show the 'Home' link, 0 - if you don't want to show
 	$show_title     = 1; // 1 - show the title for the links, 0 - if you don't want to show
 	$delimiter      = ''; // delimiter between crumbs
