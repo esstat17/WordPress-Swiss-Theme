@@ -12,9 +12,6 @@
  */
 
 get_header(); ?>
-
-<?php do_action( 'weepeeswiss_content_top', get_the_ID()); ?>
-
 <div class="content-skin tags-skin">
 <div class="container">
 <div class="row">
@@ -64,5 +61,4 @@ get_header(); ?>
 </div> <!-- .row -->
 </div> <!-- .container -->
 </div>
-<?php do_action( 'weepeeswiss_content_bottom', get_the_ID()); ?>
 <?php get_footer(); ?>

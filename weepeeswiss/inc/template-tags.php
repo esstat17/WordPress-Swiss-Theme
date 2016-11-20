@@ -352,7 +352,9 @@ function weepeeswiss_breadcrumb_lists() {
 
 		} elseif ( is_attachment() ) {
 			$parent = get_post($parent_id);
-			$cat = get_the_category($parent->ID); 
+			$cat = get_the_category($parent->ID);
+			// just return if emty
+			if(empty($cat)) return;
 			$cat = $cat[0];
 			$cats = get_category_parents($cat, TRUE, $delimiter);
 			$cats = str_replace('<a', $link_before . '<a' . $link_attr, $cats);

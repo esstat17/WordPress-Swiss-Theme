@@ -51,7 +51,7 @@ function weepeeswiss_display_normal_high_metabox($post) {
 						<tr><td><p><?php _e('You can add content before the post, after the post, and side right of the post. You can also insert your shortcode here.', 'weepeeswiss'); ?></p></td></tr>
 					<tr>
 						<th align="left"><label for="html-content"><?php _e('HTML Content', 'weepeeswiss'); ?></th>
-						<th align="left"><label for="position"><?php _e('Position', 'weepeeswiss'); ?></th>
+						<th align="left"><label for="position"><?php _e('Placement', 'weepeeswiss'); ?></th>
 						<th align="left"><span style="color:#5cb85c;cursor:pointer;" class="dashicons dashicons-plus weepee-plus"></span></th>
 					</tr>
 				 	</thead>
@@ -69,6 +69,9 @@ function weepeeswiss_display_normal_high_metabox($post) {
 								<option <?php  echo $get_meta[1][$i]==1? 'selected="selected"':''; ?> value="1" data-pos="1"><?php _e('Top Content', 'weepeeswiss'); ?></option>
 								<option <?php  echo $get_meta[1][$i]==2? 'selected="selected"':''; ?> value="2" data-pos="2"><?php _e('Bottom Content', 'weepeeswiss'); ?></option>
 								<option <?php  echo $get_meta[1][$i]==3? 'selected="selected"':''; ?> value="3" data-pos="3"><?php _e('Right Content', 'weepeeswiss'); ?></option>
+								<option <?php  echo $get_meta[1][$i]==4? 'selected="selected"':''; ?> value="4" data-pos="4"><?php _e('Welcome Screen', 'weepeeswiss'); ?></option>
+								<option <?php  echo $get_meta[1][$i]==5? 'selected="selected"':''; ?> value="6" data-pos="5"><?php _e('Image Background of WS', 'weepeeswiss'); ?></option>
+								<option <?php  echo $get_meta[1][$i]==6? 'selected="selected"':''; ?> value="6" data-pos="6"><?php _e('Below Comment Form', 'weepeeswiss'); ?></option>
 							</select>
 						</td>
 						<td><span style="color:#c9302c" class="dashicons dashicons-no weepee-no"></span></td>

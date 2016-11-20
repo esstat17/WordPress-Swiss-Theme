@@ -8,14 +8,10 @@
  */
 
 get_header(); ?>
-
-<?php do_action( 'weepeeswiss_content_top', get_the_ID()); ?>
-
 <div class="content-skin 404-skin">
 <div class="container">
 <div class="row">
 	<div id="primary" class="content-area <?php apply_filters('primary_class', ''); ?>">
-		<?php do_action( 'weepeeswiss_content_right', get_the_ID()); ?>	
 		<div id="content" class="site-content" role="main">
 
 			<div class="page-header">
@@ -36,5 +32,4 @@ get_header(); ?>
 </div> <!-- .row -->
 </div> <!-- .container -->
 </div>
-<?php do_action( 'weepeeswiss_content_bottom', get_the_ID()); ?>
 <?php get_footer(); ?>

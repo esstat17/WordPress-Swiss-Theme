@@ -9,8 +9,6 @@
 
 get_header(); ?>
 
-<?php do_action( 'weepeeswiss_content_top', get_the_ID()); ?>
-
 <div class="content-skin page-skin page-<?php the_ID(); ?>">
 <?php
 	if ( is_front_page() && weepeeswiss_has_featured_posts() ) {
@@ -21,7 +19,6 @@ get_header(); ?>
 <div class="container">
 <div class="row">
 	<div id="main-content" class="main-content col-lg-12">
-	<?php do_action( 'weepeeswiss_content_right', get_the_ID()); ?>	
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 			<?php
@@ -53,7 +50,6 @@ get_header(); ?>
 </div> <!-- .row -->
 </div> <!-- .container -->
 </div>
-<?php do_action( 'weepeeswiss_content_bottom', get_the_ID()); ?>
 <?php get_footer();
 
 
