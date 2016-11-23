@@ -7,7 +7,7 @@
  * @since Weepee Swiss 1.0
  */
 
-if ( ! is_active_sidebar( 'sidebar-2' ) ) {
+if ( ! is_active_sidebar( 'sidebar-2' ) || "aside" == get_post_format() ) {
 	return;
 }
 ?>

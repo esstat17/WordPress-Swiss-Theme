@@ -10,11 +10,11 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php
-		// Page thumbnail and title.
-		weepeeswiss_post_thumbnail();
 		if ( !is_front_page() ){
 			the_title( '<div class="entry-header"><h1 class="entry-title">', '</h1></div><!-- .entry-header -->' );
 		}
+		// page thumbnail and title
+		weepeeswiss_post_thumbnail();
 	?>
 
 	<div class="entry-content">

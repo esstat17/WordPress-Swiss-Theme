@@ -145,7 +145,7 @@ class Weepeeswiss_Ephemera_Widget extends WP_Widget {
 							if ( has_post_format( 'gallery' ) ) :
 
 								if ( post_password_required() ) :
-									the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'weepeeswiss' ) );
+									the_content( '<span class="read-more pull-right">' . __('Read more..', 'weepeeswiss') . '</span><span class="meta-nav clearfix"></span>', false);
 								else :
 									$images = array();
 
@@ -190,7 +190,7 @@ class Weepeeswiss_Ephemera_Widget extends WP_Widget {
 								endif;
 
 							else :
-								the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'weepeeswiss' ) );
+								the_content( '<span class="read-more pull-right">' . __('Read more..', 'weepeeswiss') . '</span><span class="meta-nav clearfix"></span>', false);
 							endif;
 						?>
 					</div><!-- .entry-content -->

@@ -7,11 +7,48 @@
  * @since Weepee Swiss 1.0
  */
 
+if ( ! function_exists( 'weepeeswiss_convert_date' ) ) :
+/**
+ * Tags and Category Fuction
+ *
+ * @since Weepee Swiss 1.1
+ */
+function weepeeswiss_cat_and_tags() {
+	if (is_single() || is_category() || is_tag()  || is_tax() || is_archive() ):
+
+		// Hide if Category Page
+		if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && weepeeswiss_categorized_blog() && !is_category() ) : 
+		$get_cats = get_the_category_list(' ');
+		$count_cats = count(explode(",", $get_cats));
+		$cat_str_single = __('Category:', 'weepeeswiss');
+		$cat_str_plural = __('Categories:', 'weepeeswiss');
+		// $cat_txt = sprintf( _n( 'Category: %s', 'Categories: %s', $count_cats, 'weepeeswiss' ), $get_cats);
+		$cat_txt =  '<span class="category">'. _n( $cat_str_single, $cat_str_plural, $count_cats).' </span>' . $get_cats;
+	?>
+	<div class="entry-meta">
+		<div class="tag cat-link"><?php echo $cat_txt; ?></div>
+	</div>
+	<?php 
+		endif; // end of cat
+		
+		// Hide if Tag Page
+		if (!is_tag()):
+			$tag_str_single = __('Tag:', 'weepeeswiss');
+			$tag_str_plural = __('Tags:', 'weepeeswiss');
+			$count_tag = count(get_the_tags());
+			$tag_txt = _n( $tag_str_single, $tag_str_plural, $count_tag); 
+			the_tags( '<div class="entry-meta"><div class="tag tag-link"><span class="tags">'. $tag_txt .' </span>', ' ', '</div></div>' );
+		endif; // tags
+	endif; // is_single
+}
+endif;
+
+
 if ( ! function_exists( 'weepeeswiss_paging_nav' ) ) :
 /**
  * Display navigation to next/previous set of posts when applicable.
  *
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  *
  * @global WP_Query   $wp_query   WordPress Query object.
  * @global WP_Rewrite $wp_rewrite WordPress Rewrite object.
@@ -69,7 +106,7 @@ if ( ! function_exists( 'weepeeswiss_post_nav' ) ) :
 /**
  * Display navigation to next/previous post when applicable.
  *
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  */
 function weepeeswiss_post_nav() {
 	// Don't print empty markup if there's nowhere to navigate.
@@ -101,7 +138,7 @@ if ( ! function_exists( 'weepeeswiss_posted_on' ) ) :
 /**
  * Print HTML with meta information for the current post-date/time and author.
  *
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  */
 function weepeeswiss_posted_on() {
 	if ( is_sticky() && is_home() && ! is_paged() ) {
@@ -134,7 +171,7 @@ if ( ! function_exists( 'weepeeswiss_convert_date' ) ) :
  * Convert Current Time to Time Ago
  *
  * @link Human Time Diff https://codex.wordpress.org/Function_Reference/human_time_diff
- * @since Custom Plate 1.1
+ * @since Weepee Swiss 1.1
  */
 function weepeeswiss_convert_date( $current_time ) {
 	return human_time_diff( get_the_time('U'), $current_time );
@@ -144,7 +181,7 @@ endif;
 /**
  * Find out if blog has more than one category.
  *
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  *
  * @return boolean true if blog has more than 1 category
  */
@@ -173,7 +210,7 @@ function weepeeswiss_categorized_blog() {
 /**
  * Flush out the transients used in weepeeswiss_categorized_blog.
  *
- * @since Custom Plate 1.0
+ * @since Weepee Swiss 1.0
  */
 function weepeeswiss_category_transient_flusher() {
 	// Like, beat it. Dig?
@@ -189,38 +226,26 @@ if ( ! function_exists( 'weepeeswiss_post_thumbnail' ) ) :
  * Wraps the post thumbnail in an anchor element on index
  * views, or a div element when on single views.
  *
- * @since Custom Plate 1.0
- * @since Custom Plate 1.4 Was made 'pluggable', or overridable.
+ * @since Weepee Swiss 1.0
+ * @since Weepee Swiss 1.4 Was made 'pluggable', or overridable.
  */
 function weepeeswiss_post_thumbnail() {
 	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 		return;
 	}
 
-	if ( is_singular() ) :
+	if ( ! is_singular() ) :
 	?>
 
 	<div class="post-thumbnail">
 	<?php
 		if ( ( ! is_active_sidebar( 'sidebar-1' ) && ! is_active_sidebar( 'sidebar-2' ) ) || is_page_template( 'page-templates/sidebars.php' ) ) {
-			the_post_thumbnail();	
-		} else {
 			the_post_thumbnail( 'weepeeswiss-full-width' );
+		} else {
+			the_post_thumbnail( 'post-thumbnail', array( 'alt' => get_the_title() ) );	
 		}
 	?>
 	</div>
-
-	<?php else : ?>
-
-	<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true">
-	<?php
-		if ( ( ! is_active_sidebar( 'sidebar-1' ) && ! is_active_sidebar( 'sidebar-2' ) ) || is_page_template( 'page-templates/sidebars.php' ) ) {
-			the_post_thumbnail( 'post-thumbnail', array( 'alt' => get_the_title() ) );
-		} else {
-			the_post_thumbnail( 'weepeeswiss-full-width' );
-		}
-	?>
-	</a>
 
 	<?php endif; // End is_singular()
 }
@@ -231,7 +256,7 @@ if ( ! function_exists( 'weepeeswiss_excerpt_more' ) && ! is_admin() ) :
  * Replaces "[...]" (appended to automatically generated excerpts) with ...
  * and a Continue reading link.
  *
- * @since Custom Plate 1.3
+ * @since Weepee Swiss 1.3
  *
  * @param string $more Default Read More excerpt link.
  * @return string Filtered Read More excerpt link.
@@ -246,7 +271,6 @@ function weepeeswiss_excerpt_more( $more ) {
 }
 add_filter( 'excerpt_more', 'weepeeswiss_excerpt_more' );
 endif;
-
 
 /**
  * Breadcrumb Lists

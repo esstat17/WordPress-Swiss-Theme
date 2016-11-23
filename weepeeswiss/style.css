@@ -28,6 +28,11 @@ body {
 	font: 400 16px/1.6 "Open Sans", sans-serif;
 	color: #333;
 }
+@media (max-width: 767px){
+	body {
+		font-size: 14px;
+	}
+}
 
 img {
 	max-width: 100%;
@@ -2381,3 +2386,31 @@ input[type=search] {
     margin-top: -46px !important;
 }
 
+.entry-meta .tag a {
+    font-size: 80%;
+    line-height: 1.575rem;
+    border: 1px solid #ccc;
+    text-transform: capitalize;
+    display: inline-block;
+    color: #969696;
+    padding: 0.3125rem 0.5625rem;
+    text-decoration: none;
+    margin: 0 .3125rem .625rem 0 !important;
+    white-space: nowrap;
+    background: none;
+    border-radius: 4px;
+    font-weight: 300;
+}
+
+.entry-meta .tag > div {
+    text-transform: uppercase;
+    font-size: 80%;
+}
+
+.page-header {
+    margin-top: 0;
+}
+
+.screen-reader-text {
+    display: none;
+}

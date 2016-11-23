@@ -11,8 +11,6 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php weepeeswiss_post_thumbnail(); ?>
-
 	<div class="entry-header">
 		<?php
 			if ( is_single() ) :
@@ -38,6 +36,8 @@
 		</div><!-- .entry-meta -->
 	</div><!-- .entry-header -->
 
+	<?php weepeeswiss_post_thumbnail(); ?>
+
 	<?php if ( is_search() ) : ?>
 	<div class="entry-summary">
 		<?php the_excerpt(); ?>
@@ -46,10 +46,7 @@
 	<div class="entry-content">
 		<?php
 			/* translators: %s: Name of current post */
-			the_content( sprintf(
-				__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'weepeeswiss' ),
-				the_title( '<span class="screen-reader-text">', '</span>', false )
-			) );
+			the_content( '<span class="read-more pull-right">' . __('Read more..', 'weepeeswiss') . '</span><span class="meta-nav clearfix"></span>', false);
 
 			wp_link_pages( array(
 				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'weepeeswiss' ) . '</span>',
@@ -60,21 +57,7 @@
 		?>
 	</div><!-- .entry-content -->
 	<?php endif; ?>
-	<?php
-	if (is_single()):
-		if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && weepeeswiss_categorized_blog() ) : 
-		$get_cats = get_the_category_list(', ');
-		$count_cats = count(explode(",", $get_cats));
-		$cat_txt = sprintf( _n( 'Category: %s', 'Categories: %s', $count_cats, 'weepeeswiss' ), $get_cats);
-	?>
-	<div class="entry-meta">
-		<span class="cat-links"><?php echo $cat_txt; ?></span>
-	</div>
-		<?php endif; ?>
-	<?php 
-		if (is_single()):
-			the_tags( '<div class="entry-meta"><span class="tag-links">'. __( 'Tags: ', 'weepeeswiss' ), ', ', '</span></div>' );
-		endif;
-	endif; // is_single()
-	?>
+
+	<?php weepeeswiss_cat_and_tags(); ?>
+
 </article><!-- #post-## -->

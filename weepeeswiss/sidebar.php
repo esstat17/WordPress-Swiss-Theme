@@ -6,6 +6,11 @@
  * @subpackage Weepee_Swiss
  * @since Weepee Swiss 1.0
  */
+
+if ( ! is_active_sidebar( 'sidebar-1' ) || "aside" == get_post_format() ) {
+	return;
+}
+
 ?>
 <div id="secondary" class="secondary <?php apply_filters('secondary_class', ''); ?>">
 	<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>

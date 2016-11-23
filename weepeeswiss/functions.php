@@ -519,11 +519,19 @@ function weepeeswiss_primary_class_attr(){
 
 		// if sidebars are not active
 		if ( is_active_sidebar( 'sidebar-1' ) && is_active_sidebar( 'sidebar-2' ) ){
-			$classes[] = "col-xs-12 col-sm-6";			
+			if( "aside" == get_post_format() ){
+				$classes[] = "col-lg-12 no-sidebars";
+			} else {
+				$classes[] = "col-xs-12 col-sm-6";	
+			}		
 		} elseif ( is_active_sidebar( 'sidebar-1' ) || is_active_sidebar( 'sidebar-2' )){
-			$classes[] = "col-xs-12 col-sm-6 col-md-8";
+			if( "aside" == get_post_format() ){
+				$classes[] = "col-lg-12 no-sidebars";
+			} else {
+				$classes[] = "col-xs-12 col-sm-6 col-md-8";
+			}
 		} else {
-			$classes[] = "col-lg-12 no-sidebar";
+			$classes[] = "col-lg-12 no-sidebars";
 		}
 
 	} else {
