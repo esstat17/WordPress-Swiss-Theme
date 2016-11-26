@@ -14,7 +14,7 @@ get_header(); ?>
 <div class="content-skin single-skin">
 <div class="container">
 <div class="row">
-	<div id="primary" class="content-area <?php apply_filters('primary_class', ''); ?>">
+	<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array(get_the_ID())); ?>">	
 		<?php do_action( 'weepeeswiss_content_right', get_the_ID()); ?>	
 		<div id="content" class="site-content" role="main">
 			<?php
@@ -31,14 +31,23 @@ get_header(); ?>
 					// Previous/next post navigation.
 					weepeeswiss_post_nav();
 
+					weepeeswiss_author_meta();
+
+					do_action( 'weepeeswiss_content_comment_above', get_the_ID());
+
 					// If comments are open or we have at least one comment, load up the comment template.
 					if ( comments_open() || get_comments_number() ) {
 						comments_template();
 					}
+
 				endwhile;
 			?>
+<?php do_action( 'weepeeswiss_content_comment_bottom', get_the_ID()); ?>
 		</div><!-- #content -->
-	</div><!-- #primary -->
+
+	</div><!-- #main-content -->                    
+
+                    
 
 <?php get_sidebar(); ?>
 <?php get_sidebar( 'two' ); ?>

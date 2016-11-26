@@ -112,5 +112,3 @@ if ( post_password_required() ) {
 	?>
 
 </div><!-- #comments -->
-
-<?php do_action( 'weepeeswiss_content_comment_bottom', get_the_ID()); ?>

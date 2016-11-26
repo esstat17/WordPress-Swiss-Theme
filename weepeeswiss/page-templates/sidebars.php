@@ -9,9 +9,7 @@
 
 get_header(); ?>
 
-<?php do_action( 'weepeeswiss_content_top', get_the_ID()); ?>
-
-<div id="main-content" class="main-content container-page-<?php the_ID(); ?>">
+<div id="page-content" class="page-content container-page-<?php the_ID(); ?>">
 
 <?php
 	if ( is_front_page() && weepeeswiss_has_featured_posts() ) {
@@ -21,8 +19,7 @@ get_header(); ?>
 ?>
 <div class="container">
 <div class="row">
-	<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array()); ?>">	
-	<?php do_action( 'weepeeswiss_content_right', get_the_ID()); ?>	
+	<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array(get_the_ID())); ?>">		
 	<?php
 		if ( is_front_page() && weepeeswiss_has_featured_posts() ) {
 			// Include the featured content template.
@@ -53,6 +50,5 @@ get_header(); ?>
 <?php get_sidebar( 'two' ); ?>
 </div> <!-- .row -->
 </div> <!-- .container -->
-</div><!-- #main-content -->
-<?php do_action( 'weepeeswiss_content_bottom', get_the_ID()); ?>
+</div><!-- #page-content -->
 <?php get_footer();

@@ -13,8 +13,10 @@
 
 get_header(); ?>
 
+<?php do_action( 'wps_front_section_before' ); ?>
+
 <?php
-	do_action( 'wps_front_section_before' );
+
 	if ( 'posts' == get_option( 'show_on_front' ) ):
     	include( get_home_template() );
 	else: 
@@ -23,11 +25,11 @@ get_header(); ?>
 			get_template_part( 'featured-content' );
 		}
 ?>
-<section class="section-front front-page-<?php the_ID(); ?>">
-<div class="container container-page-<?php the_ID(); ?>">
+<div class="section-front front-page-<?php the_ID(); ?>">
+<div class="container">
 	<div class="row">
-		<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array()); ?>">	
-			<div id="primary" class="content-area">
+		<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array(get_the_ID())); ?>">	
+			<?php do_action( 'weepeeswiss_content_right', get_the_ID()); ?>	
 				<div id="content" class="site-content" role="main">
 					<?php
 						while ( have_posts() ) : the_post();
@@ -36,12 +38,15 @@ get_header(); ?>
 						endwhile;
 					?>		
 				</div><!-- #content -->
-			</div><!-- #primary -->
-		</div><!-- #main-content -->	
+		</div><!-- #main-content -->
+<?php get_sidebar(); ?>
+<?php get_sidebar( 'two' ); ?>	
 	</div> <!-- .row -->
 </div> <!-- .container -->
-</section>
+</div>
 <?php
 		do_action( 'wps_front_section_after' );
 	endif;
-get_footer();
+?>
+
+<?php get_footer(); ?>

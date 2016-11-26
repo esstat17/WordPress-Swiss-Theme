@@ -494,6 +494,8 @@ Navigation
 /** Just the present and previous link */
 .post-navigation {
     padding: 10px 0;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 /** Scroll Nav Animation */
@@ -738,7 +740,6 @@ Content Body
 	}
 }
 .main-content {
-    padding-top: 2em;
     padding-bottom: 2em;
 }
 @media (max-width: 767px) {
@@ -819,14 +820,39 @@ Content Body
 }
 
 .entry-meta {
-	display: block;
+    display: block;
     font-size: 14px;
+    margin-bottom: 20px;
 }
+
+.entry-content {
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.entry-meta .tag a {
+    font-size: 80%;
+    line-height: 1.575rem;
+    border: 1px solid #ccc;
+    text-transform: capitalize;
+    display: inline-block;
+    color: #969696;
+    padding: 0.3125rem 0.5625rem;
+    text-decoration: none;
+    margin: 0 .3125rem .625rem 0 !important;
+    white-space: nowrap;
+    background: none;
+    border-radius: 4px;
+    font-weight: 300;
+}
+
+.entry-meta .tag > div {
+    text-transform: uppercase;
+    font-size: 80%;
+}
+
 .entry-header {
-    margin: 5px 0 15px 0;
-}
-h1.entry-title {
-    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 .nav-links span {
@@ -1694,7 +1720,7 @@ Superfish Navigation
 	text-transform: uppercase;
 }
 .well {
-    background-color: rgb(245, 245, 245);
+    background-color: #f7f7f7;
     border-top-width: initial;
     border-right-width: initial;
     border-left-width: initial;
@@ -2339,7 +2365,7 @@ Special Boxes
 ------------------------------------------------------------------- */
 
 .weepeeswiss-cont-right {
-    padding: 1.25rem 1.25rem 0 1.25rem;
+    padding: 1.25rem 0 0 1.25rem;
     margin-left: 1.5rem;
     max-width: 300px;
     margin-bottom: 1.25rem;
@@ -2361,8 +2387,28 @@ Special Boxes
     padding-top: 5em;
 }
 
-.weepeeswiss-cont-bottom {
-    margin-top: -5em;
+/* -------------------------------------------------------------------
+Author
+------------------------------------------------------------------- */
+#author-meta {
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+#author-meta img {
+    float: left;
+    padding: 10px 15px 0 5px;
+}
+#author-meta .about-author {
+    font-weight: 700;
+    margin: 10px 0 0 0;
+}
+
+.author-title {
+    font-size: 120%;
+}
+
+.author-desc {
+    font-weight: 300;
 }
 
 /* -------------------------------------------------------------------
@@ -2386,31 +2432,16 @@ input[type=search] {
     margin-top: -46px !important;
 }
 
-.entry-meta .tag a {
-    font-size: 80%;
-    line-height: 1.575rem;
-    border: 1px solid #ccc;
-    text-transform: capitalize;
-    display: inline-block;
-    color: #969696;
-    padding: 0.3125rem 0.5625rem;
-    text-decoration: none;
-    margin: 0 .3125rem .625rem 0 !important;
-    white-space: nowrap;
-    background: none;
-    border-radius: 4px;
-    font-weight: 300;
-}
-
-.entry-meta .tag > div {
-    text-transform: uppercase;
-    font-size: 80%;
-}
-
 .page-header {
     margin-top: 0;
 }
 
 .screen-reader-text {
     display: none;
+}
+
+.tag .category, .tag .tags {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
 }

@@ -135,6 +135,7 @@ function weepeeswiss_customize_register( $wp_customize ) {
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'header_txt', '#333333', __('Header Text Color', 'weepeeswiss' ), __('', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'footer_bg', '#1d1d1d', __('Footer Background', 'weepeeswiss' ), '', 'colors', 'sanitize_hex_color', 'postMessage');
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'footer_txt', '#bab0b0', __('Footer Text Color', 'weepeeswiss' ), __('', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
+	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'well_bg', '#f5f5f5', __('Well Background', 'weepeeswiss' ), __('', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_1', '#f68712', __('Color #1', 'weepeeswiss' ), __('Insert <code>.color-1</code> or <code>.bg-color-1</code> class', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_2', '#ffffff', __('Color #2', 'weepeeswiss' ), __('Insert <code>.color-2</code> or <code>.bg-color-2</code> class', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_3', '#92c095', __('Color #3', 'weepeeswiss' ), __('Insert <code>.color-3</code> or <code>.bg-color-3</code> class', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
@@ -245,7 +246,7 @@ function weepeeswiss_sanitize_img_uri($value){
  * @since Weepee Swiss 1.0
  */
 function weepeeswiss_customize_preview_js() {
-	wp_enqueue_script( 'weepeeswiss_customizer', get_template_directory_uri() . '/js/customizer-preview.js', array( 'customize-preview' ), '20161205', true );
+	wp_enqueue_script( 'weepeeswiss_customizer', get_template_directory_uri() . '/js/customizer-prev.js', array( 'customize-preview' ), '20161205', true );
 }
 add_action( 'customize_preview_init', 'weepeeswiss_customize_preview_js' );
 
@@ -266,6 +267,7 @@ function weepeeswiss_link_color_css() {
 	$header_txt 		= get_theme_mod( 'header_txt', '#333333' );
 	$footer_bg 			= get_theme_mod( 'footer_bg', '#1d1d1d' );
 	$footer_txt 		= get_theme_mod( 'footer_txt', '#bab0b0' );
+	$well_bg	 		= get_theme_mod( 'well_bg', '#f5f5f5' );
 	$text_color 		= get_theme_mod( 'text_color', '#504c4d' );
 	$color_1 			= get_theme_mod( 'color_1', '#f68712' );
 	$color_2 			= get_theme_mod( 'color_2', '#ffffff' );
@@ -288,6 +290,7 @@ function weepeeswiss_link_color_css() {
 		'header_txt'     		=> $header_txt,
 		'footer_bg'     		=> $footer_bg,
 		'footer_txt'     		=> $footer_txt,
+		'well_bg'     			=> $well_bg,
 		'text_color'     		=> $text_color,
 		'color_1'     			=> $color_1,
 		'color_2'     			=> $color_2,
@@ -362,6 +365,7 @@ function weepeeswiss_css_factory($css) {
 		'header_txt'     		=> '',
 		'footer_bg'     		=> '',
 		'footer_txt'     		=> '',
+		'well_bg'     			=> '',
 		'text_color'       		=> '',
 		'color_1'       		=> '',
 		'color_2'       		=> '',
@@ -402,6 +406,9 @@ h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
 }
 .footer-txt-rgba, .footer-txt-rgba a {
 	color: {$footer_txt_rgba};
+}
+.well-bg {
+	background-color: {$css['well_bg']};
 }
 .border-color-1 {
 	border-color: {$css['color_1']};

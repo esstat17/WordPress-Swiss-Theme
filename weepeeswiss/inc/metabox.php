@@ -13,13 +13,12 @@
 if( !defined( 'ABSPATH' ) ) exit;
 
 /**
- * Register Two (2) Meta Boxes.
+ * Register Two (2) Meta Boxes for POST.
  * @link Add Meta Box https://developer.wordpress.org/reference/functions/add_meta_box/
  * @link Save Post https://codex.wordpress.org/Plugin_API/Action_Reference/save_post
  */
-function weepeeswiss_register_meta_boxes() {
-		$post_type = '';
-		/** Search Posts Metabox **/
+function weepeeswiss_metabox_post() {
+		$post_type = 'post';
 		add_meta_box( 
 			'weepeeswiss_normal_high', __( 'Add Meta Contents', 'weepeeswiss' ),  
 			'weepeeswiss_display_normal_high_metabox', // Callback function
@@ -28,7 +27,42 @@ function weepeeswiss_register_meta_boxes() {
 			'high' 
 		);
 }
-add_action( 'add_meta_boxes', 'weepeeswiss_register_meta_boxes' );
+add_action( 'add_meta_boxes', 'weepeeswiss_metabox_post' );
+
+/**
+ * Register Two (2) Meta Boxes for PAGE.
+ * @link Add Meta Box https://developer.wordpress.org/reference/functions/add_meta_box/
+ * @link Save Post https://codex.wordpress.org/Plugin_API/Action_Reference/save_post
+ */
+function weepeeswiss_metabox_page() {
+		$post_type = 'page';
+		add_meta_box( 
+			'weepeeswiss_normal_high', __( 'Add Meta Contents', 'weepeeswiss' ),  
+			'weepeeswiss_display_normal_high_metabox', // Callback function
+			$post_type, 
+			'normal', 
+			'high' 
+		);
+}
+add_action( 'add_meta_boxes', 'weepeeswiss_metabox_page' );
+
+
+/**
+ * Register Two (2) Meta Boxes.
+ * @link Add Meta Box https://developer.wordpress.org/reference/functions/add_meta_box/
+ * @link Save Post https://codex.wordpress.org/Plugin_API/Action_Reference/save_post
+ */
+function weepeeswiss_post_meta_boxes() {
+		$post_type = 'page';
+		add_meta_box( 
+			'weepeeswiss_normal_high', __( 'Add Meta Contents', 'weepeeswiss' ),  
+			'weepeeswiss_display_normal_high_metabox', // Callback function
+			$post_type, 
+			'normal', 
+			'high' 
+		);
+}
+add_action( 'add_meta_boxes', 'weepeeswiss_post_meta_boxes' );
 
 /**
  * Metabox for post IDs dropdown
@@ -40,7 +74,7 @@ add_action( 'add_meta_boxes', 'weepeeswiss_register_meta_boxes' );
 
 function weepeeswiss_display_normal_high_metabox($post) {
 	$options = "";
-	$post_id = $post->ID; // Post ID of a curret Post Type `page`
+	$post_id = $post->ID; // Post ID of a curret Post Type `post`	
 
 	// Add some test data here - a custom field, that is
 	$meta_key='weepeeswiss_postmeta_key';
@@ -70,8 +104,10 @@ function weepeeswiss_display_normal_high_metabox($post) {
 								<option <?php  echo $get_meta[1][$i]==2? 'selected="selected"':''; ?> value="2" data-pos="2"><?php _e('Bottom Content', 'weepeeswiss'); ?></option>
 								<option <?php  echo $get_meta[1][$i]==3? 'selected="selected"':''; ?> value="3" data-pos="3"><?php _e('Right Content', 'weepeeswiss'); ?></option>
 								<option <?php  echo $get_meta[1][$i]==4? 'selected="selected"':''; ?> value="4" data-pos="4"><?php _e('Welcome Screen', 'weepeeswiss'); ?></option>
-								<option <?php  echo $get_meta[1][$i]==5? 'selected="selected"':''; ?> value="6" data-pos="5"><?php _e('Image Background of WS', 'weepeeswiss'); ?></option>
-								<option <?php  echo $get_meta[1][$i]==6? 'selected="selected"':''; ?> value="6" data-pos="6"><?php _e('Below Comment Form', 'weepeeswiss'); ?></option>
+							<?php if('post' == get_post_type($post_id) ): ?>
+								<option <?php  echo $get_meta[1][$i]==5? 'selected="selected"':''; ?> value="5" data-pos="5"><?php _e('Above Comment Form', 'weepeeswiss'); ?></option>
+								<option <?php  echo $get_meta[1][$i]==6? 'selected="selected"':''; ?> value="6" data-pos="5"><?php _e('Below Comment Form', 'weepeeswiss'); ?></option>
+							<?php endif; ?>
 							</select>
 						</td>
 						<td><span style="color:#c9302c" class="dashicons dashicons-no weepee-no"></span></td>
@@ -89,15 +125,50 @@ function weepeeswiss_display_normal_high_metabox($post) {
 								<option value="1" data-pos="1"><?php _e('Top Content', 'weepeeswiss'); ?></option>
 								<option value="2" data-pos="2"><?php _e('Bottom Content', 'weepeeswiss'); ?></option>
 								<option value="3" data-pos="3"><?php _e('Right Content', 'weepeeswiss'); ?></option>
+								<option value="4" data-pos="4"><?php _e('Welcome Screen', 'weepeeswiss'); ?></option>
+							<?php if('post' == get_post_type($post_id) ): ?>
+								<option value="5" data-pos="5"><?php _e('Above Comment Form', 'weepeeswiss'); ?></option>
+								<option value="6" data-pos="6"><?php _e('Below Comment Form', 'weepeeswiss'); ?></option>
+							<?php endif; ?>
 							</select>
 						</td>
 						<td><span style="color:#c9302c;cursor:pointer;" class="dashicons dashicons-no weepee-no"></span></td>
 					</tr>
+
 					<?php
 						endif;
 					?>
 					</tbody>
 			</table>
+
+			<div class="weepeeswiss-upload-wraps">
+				<input id="wps-image_url" class="wps-upload-background regular-text" name="weepeeswiss_postmeta_key[3][]" type="url" value="<?php echo isset($get_meta[3][0]) ? $get_meta[3][0]: ""; ?>">
+				<button type="button" id="wps-insert-bg-img" class="button insert-bg-img add_media"><span class="dashicons dashicons-format-image" style="vertical-align: text-top;"></span>Upload Image</button>
+				<div><label><?php _e('Add Image for Background Parallax', 'weepeeswiss'); ?></label></div>
+			</div>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    $('#wps-insert-bg-img').click(function(e) {
+        e.preventDefault();
+        var image = wp.media({ 
+            title: 'Upload Logo',
+            // mutiple: true if you want to upload multiple files at once
+            multiple: false
+        }).open()
+        .on('select', function(e){
+            // This will return the selected image from the Media Uploader, the result is an object
+            var uploaded_image = image.state().get('selection').first();
+            // We convert uploaded_image to a JSON object to make accessing it easier
+            // Output to the console uploaded_image
+            // console.log(uploaded_image);
+            var image_url = uploaded_image.toJSON().url;
+            // Let's assign the url value to the input field
+            $('#wps-image_url').val(image_url);
+        });
+    });
+});
+</script>
+
 
 	<script type="text/javascript">
 		jQuery(document).ready(function($){

@@ -13,7 +13,7 @@ get_header(); ?>
 
 <div class="container container-page-<?php the_ID(); ?>">
 <div class="row">
-	<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array()); ?>">	
+	<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array(get_the_ID())); ?>">		
 	<?php
 		if ( is_front_page() && weepeeswiss_has_featured_posts() ) {
 			// Include the featured content template.

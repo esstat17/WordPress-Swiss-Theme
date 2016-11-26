@@ -17,7 +17,7 @@
  */
 function weepeeswiss_content_top_hook($post_id) {
 	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
-	
+
 	if (isset($get_meta) && !empty($get_meta)):
 		for($i=0; $i<count($get_meta[0]); $i++):
 			if( $get_meta[1][$i]==1 && !empty($get_meta[0][$i]) && isset($get_meta[0][$i]) ):
@@ -84,6 +84,33 @@ function weepeeswiss_content_right_hook($post_id) {
 	endif;
 }
 add_action( 'weepeeswiss_content_right', 'weepeeswiss_content_right_hook');
+
+
+/**
+ * Meta in the Comment Form Above
+ * 
+ * @return void
+ */
+function weepeeswiss_content_comment_above_hook($post_id) {
+	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	if (isset($get_meta) && !empty($get_meta)):
+?>
+<div id="weepeeswiss-cont-comment-above" class="weepeeswiss-cont-comment-above">
+<?php 
+		for($i=0; $i<count($get_meta[0]); $i++):
+			if( $get_meta[1][$i]==5 && !empty($get_meta[0][$i]) && isset($get_meta[0][$i]) ):
+?>
+<div class="weepeeswiss-cont-wrap weepeeswiss-box-pad weepeeswiss-meta-box weepeeswiss-meta-<?php echo $i; ?>"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
+<?php		
+			endif;	
+		endfor;
+?>
+</div>
+<?php	
+	endif;
+}
+add_action( 'weepeeswiss_content_comment_above', 'weepeeswiss_content_comment_above_hook');
+
 
 
 /**

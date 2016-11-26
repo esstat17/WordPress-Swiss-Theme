@@ -26,9 +26,8 @@
 					$('.bg-'+selector).css({ 'background-color': to });
 				}
 				// Header Inline CSS
-				if(setting_id=='header_bg') {
+				if(setting_id=='header_bg' || setting_id=='well_bg') {
 					$('.'+selector).css({ 'background-color': to });
-
 				}
 				// Footer Inline CSS
 				if(setting_id=='footer_bg'){
@@ -69,6 +68,7 @@
 	asyncPreview('header_txt','header-txt');
 	asyncPreview('footer_bg','footer-bg');
 	asyncPreview('footer_txt','footer-txt');
+	asyncPreview('well_bg','well-bg');
 	asyncPreview('text_color','text-color');
 	asyncPreview('color_1','color-1');
 	asyncPreview('color_2','color-2');

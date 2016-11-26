@@ -183,7 +183,7 @@ function weepeeswiss_widgets_init() {
 		'name'          => __( 'Right Sidebar', 'weepeeswiss' ),
 		'id'            => 'sidebar-1',
 		'description'   => __( 'Main sidebar that appears on the right.', 'weepeeswiss' ),
-		'before_widget' => '<aside id="%1$s" class="widget well %2$s">',
+		'before_widget' => '<aside id="%1$s" class="widget well well-bg %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h4 class="widget-title">',
 		'after_title'   => '</h4>',
@@ -192,7 +192,7 @@ function weepeeswiss_widgets_init() {
 		'name'          => __( 'Right Sidebar 2', 'weepeeswiss' ),
 		'id'            => 'sidebar-2',
 		'description'   => __( 'Additional sidebar that appears on the right.', 'weepeeswiss' ),
-		'before_widget' => '<aside id="%1$s" class="widget well %2$s">',
+		'before_widget' => '<aside id="%1$s" class="widget well well-bg %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h4 class="widget-title">',
 		'after_title'   => '</h4>',
@@ -322,7 +322,7 @@ function weepeeswiss_admin_scripts($pagenow) {
 	}
 	// 	wp_enqueue_script( 'weepeeswiss_customizer_ajax', get_template_directory_uri() . '/js/customizer-ajax.js', array( 'customize-preview' ), '20161008', true );
 	// Add Bootstrap 3.0 stylesheet.
-	wp_enqueue_script( 'wps-admin-ajax-js', get_template_directory_uri() . '/js/customizer-ajax.js', array('jquery', 'customize-preview'), '1.0.1' );
+	wp_enqueue_script( 'wps-admin-ajax-js', get_template_directory_uri() . '/js/customizer-ajax.js', array('jquery', 'customize-prev'), '1.0.1' );
 }
 add_action( 'admin_enqueue_scripts', 'weepeeswiss_admin_scripts' );
 
@@ -513,25 +513,32 @@ add_filter( 'body_class', 'weepeeswiss_body_class_attr' );
  *  @since Weepee Swiss 1.0
  *	@return void
  */
-function weepeeswiss_primary_class_attr(){
-	$classes = array();
-	if (!is_front_page() || 'posts' == get_option( 'show_on_front' )){
+function weepeeswiss_primary_class_attr($args=array()){
 
-		// if sidebars are not active
-		if ( is_active_sidebar( 'sidebar-1' ) && is_active_sidebar( 'sidebar-2' ) ){
-			if( "aside" == get_post_format() ){
+	$classes = array();
+	// if sidebars are not active
+	if ( is_active_sidebar( 'sidebar-1' ) && is_active_sidebar( 'sidebar-2' ) ){
+
+		if(is_singular()){
+			// Aside Post Format is FULL Wide
+			if ( "aside" == get_post_format() && is_single() || is_page() && 'page-templates/sidebars.php' != get_page_template_slug($args[0]) ){
 				$classes[] = "col-lg-12 no-sidebars";
-			} else {
-				$classes[] = "col-xs-12 col-sm-6";	
-			}		
-		} elseif ( is_active_sidebar( 'sidebar-1' ) || is_active_sidebar( 'sidebar-2' )){
-			if( "aside" == get_post_format() ){
-				$classes[] = "col-lg-12 no-sidebars";
-			} else {
-				$classes[] = "col-xs-12 col-sm-6 col-md-8";
+			} else {	
+				$classes[] = "col-xs-12 col-sm-6";
 			}
 		} else {
-			$classes[] = "col-lg-12 no-sidebars";
+			$classes[] = "col-xs-12 col-sm-6";
+		}
+	} elseif ( is_active_sidebar( 'sidebar-1' ) || is_active_sidebar( 'sidebar-2' ) ) {
+		if(is_singular()){
+			// Aside Post Format is FULL Wide
+			if ( "aside" == get_post_format() && is_single() || is_page() && 'page-templates/sidebars.php' != get_page_template_slug($args[0]) ){
+				$classes[] = "col-lg-12 no-sidebars";
+			} else {	
+				$classes[] = "col-xs-12 col-sm-8";
+			}
+		} else {
+			$classes[] = "col-xs-12 col-sm-8";
 		}
 
 	} else {
@@ -542,6 +549,10 @@ function weepeeswiss_primary_class_attr(){
 }
 add_filter( 'primary_class', 'weepeeswiss_primary_class_attr' );
 
+
+// var_dump(is_page_template( "page-templates/sidebars.php" ));
+
+// var_dump(get_page_template_slug( 2 ));
 /**
  * Dynamic Class in the Secondary or Sidebar
  *

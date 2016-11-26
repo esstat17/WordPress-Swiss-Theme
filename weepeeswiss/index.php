@@ -18,7 +18,7 @@ get_header(); ?>
 <div class="content-skin index-skin">
 <div class="container">
 <div class="row">
-	<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array()); ?>">
+	<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array(get_the_ID())); ?>">	
 	<?php
 		if ( is_front_page() && weepeeswiss_has_featured_posts() ) {
 			// Include the featured content template.
@@ -31,8 +31,7 @@ get_header(); ?>
 			<?php
 				if ( have_posts() ) :
 					// Start the Loop.
-					while ( have_posts() ) : the_post();	
-
+					while ( have_posts() ) : the_post();
 						/*
 						 * Include the post format-specific template for the content. If you want to
 						 * use this in a child theme, then include a file called called content-___.php

@@ -13,7 +13,7 @@ get_header(); ?>
 <div class="content-skin category-skin">
 <div class="container">
 <div class="row">
-	<div id="primary" class="content-area <?php apply_filters('primary_class', ''); ?>">
+	<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array(get_the_ID())); ?>">	
 		<div id="content" class="site-content" role="main">
 
 			<?php if ( have_posts() ) : ?>

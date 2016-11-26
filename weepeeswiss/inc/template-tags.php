@@ -272,6 +272,25 @@ function weepeeswiss_excerpt_more( $more ) {
 add_filter( 'excerpt_more', 'weepeeswiss_excerpt_more' );
 endif;
 
+if ( ! function_exists( 'weepeeswiss_author_meta' ) ) :
+/**
+ * Meta Author Handler
+ *
+ * @since Weepee Swiss 1.3
+ *
+ */
+function weepeeswiss_author_meta() {
+	?>
+     <div id="author-meta" class="author-meta well well-bg">
+  		<span class="author-avatar"><?php if (function_exists('get_avatar')) echo get_avatar( get_the_author_meta('email'), '80' ); ?></span>
+    	<p class="author-title"><span class="about-txt"><?php _e('About','weepeeswiss'); ?></span> <?php the_author_posts_link(); ?></p>
+        <p class="author-desc"><?php the_author_meta('description') ?></p>
+     </div><!-- end of #author-meta -->
+
+<?php }
+endif;
+
+
 /**
  * Breadcrumb Lists
  * Adopted from Dimox
@@ -307,7 +326,10 @@ function weepeeswiss_breadcrumb_lists() {
 	$itemproptitle_before = '<span itemprop="title">';
 	$itemproptitle_after = '</span>';
 	$link         = $link_before . '<a' . $link_attr . ' href="%1$s">' . $itemproptitle_before . '%2$s' . $itemproptitle_after . '</a>' . $link_after;
-	$parent_id    = $parent_id_2 = $post->post_parent;
+	
+	if( !empty($post) ){
+		$parent_id 	= $parent_id_2 = $post->post_parent;
+	}
 	$frontpage_id = get_option('page_on_front');
 
 	if (is_home() || is_front_page()) {
