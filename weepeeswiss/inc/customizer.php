@@ -258,7 +258,6 @@ add_action( 'customize_preview_init', 'weepeeswiss_customize_preview_js' );
  * @see wp_add_inline_style()
  */
 
-// var_dump(display_header_text());
 function weepeeswiss_link_color_css() {
 	$background_color 	= get_theme_mod( 'background_color', '#ffffff' );
 	$link_color 		= get_theme_mod( 'link_color', '#4b8abb' );

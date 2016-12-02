@@ -26,7 +26,7 @@
 			contentBody = "#content-body",
 			searchWidget = "#primary-navigation .widget_search",
 			navHeight = $(primeNav).height(),
-			winHeight = $(window).height(),
+			winHeight = window.screen.height || window.screen.availHeight,
 			navbar      = $('.navbar-custom'),
 			modules     = $('.module-hero, .module, .module-small'),
 			windowWidth = Math.max($(window).width(), window.innerWidth),

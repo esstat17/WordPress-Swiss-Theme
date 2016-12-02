@@ -9,6 +9,8 @@
 
 get_header(); ?>
 
+
+<?php do_action( 'weepeeswiss_welcome_screen', get_the_ID()); ?>
 <?php do_action( 'weepeeswiss_content_top', get_the_ID()); ?>
 
 <div class="content-skin single-skin">
@@ -44,11 +46,7 @@ get_header(); ?>
 			?>
 <?php do_action( 'weepeeswiss_content_comment_bottom', get_the_ID()); ?>
 		</div><!-- #content -->
-
-	</div><!-- #main-content -->                    
-
-                    
-
+	</div><!-- #main-content -->                                       
 <?php get_sidebar(); ?>
 <?php get_sidebar( 'two' ); ?>
 </div> <!-- .row -->

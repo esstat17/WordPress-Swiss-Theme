@@ -59,7 +59,6 @@ function weepeeswiss_content_bottom_hook($post_id) {
 }
 add_action( 'weepeeswiss_content_bottom', 'weepeeswiss_content_bottom_hook');
 
-
 /**
  * Content Right Hook
  * 
@@ -67,20 +66,26 @@ add_action( 'weepeeswiss_content_bottom', 'weepeeswiss_content_bottom_hook');
  */
 function weepeeswiss_content_right_hook($post_id) {
 	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
-	if (isset($get_meta) && !empty($get_meta)):
+	$already_printed = false;
+	if (isset($get_meta) && !empty($get_meta) ):
+		for($i=0; $i<count($get_meta[0]); $i++):
+			if( $get_meta[1][$i]==3 && !empty($get_meta[0][$i]) && isset($get_meta[0][$i]) ):
+				if(!$already_printed): 
 ?>
 <div id="weepeeswiss-cont-right" class="weepeeswiss-cont-right pull-right">
 <?php 
-		for($i=0; $i<count($get_meta[0]); $i++):
-			if($get_meta[1][$i]==3 && !empty($get_meta[0][$i]) && isset($get_meta[0][$i]) ):
+				endif;
 ?>
-<div class="weepeeswiss-cont-wrap weepeeswiss-meta-box weepeeswiss-meta-<?php echo $i; ?> well"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
-<?php		
+	<div class="weepeeswiss-cont-wrap weepeeswiss-meta-box weepeeswiss-meta-<?php echo $i; ?> well"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
+<?php
+				if(!$already_printed):
+?>
+</div> <!-- end of right content -->
+<?php
+				endif;
+				$already_printed = true;
 			endif;	
 		endfor;
-?>
-</div>
-<?php	
 	endif;
 }
 add_action( 'weepeeswiss_content_right', 'weepeeswiss_content_right_hook');
@@ -93,20 +98,26 @@ add_action( 'weepeeswiss_content_right', 'weepeeswiss_content_right_hook');
  */
 function weepeeswiss_content_comment_above_hook($post_id) {
 	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
-	if (isset($get_meta) && !empty($get_meta)):
+	$already_printed = false;
+	if (isset($get_meta) && !empty($get_meta) ):
+		for($i=0; $i<count($get_meta[0]); $i++):
+			if( $get_meta[1][$i]==5 && !empty($get_meta[0][$i]) && isset($get_meta[0][$i]) ):
+				if(!$already_printed): 
 ?>
 <div id="weepeeswiss-cont-comment-above" class="weepeeswiss-cont-comment-above">
 <?php 
-		for($i=0; $i<count($get_meta[0]); $i++):
-			if( $get_meta[1][$i]==5 && !empty($get_meta[0][$i]) && isset($get_meta[0][$i]) ):
+				endif;
 ?>
-<div class="weepeeswiss-cont-wrap weepeeswiss-box-pad weepeeswiss-meta-box weepeeswiss-meta-<?php echo $i; ?>"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
-<?php		
+	<div class="weepeeswiss-cont-wrap weepeeswiss-box-pad weepeeswiss-meta-box weepeeswiss-meta-<?php echo $i; ?>"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
+<?php
+				if(!$already_printed):
+?>
+</div> <!-- end of meta above comment -->
+<?php
+				endif;
+				$already_printed = true;
 			endif;	
 		endfor;
-?>
-</div>
-<?php	
 	endif;
 }
 add_action( 'weepeeswiss_content_comment_above', 'weepeeswiss_content_comment_above_hook');
@@ -137,3 +148,87 @@ function weepeeswiss_content_comment_bottom_hook($post_id) {
 	endif;
 }
 add_action( 'weepeeswiss_content_comment_bottom', 'weepeeswiss_content_comment_bottom_hook');
+
+
+/**
+ * Meta Hook in the Header
+ * 
+ * @return void
+ */
+function weepeeswiss_meta_header_hook() {
+	if ( !is_singular() ) return;
+
+	global $post;
+	$post_id = $post->ID;
+	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	if (isset($get_meta) && !empty($get_meta)): 
+		for($i=0; $i<count($get_meta[0]); $i++):
+			if( $get_meta[1][$i]==7 && !empty($get_meta[0][$i]) && isset($get_meta[0][$i]) ):
+ 				echo do_shortcode($get_meta[0][$i]) . "\n";
+			endif;	
+		endfor;		
+	endif;
+}
+add_action( 'wp_head', 'weepeeswiss_meta_header_hook');
+
+/**
+ * Meta Hook in the Footer
+ * 
+ * @return void
+ */
+function weepeeswiss_meta_footer_hook() {
+	if ( !is_singular() ) return;
+
+	global $post;
+	$post_id = $post->ID;
+	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	if (isset($get_meta) && !empty($get_meta)): 
+		for($i=0; $i<count($get_meta[0]); $i++):
+			if( $get_meta[1][$i]==8 && !empty($get_meta[0][$i]) && isset($get_meta[0][$i]) ):
+ 				echo do_shortcode($get_meta[0][$i]) . "\n";
+			endif;	
+		endfor;		
+	endif;
+}
+add_action( 'wp_footer', 'weepeeswiss_meta_footer_hook');
+
+
+/**
+ * Meta for Welcome Screen 
+ * 
+ * @return void
+ */
+function weepeeswiss_welcome_screen_hook($post_id) {
+	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	if (isset($get_meta) && !empty($get_meta)):
+		for($i=0; $i<count($get_meta[0]); $i++):
+			if( $get_meta[1][$i]==4 && !empty($get_meta[0][$i]) && isset($get_meta[0][$i]) ):				
+?>
+<section id="hero" class="module-hero module-parallax bg-dark-60" data-background="<?php echo !empty( $get_meta[2][0] ) ? $get_meta[2][0]:""; ?>">
+<?php echo do_shortcode($get_meta[0][$i]); ?>
+</section>
+<?php
+			endif;	
+		endfor;	
+	endif;
+}
+add_action( 'weepeeswiss_welcome_screen', 'weepeeswiss_welcome_screen_hook');
+
+
+/**
+ * Meta Hook for Welcome Screen Background Image 
+ * 
+ * @return void
+ */
+function weepeeswiss_welcome_bg_hook($post_id) {
+	if ( !is_singular() ) return;
+
+	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	if ( isset($get_meta) && !empty($get_meta) && !empty($get_meta[2][0]) ): 
+ 		echo do_shortcode($get_meta[2][0]);	
+	endif;
+}
+add_action( 'weepeeswiss_background_image', 'weepeeswiss_welcome_bg_hook');
+
+
+

@@ -103,11 +103,13 @@ function weepeeswiss_display_normal_high_metabox($post) {
 								<option <?php  echo $get_meta[1][$i]==1? 'selected="selected"':''; ?> value="1" data-pos="1"><?php _e('Top Content', 'weepeeswiss'); ?></option>
 								<option <?php  echo $get_meta[1][$i]==2? 'selected="selected"':''; ?> value="2" data-pos="2"><?php _e('Bottom Content', 'weepeeswiss'); ?></option>
 								<option <?php  echo $get_meta[1][$i]==3? 'selected="selected"':''; ?> value="3" data-pos="3"><?php _e('Right Content', 'weepeeswiss'); ?></option>
-								<option <?php  echo $get_meta[1][$i]==4? 'selected="selected"':''; ?> value="4" data-pos="4"><?php _e('Welcome Screen', 'weepeeswiss'); ?></option>
+								<option <?php  echo $get_meta[1][$i]==4? 'selected="selected"':''; ?> value="4" data-pos="4"><?php _e('Welcome Screen Content', 'weepeeswiss'); ?></option>
 							<?php if('post' == get_post_type($post_id) ): ?>
 								<option <?php  echo $get_meta[1][$i]==5? 'selected="selected"':''; ?> value="5" data-pos="5"><?php _e('Above Comment Form', 'weepeeswiss'); ?></option>
-								<option <?php  echo $get_meta[1][$i]==6? 'selected="selected"':''; ?> value="6" data-pos="5"><?php _e('Below Comment Form', 'weepeeswiss'); ?></option>
+								<option <?php  echo $get_meta[1][$i]==6? 'selected="selected"':''; ?> value="6" data-pos="6"><?php _e('Below Comment Form', 'weepeeswiss'); ?></option>
 							<?php endif; ?>
+								<option <?php  echo $get_meta[1][$i]==7? 'selected="selected"':''; ?> value="7" data-pos="7"><?php _e('Header Code Insert', 'weepeeswiss'); ?></option>
+								<option <?php  echo $get_meta[1][$i]==8? 'selected="selected"':''; ?> value="8" data-pos="8"><?php _e('Footer Code Insert', 'weepeeswiss'); ?></option>
 							</select>
 						</td>
 						<td><span style="color:#c9302c" class="dashicons dashicons-no weepee-no"></span></td>
@@ -125,11 +127,13 @@ function weepeeswiss_display_normal_high_metabox($post) {
 								<option value="1" data-pos="1"><?php _e('Top Content', 'weepeeswiss'); ?></option>
 								<option value="2" data-pos="2"><?php _e('Bottom Content', 'weepeeswiss'); ?></option>
 								<option value="3" data-pos="3"><?php _e('Right Content', 'weepeeswiss'); ?></option>
-								<option value="4" data-pos="4"><?php _e('Welcome Screen', 'weepeeswiss'); ?></option>
+								<option value="4" data-pos="4"><?php _e('Welcome Screen Content', 'weepeeswiss'); ?></option>
 							<?php if('post' == get_post_type($post_id) ): ?>
 								<option value="5" data-pos="5"><?php _e('Above Comment Form', 'weepeeswiss'); ?></option>
 								<option value="6" data-pos="6"><?php _e('Below Comment Form', 'weepeeswiss'); ?></option>
 							<?php endif; ?>
+								<option value="7" data-pos="7"><?php _e('Header Code Insert', 'weepeeswiss'); ?></option>
+								<option value="8" data-pos="8"><?php _e('Footer Code Insert', 'weepeeswiss'); ?></option>
 							</select>
 						</td>
 						<td><span style="color:#c9302c;cursor:pointer;" class="dashicons dashicons-no weepee-no"></span></td>
@@ -142,9 +146,9 @@ function weepeeswiss_display_normal_high_metabox($post) {
 			</table>
 
 			<div class="weepeeswiss-upload-wraps">
-				<input id="wps-image_url" class="wps-upload-background regular-text" name="weepeeswiss_postmeta_key[3][]" type="url" value="<?php echo isset($get_meta[3][0]) ? $get_meta[3][0]: ""; ?>">
+				<input id="wps-image_url" class="wps-upload-background regular-text" name="weepeeswiss_postmeta_key[2][]" type="url" value="<?php echo isset($get_meta[2][0]) ? $get_meta[2][0]: ""; ?>">
 				<button type="button" id="wps-insert-bg-img" class="button insert-bg-img add_media"><span class="dashicons dashicons-format-image" style="vertical-align: text-top;"></span>Upload Image</button>
-				<div><label><?php _e('Add Image for Background Parallax', 'weepeeswiss'); ?></label></div>
+				<div><label><?php _e('Add Welcome Screen Image Background. e.g. 1920px x 1080px', 'weepeeswiss'); ?></label></div>
 			</div>
 <script type="text/javascript">
 jQuery(document).ready(function($){

@@ -15,7 +15,9 @@ if ( ! function_exists( 'weepeeswiss_convert_date' ) ) :
  */
 function weepeeswiss_cat_and_tags() {
 	if (is_single() || is_category() || is_tag()  || is_tax() || is_archive() ):
-
+?>
+<div class="entry-meta">
+<?php		
 		// Hide if Category Page
 		if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && weepeeswiss_categorized_blog() && !is_category() ) : 
 		$get_cats = get_the_category_list(' ');
@@ -24,21 +26,21 @@ function weepeeswiss_cat_and_tags() {
 		$cat_str_plural = __('Categories:', 'weepeeswiss');
 		// $cat_txt = sprintf( _n( 'Category: %s', 'Categories: %s', $count_cats, 'weepeeswiss' ), $get_cats);
 		$cat_txt =  '<span class="category">'. _n( $cat_str_single, $cat_str_plural, $count_cats).' </span>' . $get_cats;
-	?>
-	<div class="entry-meta">
-		<div class="tag cat-link"><?php echo $cat_txt; ?></div>
-	</div>
-	<?php 
+?>
+	<div class="tag cat-link"><?php echo $cat_txt; ?></div>
+<?php 
 		endif; // end of cat
-		
-		// Hide if Tag Page
-		if (!is_tag()):
-			$tag_str_single = __('Tag:', 'weepeeswiss');
-			$tag_str_plural = __('Tags:', 'weepeeswiss');
-			$count_tag = count(get_the_tags());
-			$tag_txt = _n( $tag_str_single, $tag_str_plural, $count_tag); 
-			the_tags( '<div class="entry-meta"><div class="tag tag-link"><span class="tags">'. $tag_txt .' </span>', ' ', '</div></div>' );
-		endif; // tags
+			// Hide if Tag Page
+			if (!is_tag()):
+				$tag_str_single = __('Tag:', 'weepeeswiss');
+				$tag_str_plural = __('Tags:', 'weepeeswiss');
+				$count_tag = count(get_the_tags());
+				$tag_txt = _n( $tag_str_single, $tag_str_plural, $count_tag); 
+				the_tags( '<div class="tag tag-link"><span class="tags">'. $tag_txt .' </span>', ' ', '</div>' );
+			endif; // tags
+?>
+</div>
+<?php	
 	endif; // is_single
 }
 endif;

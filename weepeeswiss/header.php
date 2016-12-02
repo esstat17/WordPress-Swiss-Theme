@@ -108,15 +108,11 @@
 	?>
 	<!-- HERO: just add module-full-height class in the section for full height -->
 		<section id="hero" class="module-hero module-parallax bg-dark-60" data-background="<?php echo $wps_wc_bg_uri; ?>">
-
 			<!-- HERO TEXT -->
 			<div class="hero-caption">
-				<div class="hero-text">
-				<?php echo $wps_screen_html; ?>
-				</div>
+				<div class="hero-text"><?php echo $wps_screen_html; ?></div>
 			</div>
 			<!-- /HERO TEXT -->
-
 		</section>
 	<!-- /HERO -->
 	<?php endif; ?>

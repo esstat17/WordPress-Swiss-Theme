@@ -549,10 +549,6 @@ function weepeeswiss_primary_class_attr($args=array()){
 }
 add_filter( 'primary_class', 'weepeeswiss_primary_class_attr' );
 
-
-// var_dump(is_page_template( "page-templates/sidebars.php" ));
-
-// var_dump(get_page_template_slug( 2 ));
 /**
  * Dynamic Class in the Secondary or Sidebar
  *

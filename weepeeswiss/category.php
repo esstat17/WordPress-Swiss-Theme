@@ -52,7 +52,7 @@ get_header(); ?>
 				endif;
 			?>
 		</div><!-- #content -->
-	</div><!-- #primary -->
+	</div><!-- #main-primary -->
 
 <?php get_sidebar(); ?>
 <?php get_sidebar( 'two' ); ?>
