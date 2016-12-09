@@ -41,6 +41,7 @@
 				// Text Color
 				if(setting_id=='text_color' || setting_id=='header_txt'){
 					$('.'+selector).css({ 'color': to });
+					$('.'+selector + ' a').css({ 'color': to });
 				}
 				// Footer Text Color
 				if(setting_id=='footer_txt'){

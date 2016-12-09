@@ -424,6 +424,12 @@ Navigation
 #primary-navigation {
     font-size: 14px;
 }
+.full-wide #primary-navigation {
+    background-color: initial;
+}
+.full-wide #primary-navigation.scrolled-down {
+    background-color: #fff;
+}
 .scrolled-down.nav-on {
 	border-bottom: 1px solid #eee;
 }
@@ -455,6 +461,12 @@ Navigation
 .top-menu {
     float: right;
 }
+.top-menu .menu {
+    display: none;
+}
+.top-menu .sf-menu {
+    display: block;
+}
 .topmost-navigation > div, .navi-scroll-right > div {
     float: left;
     margin-left: 10px;
@@ -476,6 +488,12 @@ Navigation
     float: left;
 }
 .nav-scroll-down {
+}
+#navi-mobil {
+	display: none;
+}
+#navi-mobil.ml-opened {
+    display: block;
 }
 .nav-border {
     margin: 0;
@@ -597,18 +615,39 @@ Hero
 	        background-size: cover;
 }
 
-.hero-caption {
-	display: table;
-	height: 100%;
+.full-wide  #hero {
+    top: 50%;
+    position: absolute;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    padding: 0 50px;
+    transform: translateY(-50%);
 	width: 100%;
-	text-align: center;
 }
 
-.hero-text {
-	position: relative;
-	display: table-cell;
-	vertical-align: middle;
-	height: 100%;
+.hero-caption {
+    display: table;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+}
+
+.full-wide .hero-caption {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.wc-wrap {
+    vertical-align: middle;
+    height: 100%;
+    display: table-cell;
+    position: relative;
+}
+
+.hero-caption p {
+    margin-bottom: 30px;
 }
 
 /* ------------------------------------------------------------------
@@ -737,6 +776,7 @@ Content Body
 }
 #main-content, #secondary, #secondary-2 {
     padding-top: 5em;
+   	padding-bottom: 5em;
 }
 @media (max-width: 767px) {
 	.main-content {
@@ -822,7 +862,6 @@ Content Body
 }
 
 .entry-content {
-    font-weight: 300;
     margin-bottom: 20px;
 }
 
@@ -990,10 +1029,6 @@ Comments and Comment form
 .reply {
     font-size: 80%;
 }
-.form-submit {
-    padding-bottom: 10%;
-}
-
 .comment-list li {
     margin-bottom: 5%;
 }
@@ -1628,7 +1663,6 @@ Superfish Navigation
 }
 .sf-menu li:hover,
 .sf-menu li.sfHover {
-	background: #fff;
 	/* only transition out, not in */
 	-webkit-transition: none;
 	transition: none;
@@ -1766,12 +1800,10 @@ Welcome Screen and Front Styles
     font-size: 4vw;
     letter-spacing: -0.2vw;
 }
-@media (max-width: 480px){
+@media (max-width: 767px){
 	.wc-text {
-	    font-size: 150%;
-	    font-size: 8vw;
-	    letter-spacing: -0.2vw;
-	}	
+		font-size: 30px;
+	}
 }
 .wc-btn {
     padding: 15px 30px;
@@ -1783,6 +1815,7 @@ Welcome Screen and Front Styles
 }
 .shorty-hr {
     border-width: 3px;
+    margin: 30px auto;
     width: 10%;
 }
 
@@ -2381,6 +2414,14 @@ Special Boxes
 .weepeeswiss-box-pad {
     padding-bottom: 5em;
     padding-top: 5em;
+}
+
+.weepeeswiss-cont-bottom .weepeeswiss-box-pad{
+	padding-top: 0;
+}
+
+.weepeeswiss-cont-top .weepeeswiss-box-pad{
+	padding-bottom: 0;
 }
 
 /* -------------------------------------------------------------------

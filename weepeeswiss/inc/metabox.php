@@ -146,7 +146,8 @@ function weepeeswiss_display_normal_high_metabox($post) {
 			</table>
 
 			<div class="weepeeswiss-upload-wraps">
-				<input id="wps-image_url" class="wps-upload-background regular-text" name="weepeeswiss_postmeta_key[2][]" type="url" value="<?php echo isset($get_meta[2][0]) ? $get_meta[2][0]: ""; ?>">
+				<input id="wps-image_url" class="wps-upload-background regular-text" name="weepeeswiss_postmeta_key[2][]" type="url" value="<?php echo isset($get_meta[2][0]) ? $get_meta[2][0]: ""; ?>" readonly>
+				<input id="wps-image_urlx" class="wps-upload-backgroundx" name="weepeeswiss_postmeta_key[2][]" type="text" value="<?php echo isset($get_meta[2][0]) ? $get_meta[2][1]: ""; ?>" readonly>
 				<button type="button" id="wps-insert-bg-img" class="button insert-bg-img add_media"><span class="dashicons dashicons-format-image" style="vertical-align: text-top;"></span>Upload Image</button>
 				<div><label><?php _e('Add Welcome Screen Image Background. e.g. 1920px x 1080px', 'weepeeswiss'); ?></label></div>
 			</div>

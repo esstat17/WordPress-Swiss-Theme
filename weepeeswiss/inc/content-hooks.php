@@ -204,9 +204,9 @@ function weepeeswiss_welcome_screen_hook($post_id) {
 		for($i=0; $i<count($get_meta[0]); $i++):
 			if( $get_meta[1][$i]==4 && !empty($get_meta[0][$i]) && isset($get_meta[0][$i]) ):				
 ?>
-<section id="hero" class="module-hero module-parallax bg-dark-60" data-background="<?php echo !empty( $get_meta[2][0] ) ? $get_meta[2][0]:""; ?>">
-<?php echo do_shortcode($get_meta[0][$i]); ?>
-</section>
+<section id="hero" class="module-hero module-parallax bg-dark-60" data-background="<?php echo !empty( $get_meta[2][0] ) ? $get_meta[2][0]:""; ?>"><div class="hero-caption"><div class="wc-wrap">
+<?php echo do_shortcode($get_meta[0][$i]); ?></div></div>
+</section><!-- #hero -->
 <?php
 			endif;	
 		endfor;	

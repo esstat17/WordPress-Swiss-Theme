@@ -21,9 +21,9 @@
 		 * App variables
 		/* ---------------------------------------------- */
 
-		var moduleHero  = $('#hero'),
+		var moduleHero  = $('.module-hero'),
 			primeNav  = "#primary-navigation",
-			contentBody = "#content-body",
+			superWrap = $("#super-wrap"),
 			searchWidget = "#primary-navigation .widget_search",
 			navHeight = $(primeNav).height(),
 			winHeight = window.screen.height || window.screen.availHeight,
@@ -38,7 +38,7 @@
 
 		function buildModuleHero() {
 			if (moduleHero.length > 0) {
-				if (moduleHero.hasClass('module-full-height')) {
+				if (moduleHero.hasClass('full-wide')) {
 					moduleHero.height($(window).height());
 				} else {
 					moduleHero.height($(window).height() * 0.85);
@@ -84,7 +84,7 @@
 			
 			// Kicks After Navigation
 			if (scrolling > navHeight) {
-				$(contentBody).css({'padding-top':navHeight})
+				superWrap.css({'padding-top':navHeight});
 				hideIfScrollDown(me);
 				// Hide Section 1
 				headSection.hide();
@@ -94,7 +94,7 @@
  					$(primeNav).addClass('scrolled-down').css({'top':-navHeight }).addClass('navbar-fixed-top');
  				}
 			} else {
-				$(contentBody).css({'padding-top':'inherit'})
+				$(superWrap).css({'padding-top':'inherit'});
 				// Hide Section 1
 				headSection.show();
 				naviLeft.hide();
@@ -105,7 +105,7 @@
 			}		
 		}
 		// Min Height Fixes
-		$(contentBody).css({'min-height':winHeight+.25*winHeight});
+		$(superWrap).css({'min-height':winHeight+.25*winHeight});
 
 		$(window).scroll(function() {
 			scrollHide(this);

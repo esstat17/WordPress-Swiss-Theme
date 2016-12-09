@@ -22,8 +22,8 @@
 		<div class="copyright-notice row">
 		<?php do_action( 'weepeeswiss_foot_html_hook' ); ?>
 		<span><?php 
-			$ctp_copyright = apply_filters( 'ctp_copyright', __('Copyright &copy; 2016 - All Right Reserved.', 'weepeeswiss'));
-			echo esc_html($ctp_copyright); ?></span>
+			$wps_copyright = apply_filters( 'wps_copyright', __('Copyright &copy; 2016 - All Right Reserved.', 'weepeeswiss'));
+			echo esc_html($wps_copyright); ?></span>
 		</div><!-- .site-info -->
 	</div> <!-- .container-## -->		
 </div>

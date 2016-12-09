@@ -26,6 +26,18 @@
 
 <body <?php body_class(); ?>>
 <div id="super-wrap" class="wrapper hfeed site">
+
+<?php 
+	$wps_wc_bg_uri	 = apply_filters( 'wps_welcome_bg', get_template_directory_uri().'/images/bg-parallax.png');
+	$wps_full_screen = apply_filters( 'wps_full_screen', "yes");
+	$wps_screen_html = apply_filters( 'wps_screen_html', '');
+ 	if (is_front_page() && !empty($wps_screen_html) && isset($wps_screen_html) ): 
+?>
+<div id="welcome-wrap" class="welcome-wrap <?php echo $wps_full_screen == "yes" ? "module-hero module-parallax bg-dark-60 full-wide" : "half-wide"; ?>" data-background="<?php echo $wps_wc_bg_uri; ?>">
+<?php 
+	endif;
+?>
+
 <div id="primary-navigation" class="site-navigation primary-navigation navbar navbar-custom navbar-transparent header-bg header-txt nav-off" role="navigation">
 	<div class="container">
 		<div class="row head-section-1">
@@ -90,29 +102,18 @@
 		</div>
 	</div>
 </div>
+
+<?php
+ 	if (is_front_page() && !empty($wps_screen_html) && isset($wps_screen_html) ): 
+?>
+	<section id="hero" class="hero <?php echo $wps_full_screen == "no" ? "module-hero module-parallax bg-dark-60 half-wide": "half-wide-no"; ?>" data-background="<?php echo $wps_wc_bg_uri; ?>">
+		<div class="hero-caption"><div class="wc-wrap"><?php echo $wps_screen_html; ?></div></div>
+	</section><!-- #HERO -->
+
+</div><!-- #welcome-wrap -->
+<?php 
+	endif; 
+?>
+
 <div id="content-body" class="site-main">
-	
-	<div id="breadcrumb-wraps" class="breadcrumb-wraps">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12">
-				<?php weepeeswiss_breadcrumb_lists(); ?>
-				</div>
-			</div>
-		</div>
-	</div>
-	<?php 
-		$wps_screen_html = apply_filters( 'wps_screen_html', '');
-		$wps_wc_bg_uri = apply_filters( 'wps_welcome_bg', get_template_directory_uri().'/images/bg-parallax.png');
-		if (is_front_page() && !empty($wps_screen_html) && isset($wps_screen_html)  ): 
-	?>
-	<!-- HERO: just add module-full-height class in the section for full height -->
-		<section id="hero" class="module-hero module-parallax bg-dark-60" data-background="<?php echo $wps_wc_bg_uri; ?>">
-			<!-- HERO TEXT -->
-			<div class="hero-caption">
-				<div class="hero-text"><?php echo $wps_screen_html; ?></div>
-			</div>
-			<!-- /HERO TEXT -->
-		</section>
-	<!-- /HERO -->
-	<?php endif; ?>
+<?php weepeeswiss_breadcrumb_lists(); ?>

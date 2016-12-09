@@ -34,12 +34,12 @@ function weepeeswiss_customize_register( $wp_customize ) {
 	) );
 
 	// Add the featured content layout setting and control.
-	$wp_customize->add_setting( 'show_nav_right', array(
-		'default'           => 'no',
+	$wp_customize->add_setting( 'always_show_nav_right', array(
+		'default'           => 'yes',
 		'sanitize_callback' => 'weepeeswiss_sanitize_answer',
 	) );
 
-	$wp_customize->add_control( 'show_nav_right', array(
+	$wp_customize->add_control( 'always_show_nav_right', array(
 		'label'   		=> __( 'Show Right Widget Nav', 'weepeeswiss' ),
 		'description'   => __( 'Always show right widget to the top navigation', 'weepeeswiss'),
 		'section' 		=> 'main_settings',
@@ -78,6 +78,23 @@ function weepeeswiss_customize_register( $wp_customize ) {
 		'active_callback' => 'is_front_page',
 	) );
 
+	// Full Screen Welcome Page
+	$wp_customize->add_setting( 'full_screen', array(
+		'default'           => 'yes',
+		'sanitize_callback' => 'weepeeswiss_sanitize_empty_check',
+	) );
+
+	$wp_customize->add_control( 'full_screen', array(
+		'label'   		=> __( 'Full-Wide Screen Background', 'weepeeswiss'),
+		'description'   => __( 'Choose YES for full-wide background, NO fo half-wide.', 'weepeeswiss'),
+		'section' 		=> 'static_front_page',
+		'type'    		=> 'select',
+		'choices' 		=> array(
+			'no'   => __( 'No',   'weepeeswiss' ),
+			'yes' => __( 'Yes', 'weepeeswiss' ),
+		),
+	) );
+
 	// General Settings: Custom Code in the Header
 	$wp_customize->add_setting( 'custom_head', array(
 		'default'	=> 
@@ -114,7 +131,7 @@ function weepeeswiss_customize_register( $wp_customize ) {
 
 	// Site Indentity: Footer Copyright Notice
 	$wp_customize->add_setting( 'footer_copyright', array(
-		'default'	=> 'Copyright 2016 - All Right Reserved', 'weepeeswiss',
+		'default'	=> 'Copyright 2017 - All Right Reserved', 'weepeeswiss',
 		'sanitize_callback' => 'esc_html',
 		'transport'	=> 'postMessage'
 	) );
@@ -246,7 +263,7 @@ function weepeeswiss_sanitize_img_uri($value){
  * @since Weepee Swiss 1.0
  */
 function weepeeswiss_customize_preview_js() {
-	wp_enqueue_script( 'weepeeswiss_customizer', get_template_directory_uri() . '/js/customizer-prev.js', array( 'customize-preview' ), '20161205', true );
+	wp_enqueue_script( 'weepeeswiss_customizer', get_template_directory_uri() . '/js/customizer-preview.js', array( 'customize-preview' ), '20161205', true );
 }
 add_action( 'customize_preview_init', 'weepeeswiss_customize_preview_js' );
 
@@ -499,13 +516,13 @@ add_filter( 'wps_welcome_bg', 'weepeeswiss_wc_screen_bg' );
 
 // Always show Navigation Scroll Right show_nav_right
 function weepeeswiss_show_nav_scroll($nav_scroll) {
-	$nav_scroll_mod = get_theme_mod( 'show_nav_right');
-	if(!empty($nav_scroll_mod) && $nav_scroll_mod =="yes"){
+	$nav_scroll_mod = get_theme_mod( 'always_show_nav_right');
+	if(empty($nav_scroll_mod) || $nav_scroll_mod =="yes"){
 		$nav_scroll = 'navi-always-show';
 	}
     echo $nav_scroll;
 }
-add_filter( 'wps_show_nav', 'weepeeswiss_show_nav_scroll' );
+add_filter( 'wps_always_show_right_nav', 'weepeeswiss_show_nav_scroll' );
 
 // Header Hook
 function weepeeswiss_head_hook() {
@@ -522,8 +539,11 @@ function weepeeswiss_foot_hook() {
 add_action('wp_footer','weepeeswiss_foot_hook');
 
 // Parallax Screen Hook
-function weepeeswiss_parallax_screen_html() {
-	$html = get_theme_mod( 'parallax_screen', '');
+function weepeeswiss_parallax_screen_html($html) {
+	$html_mod = get_theme_mod( 'parallax_screen', '');
+	if(!empty($html_mod)){
+		$html = $html_mod;
+	}
     return $html;
 }
 add_filter('wps_screen_html','weepeeswiss_parallax_screen_html');
@@ -535,10 +555,23 @@ function weepeeswiss_parallax_front_box() {
 }
 add_action('wps_front_section_before','weepeeswiss_parallax_front_box');
 
+// Full-Wide Front / Home Screen Background
+function weepeeswiss_full_screen($full_screen) {
+	$full_screen_mod = get_theme_mod( 'full_screen');
+	if( $full_screen_mod != false){
+		$full_screen = $full_screen_mod;
+	}
+    return $full_screen;
+}
+add_filter( 'wps_full_screen', 'weepeeswiss_full_screen' );
+
 // Hook Footer Copyright Notice
-function weepeeswiss_copyright_notice() {
+function weepeeswiss_copyright_notice($html) {
 	$footer_copyright = get_theme_mod( 'footer_copyright', '');
-    return $footer_copyright;
+	if(!empty($footer_copyright)){
+		$html = $footer_copyright;
+	}
+    return $html;
 }
 add_filter( 'wps_copyright', 'weepeeswiss_copyright_notice' );
 
