@@ -26,10 +26,10 @@
 			superWrap = $("#super-wrap"),
 			searchWidget = "#primary-navigation .widget_search",
 			navHeight = $(primeNav).height(),
-			winHeight = window.screen.height || window.screen.availHeight,
+			winHeight = $(window).height(),
+			winWidth = Math.max($(window).width(), window.innerWidth),
 			navbar      = $('.navbar-custom'),
 			modules     = $('.module-hero, .module, .module-small'),
-			windowWidth = Math.max($(window).width(), window.innerWidth),
 			prevScroll = 0; 
 		
 		/* ---------------------------------------------- /*
@@ -39,15 +39,14 @@
 		function buildModuleHero() {
 			if (moduleHero.length > 0) {
 				if (moduleHero.hasClass('full-wide')) {
-					moduleHero.height($(window).height());
+					moduleHero.css({"min-height": winHeight});
 				} else {
-					moduleHero.height($(window).height() * 0.85);
+					moduleHero.css({ "min-height": winHeight * 0.75});
 				}
 			}
 		}
 
 		function initModuleHero(){
-			var windowWidth = Math.max($(window).width(), window.innerWidth);
 			buildModuleHero();
 		}
 		

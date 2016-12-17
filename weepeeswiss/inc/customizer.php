@@ -456,19 +456,19 @@ h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
 .color-5, .color-5 a{
 	color: {$css['color_5']};
 }
-.bg-color-1{
+.bg-color-1, .bg-color-1:hover {
 	background-color: {$css['color_1']};
 }
-.bg-color-2{
+.bg-color-2, .bg-color-2:hover {
 	background-color: {$css['color_2']};
 }
-.bg-color-3{
+.bg-color-3, .bg-color-3:hover {
 	background-color: {$css['color_3']};
 }
-.bg-color-4{
+.bg-color-4, .bg-color-4:hover {
 	background-color: {$css['color_4']};
 }
-.bg-color-5{
+.bg-color-5, .bg-color-5:hover {
 	background-color: {$css['color_5']};
 }
 {$css['display_header_text']}

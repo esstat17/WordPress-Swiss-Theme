@@ -31,13 +31,16 @@
 	$wps_wc_bg_uri	 = apply_filters( 'wps_welcome_bg', get_template_directory_uri().'/images/bg-parallax.png');
 	$wps_full_screen = apply_filters( 'wps_full_screen', "yes");
 	$wps_screen_html = apply_filters( 'wps_screen_html', '');
- 	if (is_front_page() && !empty($wps_screen_html) && isset($wps_screen_html) ): 
 ?>
-<div id="welcome-wrap" class="welcome-wrap <?php echo $wps_full_screen == "yes" ? "module-hero module-parallax bg-dark-60 full-wide" : "half-wide"; ?>" data-background="<?php echo $wps_wc_bg_uri; ?>">
+<div id="welcome-wrap" class="welcome-wrap <?php echo $wps_full_screen == "yes" && is_front_page() ? "module-hero module-parallax bg-dark-30 full-wide" : "half-wide"; ?>" data-background="<?php echo $wps_full_screen == 'yes' && is_front_page() ? $wps_wc_bg_uri: ''; ?>">
 <?php 
-	endif;
+	// Right Navigation Appears when Scroll Down
+	if ( is_active_sidebar( 'top-toolbar' ) ):
 ?>
-
+	<div id="top-toolbar" class="top-toolbar">
+		<div class="container"><div class="row"><div class="col-lg-12"><?php dynamic_sidebar( 'top-toolbar' ); ?></div></div></div>
+	</div><!-- #top-toolbar -->
+<?php endif; ?>
 <div id="primary-navigation" class="site-navigation primary-navigation navbar navbar-custom navbar-transparent header-bg header-txt nav-off" role="navigation">
 	<div class="container">
 		<div class="row head-section-1">
@@ -55,8 +58,8 @@
 					<div class="topmost-navigation">
 						<?php 
 							// Better Safe
-							// if ( is_active_sidebar( 'top-most-nav' ) ) {
-								dynamic_sidebar( 'top-most-nav' );
+							// if ( is_active_sidebar( 'top-right-nav' ) ) {
+								dynamic_sidebar( 'top-right-nav' );
 							// }
 							// wp_nav_menu( array( 'theme_location' => 'topmost' ) ); 
 							?></div>
@@ -101,19 +104,19 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div><!-- #primary-navigation -->
 
 <?php
  	if (is_front_page() && !empty($wps_screen_html) && isset($wps_screen_html) ): 
 ?>
-	<section id="hero" class="hero <?php echo $wps_full_screen == "no" ? "module-hero module-parallax bg-dark-60 half-wide": "half-wide-no"; ?>" data-background="<?php echo $wps_wc_bg_uri; ?>">
+	<section id="hero" class="hero <?php echo $wps_full_screen == "no" ? "module-hero module-parallax bg-dark-30 half-wide": "half-wide-no"; ?>" data-background="<?php echo $wps_full_screen == 'no' ? $wps_wc_bg_uri: ''; ?>">
 		<div class="hero-caption"><div class="wc-wrap"><?php echo $wps_screen_html; ?></div></div>
 	</section><!-- #HERO -->
-
-</div><!-- #welcome-wrap -->
 <?php 
 	endif; 
 ?>
+	<?php do_action( 'weepeeswiss_welcome_screen', get_the_ID()); ?>
+</div><!-- #welcome-wrap -->
 
 <div id="content-body" class="site-main">
 <?php weepeeswiss_breadcrumb_lists(); ?>

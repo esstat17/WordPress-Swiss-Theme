@@ -79,6 +79,8 @@ function weepeeswiss_display_normal_high_metabox($post) {
 	// Add some test data here - a custom field, that is
 	$meta_key='weepeeswiss_postmeta_key';
 	$get_meta = get_post_meta($post_id, $meta_key);
+
+	var_dump($get_meta[2][1]);
 ?>
 			<table class="form-table-weepee form-table-weepee-1" style="width:100%">
 					<thead>
@@ -144,74 +146,78 @@ function weepeeswiss_display_normal_high_metabox($post) {
 					?>
 					</tbody>
 			</table>
-
+			<br>
 			<div class="weepeeswiss-upload-wraps">
-				<input id="wps-image_url" class="wps-upload-background regular-text" name="weepeeswiss_postmeta_key[2][]" type="url" value="<?php echo isset($get_meta[2][0]) ? $get_meta[2][0]: ""; ?>" readonly>
-				<input id="wps-image_urlx" class="wps-upload-backgroundx" name="weepeeswiss_postmeta_key[2][]" type="text" value="<?php echo isset($get_meta[2][0]) ? $get_meta[2][1]: ""; ?>" readonly>
-				<button type="button" id="wps-insert-bg-img" class="button insert-bg-img add_media"><span class="dashicons dashicons-format-image" style="vertical-align: text-top;"></span>Upload Image</button>
+				<input id="wps-input-color" class="wps-input-color" name="weepeeswiss_postmeta_key[2][]" type="text" value="<?php echo isset($get_meta[2][0]) ? $get_meta[2][0]: ""; ?>" readonly> <span style="vertical-align:super;" class="wps-or"><?php _e('or', 'weepeeswiss'); ?></span>
+				<input style="vertical-align: top;" id="wps-image_url" class="wps-upload-bg regular-text" name="weepeeswiss_postmeta_key[2][]" type="url" value="<?php echo isset($get_meta[2][1]) ? $get_meta[2][1]: ""; ?>" readonly>
+				<button type="button" id="wps-insert-bg-img" class="button insert-bg-img add_media"><span class="dashicons dashicons-format-image" style="vertical-align: text-top;"></span><?php  _e('Upload Image', 'weepeeswiss'); ?></button>
+				<button type="button" id="wps-clear-img" class="button button-clear-img"><?php  _e('Clear', 'weepeeswiss'); ?></button>
 				<div><label><?php _e('Add Welcome Screen Image Background. e.g. 1920px x 1080px', 'weepeeswiss'); ?></label></div>
 			</div>
 <script type="text/javascript">
-jQuery(document).ready(function($){
-    $('#wps-insert-bg-img').click(function(e) {
-        e.preventDefault();
-        var image = wp.media({ 
-            title: 'Upload Logo',
-            // mutiple: true if you want to upload multiple files at once
-            multiple: false
-        }).open()
-        .on('select', function(e){
-            // This will return the selected image from the Media Uploader, the result is an object
-            var uploaded_image = image.state().get('selection').first();
-            // We convert uploaded_image to a JSON object to make accessing it easier
-            // Output to the console uploaded_image
-            // console.log(uploaded_image);
-            var image_url = uploaded_image.toJSON().url;
-            // Let's assign the url value to the input field
-            $('#wps-image_url').val(image_url);
-        });
-    });
-});
-</script>
+	jQuery(document).ready(function($){
+		'use strict';
 
+	    $('#wps-insert-bg-img').click(function(e) {
+	        e.preventDefault();
+	        var image = wp.media({ 
+	            title: 'Upload Logo',
+	            // mutiple: true if you want to upload multiple files at once
+	            multiple: false
+	        }).open()
+	        .on('select', function(e){
+	            // This will return the selected image from the Media Uploader, the result is an object
+	            var uploaded_image = image.state().get('selection').first();
+	            // We convert uploaded_image to a JSON object to make accessing it easier
+	            // Output to the console uploaded_image
+	            // console.log(uploaded_image);
+	            var image_url = uploaded_image.toJSON().url;
+	            // Let's assign the url value to the input field
+	            $('#wps-image_url').val(image_url);
+	        });
+	    });
 
-	<script type="text/javascript">
-		jQuery(document).ready(function($){
-			'use strict'
+	    $("#wps-clear-img").click(function(event){ 
+			$("#wps-image_url").val("");
+		})
 
-    $(".weepee-plus").click(function(){
-        $(".form-table-weepee tbody").append($(".form-table-weepee tbody tr:last").clone(true));
-    });
-    $(".weepee-no").click(function(){ 
-        this.closest( ".form-table-weepee tbody tr" ).remove();
-    });
-	
-	// Icon Settings Validity check
-	/*
-	 * param String fieldName
-	 * param Object event
-	 */
-	var mnmValidityCheck = function(fieldName, event){
-		$('.weepeeswiss_postmeta_'+fieldName).each(function(index){
-			var me = $(this);
-			if(!me.val() && index != 0){
-				event.preventDefault();
-				if( !$(".weepee-required-"+fieldName+index).length > 0){
-					me.closest( ".form-table-weepee tbody tr td" ).append('<span style="float: right; color: #ff0000;" class="weepee-required weepee-required-'+fieldName+index+'">*</span>');
-					me.focus();
-			  		// console.log(fieldName+' input #'+index+' is missing');
+	    // WP Color Picker
+	    $("#wps-input-color").wpColorPicker();
+
+	    // Dynamic JS to add input fields.
+	    $(".weepee-plus").click(function(){
+	        $(".form-table-weepee tbody").append($(".form-table-weepee tbody tr:last").clone(true));
+	    });
+	    $(".weepee-no").click(function(){ 
+	        this.closest( ".form-table-weepee tbody tr" ).remove();
+	    });
+		
+		// Input Fields Validity Check
+		/*
+		 * param String fieldName
+		 * param Object event
+		 */
+		var mnmValidityCheck = function(fieldName, event){
+			$('.weepeeswiss_postmeta_'+fieldName).each(function(index){
+				var me = $(this);
+				if(!me.val() && index != 0){
+					event.preventDefault();
+					if( !$(".weepee-required-"+fieldName+index).length > 0){
+						me.closest( ".form-table-weepee tbody tr td" ).append('<span style="float: right; color: #ff0000;" class="weepee-required weepee-required-'+fieldName+index+'">*</span>');
+						me.focus();
+				  		// console.log(fieldName+' input #'+index+' is missing');
+			  		}
+		  		} else {
+		  			$( '.weepee-required-'+fieldName+index ).remove();
+		  			// console.log(fieldName+' input #'+index+' has value');
 		  		}
-	  		} else {
-	  			$( '.weepee-required-'+fieldName+index ).remove();
-	  			// console.log(fieldName+' input #'+index+' has value');
-	  		}
-		}); 
-	}
-	$('input[name=save]').click(function(event){ 
-		mnmValidityCheck('content', event);
-		mnmValidityCheck('position', event);
-	})		  
-		});
+			}); 
+		}
+		$('input[name=save]').click(function(event){ 
+			mnmValidityCheck('content', event);
+			mnmValidityCheck('position', event);
+		})		  
+	});
 </script>
 <?php
 }

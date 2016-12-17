@@ -103,7 +103,7 @@ if ( post_password_required() ) {
 			<label for="comment" class="col-sm-2 control-label">'.__( 'Write it!', 'weepeeswiss' ).'</label>
 			<div class="col-sm-10"><textarea class="form-control" name="comment" id="comment" rows="5"' . $aria_req . '></textarea>
 			</div></div>',
-        'submit_field'			=> '<p class="form-submit">%1$s %2$s</a>',
+        'submit_field'			=> '<p class="form-submit clearfix">%1$s %2$s</a>',
         'class_submit' 			=> 'submit btn bg-color-1 color-2 pull-right',
 );
 

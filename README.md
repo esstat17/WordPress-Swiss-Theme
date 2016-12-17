@@ -46,7 +46,7 @@ Go to Theme > Customizer > Static Front Page > Welcome Screen
 <h5 class="wc-text text-uppercase">Hello! Welcome Guest</h5>
 <hr class="shorty-hr border-color-1">
 <p>You can check what we got here..</p>
-<a href="#more" class="btn btn-primary wc-btn">See more</a>
+<a href="#more" class="btn btn-primary wc-btn">See more</a>f
 ```
 
 ## Content Box ##

@@ -9,13 +9,17 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php
-		if ( !is_front_page() ){
-			the_title( '<div class="entry-header"><h1 class="entry-title">', '</h1></div><!-- .entry-header -->' );
-		}
-		// page thumbnail and title
-		weepeeswiss_post_thumbnail();
-	?>
+	<div class="entry-header">
+		<?php
+			if ( is_single() ) :
+				the_title( '<h1 class="entry-title">', '</h1>' );
+			else :
+				the_title( '<h3 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h3>' );
+			endif;
+		?>
+	</div><!-- .entry-header -->
+
+	<?php weepeeswiss_post_thumbnail(); ?>
 
 	<div class="entry-content">
 		<?php

@@ -9,8 +9,6 @@
 
 get_header(); ?>
 
-
-<?php do_action( 'weepeeswiss_welcome_screen', get_the_ID()); ?>
 <?php do_action( 'weepeeswiss_content_top', get_the_ID()); ?>
 
 <div class="content-skin single-skin">

@@ -544,8 +544,25 @@ Navigation
 }
 
 /* ------------------------------------------------------------------
+Top Toolbar
+------------------------------------------------------------------- */
+#top-toolbar #searchform {
+    max-width: 305px;
+}
+#top-toolbar {
+    background: #111;
+    color: #ababab;
+    font-size: 12px;
+}
+#top-toolbar .widget {
+    margin: 0;
+    padding: 10px 0;
+}
+
+/* ------------------------------------------------------------------
 Modal Override & Nav Search
 ------------------------------------------------------------------- */
+
 .modal-backdrop.in {
     filter: alpha(opacity=50);
     opacity: .8;
@@ -605,6 +622,14 @@ Modal Override & Nav Search
 Hero
 ------------------------------------------------------------------- */
 
+#hero {
+    padding: 5em 0;
+}
+
+.half-wide #hero {
+    padding: 10em 0;
+}
+
 .module-hero {
 	position: relative;
 	background-repeat: no-repeat;
@@ -615,16 +640,6 @@ Hero
 	        background-size: cover;
 }
 
-.full-wide  #hero {
-    top: 50%;
-    position: absolute;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    padding: 0 50px;
-    transform: translateY(-50%);
-	width: 100%;
-}
-
 .hero-caption {
     display: table;
     height: 100%;
@@ -632,16 +647,8 @@ Hero
     width: 100%;
 }
 
-.full-wide .hero-caption {
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
 .wc-wrap {
     vertical-align: middle;
-    height: 100%;
     display: table-cell;
     position: relative;
 }
@@ -1051,10 +1058,15 @@ Widgets
 	margin: 0 0 45px;
 }
 
+#primary-navigation .widget {
+    margin: 0;
+}
+
 .widget-title {
     border-bottom: 1px solid #eee;
     font-size: 20px;
-    padding: 0 0 10px;
+    display: block;
+    padding: 0 0 5px;
     margin: 0 0 15px;
 }
 
@@ -1140,25 +1152,6 @@ Recent Post
 .widget-posts-meta {
 	letter-spacing: 1px;
 	font-size: 11px;
-}
-
-/* -------------------------------------------------------------------
-Google map
-------------------------------------------------------------------- */
-
-#module-maps {
-	position: relative;
-	height: 450px;
-	width: 100%;
-}
-
-#map {
-	height: 100%;
-	width: 100%;
-}
-
-#map img {
-	max-width: none;
 }
 
 /* -------------------------------------------------------------------
@@ -1558,7 +1551,7 @@ Breadcrumb
   border-left: 10px solid #ebebeb;
 }
 .btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
-  border-left: 10px solid #adadad;
+  border-left: 10px solid #ddd;
 }
 .breadcrumbs a {
     color: inherit;
@@ -1591,7 +1584,6 @@ Superfish Navigation
 }
 .sf-menu li {
     position: relative;
-    padding-bottom: 2px;
     padding-left: 2px;
 }
 .sf-menu ul {
@@ -1633,14 +1625,14 @@ Superfish Navigation
 /*** Custom Superfish ***/
 .sf-menu ul {
 	box-shadow: 2px 2px 6px rgba(0,0,0,.2);
-	min-width: 12em; /* allow long menu items to determine submenu width */
-	*width: 12em; /* no auto sub width for IE7, see white-space comment below */
+	min-width: 2em; /* allow long menu items to determine submenu width */
+	*width: 2em; /* no auto sub width for IE7, see white-space comment below */
 }
 .sf-menu a {
 	border-left: 1px solid transparent;
 	border-top: 1px solid transparent; /* fallback colour must use full shorthand */
 	border-top: 1px solid transparent;
-	padding: 10px 10px 0 0;
+	padding: 10px 10px 10px 0;
 	text-decoration: none;
 	zoom: 1; /* IE7 */
 }
@@ -1797,7 +1789,8 @@ Welcome Screen and Front Styles
 ------------------------------------------------------------------- */
 .wc-text {
     font-size: 300%;
-    font-size: 4vw;
+    font-size: 4.5vw;
+    font-weight: bold;
     letter-spacing: -0.2vw;
 }
 @media (max-width: 767px){
@@ -1818,7 +1811,11 @@ Welcome Screen and Front Styles
     margin: 30px auto;
     width: 10%;
 }
-
+@media (max-width: 767px){
+	.shorty-hr {
+		margin: 10px auto;
+	}
+}
 section.section-front {
     padding-bottom: 5%;
     padding-top: 3%;
@@ -1950,7 +1947,6 @@ Side Navigation Menu
     color: #aaa;
 }
 .ml-menu li.menu-item a {
-    color: #f2f2f2;
 }
 .ml-panel {
     -webkit-transition: -webkit-transform 0.4s ease;
@@ -2123,7 +2119,6 @@ li.ml-vertical.ml-opened > .ml-panel {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    color: #aaa;
     display: block;
     margin: 0;
 }
@@ -2359,7 +2354,7 @@ html.ml-blocking #ml-blocker {
 .ml-menu {
     max-width: 470px;
     min-width: 140px;
-    width: 78.8%;
+    width: 80%;
     z-index: 999;
 }
 
@@ -2416,12 +2411,10 @@ Special Boxes
     padding-top: 5em;
 }
 
-.weepeeswiss-cont-bottom .weepeeswiss-box-pad{
-	padding-top: 0;
+#weepeeswiss-cont-bottom > div:first-child {
+    margin-top: -5em;
 }
-
-.weepeeswiss-cont-top .weepeeswiss-box-pad{
-	padding-bottom: 0;
+#weepeeswiss-cont-top > div:last-child {
 }
 
 /* -------------------------------------------------------------------
