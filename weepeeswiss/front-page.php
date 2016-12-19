@@ -15,7 +15,7 @@ get_header(); ?>
 
 <?php do_action( 'wps_front_section_before' ); ?>
 
-<?php do_action( 'weepeeswiss_content_top', get_the_ID()); ?>
+<?php do_action( 'wps_content_top', get_the_ID()); ?>
 
 <?php
 
@@ -31,7 +31,7 @@ get_header(); ?>
 <div class="container">
 	<div class="row">
 		<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array(get_the_ID())); ?>">	
-			<?php do_action( 'weepeeswiss_content_right', get_the_ID()); ?>
+			<?php do_action( 'wps_content_right', get_the_ID()); ?>
 				<div id="content" class="site-content" role="main">
 					<?php
 						while ( have_posts() ) : the_post();
@@ -46,7 +46,7 @@ get_header(); ?>
 	</div> <!-- .row -->
 </div> <!-- .container -->
 </div><!-- .section-front -->
-<?php do_action( 'weepeeswiss_content_bottom', get_the_ID()); ?>
+<?php do_action( 'wps_content_bottom', get_the_ID()); ?>
 <?php
 		do_action( 'wps_front_section_after' );
 	endif;

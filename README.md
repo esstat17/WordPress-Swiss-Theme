@@ -12,9 +12,11 @@ Download the zip file and extract, and re-Zip the weepeeswiss folder, and upload
 # Features
 Just few of the many features
 * Mobile Friendly Navigation (IOS Inspired)
+* Seamless Bootstrap Integrated
 * Cool Customizer
 * Add Logo Enabled
-* 13 Built Color to Choose of (colorpicker)
+* 15 Built Color to Choose of (colorpicker)
+* Flexible Template for Designer
 * Supported 1, 2, and 3 columns
 * Customizable Frontpage
 * Scroll Animation & Transitions in the Navigation
@@ -32,7 +34,6 @@ Just few of the many features
 * Bootstrap Formatted Breadcrumbs
 * Rich Snippet Breadcrumbs
 * Popup Search Form in the Header
-* Bootstrap Formatted Comment Form
 * Minimum Content Height Fixes
 * more to add here.. 
 
@@ -46,7 +47,7 @@ Go to Theme > Customizer > Static Front Page > Welcome Screen
 <h5 class="wc-text text-uppercase">Hello! Welcome Guest</h5>
 <hr class="shorty-hr border-color-1">
 <p>You can check what we got here..</p>
-<a href="#more" class="btn btn-primary wc-btn">See more</a>f
+<a href="#more" class="btn btn-primary wc-btn">See more</a>
 ```
 
 ## Content Box ##

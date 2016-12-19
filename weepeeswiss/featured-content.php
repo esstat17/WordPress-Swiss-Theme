@@ -16,7 +16,7 @@
 		 *
 		 * @since Weepee Swiss 1.0
 		 */
-		do_action( 'weepeeswiss_featured_posts_before' );
+		do_action( 'wps_featured_posts_before' );
 
 		$featured_posts = weepeeswiss_get_featured_posts();
 		foreach ( (array) $featured_posts as $order => $post ) :
@@ -31,7 +31,7 @@
 		 *
 		 * @since Weepee Swiss 1.0
 		 */
-		do_action( 'weepeeswiss_featured_posts_after' );
+		do_action( 'wps_featured_posts_after' );
 
 		wp_reset_postdata();
 	?>

@@ -22,7 +22,7 @@
  *
  * @package WordPress
  * @subpackage Weepee_Swiss
- * @since Weepee Swiss 1.2
+ * @since Weepee Swiss 1.4
  *
  * @see Interchangeable Text or String
  *	Weepee Swiss - Title in the comment header

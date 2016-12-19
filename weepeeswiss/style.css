@@ -4,7 +4,7 @@ Theme URI: http://www.innovedesigns.com/
 Author: esstat17
 Author URI: http://www.innovedesigns.com/author/esstat17/
 Description: Adopted from Twenty Fourteen Wordpress Default Theme w/ Integrated Bootstrap 3.0.
-Version: 1.3
+Version: 1.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, left-sidebar, right-sidebar, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
@@ -16,7 +16,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
 /* ------------------------------------------------------------------
 Project: weepeeswiss
-Version: 1.1
+Version: 1.4
 ------------------------------------------------------------------ */
 
 /* ------------------------------------------------------------------
@@ -1804,6 +1804,7 @@ Welcome Screen and Front Styles
     border-radius: 300px;
     font-size: 14px;
     font-weight: 700;
+    margin-bottom: 5em;
     text-transform: uppercase;
 }
 .shorty-hr {
@@ -2388,7 +2389,7 @@ html.ml-opening .ml-slideout {
 Special Boxes
 ------------------------------------------------------------------- */
 
-.weepeeswiss-cont-right {
+.wps-cont-right {
     padding: 0 0 0 1.25rem;
     margin-left: 1.5rem;
     max-width: 300px;
@@ -2396,7 +2397,7 @@ Special Boxes
 }
 
 @media (max-width: 767px) {
-	.weepeeswiss-cont-right {
+	.wps-cont-right {
     	order: 2;
     	float: none !important;
     	-webkit-box-ordinal-group: 2;
@@ -2406,15 +2407,15 @@ Special Boxes
 	}
 }
 
-.weepeeswiss-box-pad {
+.wps-box-pad {
     padding-bottom: 5em;
     padding-top: 5em;
 }
 
-#weepeeswiss-cont-bottom > div:first-child {
+#wps-cont-bottom > div:first-child {
     margin-top: -5em;
 }
-#weepeeswiss-cont-top > div:last-child {
+#wps-cont-top > div:last-child {
 }
 
 /* -------------------------------------------------------------------

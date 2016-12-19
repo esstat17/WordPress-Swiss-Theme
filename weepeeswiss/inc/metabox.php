@@ -77,10 +77,8 @@ function weepeeswiss_display_normal_high_metabox($post) {
 	$post_id = $post->ID; // Post ID of a curret Post Type `post`	
 
 	// Add some test data here - a custom field, that is
-	$meta_key='weepeeswiss_postmeta_key';
+	$meta_key='wps_postmeta_key';
 	$get_meta = get_post_meta($post_id, $meta_key);
-
-	var_dump($get_meta[2][1]);
 ?>
 			<table class="form-table-weepee form-table-weepee-1" style="width:100%">
 					<thead>
@@ -98,10 +96,10 @@ function weepeeswiss_display_normal_high_metabox($post) {
 				 			for($i=0; $i<count($get_meta[0]); $i++):	
 				 	?>	
 						<td style="width: 82%">
-							<textarea style="width: 98%" id="weepeeswiss_postmeta_content" class="weepeeswiss_postmeta_content" name="weepeeswiss_postmeta_key[0][]"><?php echo $get_meta[0][$i]; ?></textarea>
+							<textarea style="width: 98%" id="wps-postmeta-content" class="wps-postmeta-content" name="wps_postmeta_key[0][]"><?php echo $get_meta[0][$i]; ?></textarea>
 						</td>                      
 						<td>
-							<select id="weepeeswiss-position" class="weepeeswiss_postmeta_position"  style="width: 100%" name="weepeeswiss_postmeta_key[1][]">
+							<select id="wps-position" class="wps-postmeta-position"  style="width: 100%" name="wps_postmeta_key[1][]">
 								<option <?php  echo $get_meta[1][$i]==1? 'selected="selected"':''; ?> value="1" data-pos="1"><?php _e('Top Content', 'weepeeswiss'); ?></option>
 								<option <?php  echo $get_meta[1][$i]==2? 'selected="selected"':''; ?> value="2" data-pos="2"><?php _e('Bottom Content', 'weepeeswiss'); ?></option>
 								<option <?php  echo $get_meta[1][$i]==3? 'selected="selected"':''; ?> value="3" data-pos="3"><?php _e('Right Content', 'weepeeswiss'); ?></option>
@@ -122,10 +120,11 @@ function weepeeswiss_display_normal_high_metabox($post) {
 					?>
 					<tr>
 						<td style="width: 82%">
-							<textarea style="width: 98%" id="weepeeswiss_postmeta_content" class="weepeeswiss_postmeta_content" name="weepeeswiss_postmeta_key[0][]"></textarea>
+							<textarea style="width: 98%" id="wps-postmeta-content" class="wps-postmeta-content" name="wps_postmeta_key[0][]"></textarea>
 						</td>                      
 						<td>
-							<select id="weepeeswiss-position" class="weepeeswiss_postmeta_position"  style="width: 100%" name="weepeeswiss_postmeta_key[1][]">
+							<select id="wps-position" class="wps-postmeta-position"  style="width: 100%" name="wps_postmeta_key[1][]">
+								<option data-pos="0"><?php _e('Select Options', 'weepeeswiss'); ?></option>
 								<option value="1" data-pos="1"><?php _e('Top Content', 'weepeeswiss'); ?></option>
 								<option value="2" data-pos="2"><?php _e('Bottom Content', 'weepeeswiss'); ?></option>
 								<option value="3" data-pos="3"><?php _e('Right Content', 'weepeeswiss'); ?></option>
@@ -147,9 +146,9 @@ function weepeeswiss_display_normal_high_metabox($post) {
 					</tbody>
 			</table>
 			<br>
-			<div class="weepeeswiss-upload-wraps">
-				<input id="wps-input-color" class="wps-input-color" name="weepeeswiss_postmeta_key[2][]" type="text" value="<?php echo isset($get_meta[2][0]) ? $get_meta[2][0]: ""; ?>" readonly> <span style="vertical-align:super;" class="wps-or"><?php _e('or', 'weepeeswiss'); ?></span>
-				<input style="vertical-align: top;" id="wps-image_url" class="wps-upload-bg regular-text" name="weepeeswiss_postmeta_key[2][]" type="url" value="<?php echo isset($get_meta[2][1]) ? $get_meta[2][1]: ""; ?>" readonly>
+			<div class="wps-upload-wraps">
+				<input id="wps-input-color" class="wps-input-color" name="wps_postmeta_key[2][]" type="text" value="<?php echo isset($get_meta[2][0]) ? $get_meta[2][0]: ""; ?>" readonly> <span style="vertical-align:super;" class="wps-or"><?php _e('or', 'weepeeswiss'); ?></span>
+				<input style="vertical-align: top;" id="wps-image_url" class="wps-upload-bg" name="wps_postmeta_key[2][]" type="url" value="<?php echo isset($get_meta[2][1]) ? $get_meta[2][1]: ""; ?>" readonly>
 				<button type="button" id="wps-insert-bg-img" class="button insert-bg-img add_media"><span class="dashicons dashicons-format-image" style="vertical-align: text-top;"></span><?php  _e('Upload Image', 'weepeeswiss'); ?></button>
 				<button type="button" id="wps-clear-img" class="button button-clear-img"><?php  _e('Clear', 'weepeeswiss'); ?></button>
 				<div><label><?php _e('Add Welcome Screen Image Background. e.g. 1920px x 1080px', 'weepeeswiss'); ?></label></div>
@@ -198,7 +197,7 @@ function weepeeswiss_display_normal_high_metabox($post) {
 		 * param Object event
 		 */
 		var mnmValidityCheck = function(fieldName, event){
-			$('.weepeeswiss_postmeta_'+fieldName).each(function(index){
+			$('.wps-postmeta-'+fieldName).each(function(index){
 				var me = $(this);
 				if(!me.val() && index != 0){
 					event.preventDefault();
@@ -240,7 +239,7 @@ function weepeeswiss_save_meta_box($post_id){
 	// if ( get_post_type( $post_id ) != 'page' ) 
 		// return;
 	
-	$meta_key='weepeeswiss_postmeta_key'; 
+	$meta_key='wps_postmeta_key'; 
 
 	// If the custom field is found, update the postmeta record
 		// Also, filter the HTML just to be safe

@@ -106,16 +106,18 @@
 	</div>
 </div><!-- #primary-navigation -->
 
+<?php do_action( 'wps_before_content'); ?>
+
 <?php
  	if (is_front_page() && !empty($wps_screen_html) && isset($wps_screen_html) ): 
 ?>
-	<section id="hero" class="hero <?php echo $wps_full_screen == "no" ? "module-hero module-parallax bg-dark-30 half-wide": "half-wide-no"; ?>" data-background="<?php echo $wps_full_screen == 'no' ? $wps_wc_bg_uri: ''; ?>">
+	<section id="hero" class="hero <?php echo $wps_full_screen == "no" ? "module-hero module-parallax bg-dark-30 half-wide-yes": "half-wide-no"; ?>" data-background="<?php echo $wps_full_screen == 'no' ? $wps_wc_bg_uri: ''; ?>">
 		<div class="hero-caption"><div class="wc-wrap"><?php echo $wps_screen_html; ?></div></div>
 	</section><!-- #HERO -->
 <?php 
 	endif; 
 ?>
-	<?php do_action( 'weepeeswiss_welcome_screen', get_the_ID()); ?>
+	<?php do_action( 'wps_welcome_screen', get_the_ID()); ?>
 </div><!-- #welcome-wrap -->
 
 <div id="content-body" class="site-main">

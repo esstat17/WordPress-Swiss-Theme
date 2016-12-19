@@ -50,6 +50,23 @@ function weepeeswiss_customize_register( $wp_customize ) {
 		),
 	) );
 
+	// Static Front Page: Full Screen Welcome Page
+	$wp_customize->add_setting( 'full_screen', array(
+		'default'           => 'yes',
+		'sanitize_callback' => 'weepeeswiss_sanitize_empty_check',
+	) );
+
+	$wp_customize->add_control( 'full_screen', array(
+		'label'   		=> __( 'Full-Height Wide Screen Background', 'weepeeswiss'),
+		'description'   => __( 'Choose YES for full-height wide background, NO for half-height wide.', 'weepeeswiss'),
+		'section' 		=> 'static_front_page',
+		'type'    		=> 'select',
+		'choices' 		=> array(
+			'no'   => __( 'No',   'weepeeswiss' ),
+			'yes' => __( 'Yes', 'weepeeswiss' ),
+		),
+	) );
+
 	// Parallax Welcome Screen in the Home Page.
 	$wp_customize->add_setting( 'parallax_screen', array(
 		'default'           => '',
@@ -76,23 +93,6 @@ function weepeeswiss_customize_register( $wp_customize ) {
 		'section' 		=> 'static_front_page',
 		'type'    		=> 'textarea',
 		'active_callback' => 'is_front_page',
-	) );
-
-	// Full Screen Welcome Page
-	$wp_customize->add_setting( 'full_screen', array(
-		'default'           => 'yes',
-		'sanitize_callback' => 'weepeeswiss_sanitize_empty_check',
-	) );
-
-	$wp_customize->add_control( 'full_screen', array(
-		'label'   		=> __( 'Full-Wide Screen Background', 'weepeeswiss'),
-		'description'   => __( 'Choose YES for full-wide background, NO fo half-wide.', 'weepeeswiss'),
-		'section' 		=> 'static_front_page',
-		'type'    		=> 'select',
-		'choices' 		=> array(
-			'no'   => __( 'No',   'weepeeswiss' ),
-			'yes' => __( 'Yes', 'weepeeswiss' ),
-		),
 	) );
 
 	// General Settings: Custom Code in the Header
@@ -125,6 +125,33 @@ function weepeeswiss_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'custom_footer', array(
 		'label'   => __( 'Footer Insert Code', 'weepeeswiss' ),
 		'description' => __('Miscellaneous code for an active theme in the footer.', 'weepeeswiss'),
+		'section' => 'main_settings',
+		'type'    => 'textarea',
+	) );
+
+	// General Settings: Global Content Hooks
+	$wp_customize->add_setting( 'before_content', array(
+		'default'	=> '',
+		'sanitize_callback' => 'weepeeswiss_sanitize_empty_check',
+		'transport'	=> 'refresh'
+	) );
+
+	$wp_customize->add_control( 'before_content', array(
+		'label'   => __( 'Hook Before Content', 'weepeeswiss' ),
+		'description' => __('Add HTML or Plain Text below the Header section', 'weepeeswiss'),
+		'section' => 'main_settings',
+		'type'    => 'textarea',
+	) );
+
+	$wp_customize->add_setting( 'after_content', array(
+		'default'	=> '',
+		'sanitize_callback' => 'weepeeswiss_sanitize_empty_check',
+		'transport'	=> 'refresh'
+	) );
+
+	$wp_customize->add_control( 'after_content', array(
+		'label'   => __( 'Hook After Content', 'weepeeswiss' ),
+		'description' => __('Add HTML or Plain Text above the Footer section', 'weepeeswiss'),
 		'section' => 'main_settings',
 		'type'    => 'textarea',
 	) );
@@ -527,38 +554,67 @@ add_filter( 'wps_always_show_right_nav', 'weepeeswiss_show_nav_scroll' );
 // Header Hook
 function weepeeswiss_head_hook() {
 	$custom_head = get_theme_mod( 'custom_head', '');
-	echo $custom_head;
+	if( empty( $custom_head ) ){
+		return;
+	}
+	echo do_shortcode($custom_head);
 }
 add_action('wp_head','weepeeswiss_head_hook');
 
 // Footer Hook
 function weepeeswiss_foot_hook() {
 	$custom_footer = get_theme_mod( 'custom_footer', '');
-	echo $custom_footer;
+	if( empty( $custom_footer ) ){
+		return;
+	}
+	echo do_shortcode($custom_footer);
 }
 add_action('wp_footer','weepeeswiss_foot_hook');
+
+// Hook Below the Header
+function weepeeswiss_before_content() {
+	$html = get_theme_mod( 'before_content', '');
+	if(empty( $html ) ){
+		return;
+	}
+    echo do_shortcode($html);
+}
+add_action( 'wps_before_content', 'weepeeswiss_before_content' );
+
+// Hook Above the Footer
+function weepeeswiss_after_content() {
+	$html = get_theme_mod( 'after_content', '');
+	if(empty( $html ) ){
+		return;
+	}
+    echo do_shortcode($html);
+}
+add_action( 'wps_after_content', 'weepeeswiss_after_content' );
 
 // Parallax Screen Hook
 function weepeeswiss_parallax_screen_html($html) {
 	$html_mod = get_theme_mod( 'parallax_screen', '');
-	if(!empty($html_mod)){
-		$html = $html_mod;
+	if( !empty($html_mod) ){
+		$html = do_shortcode($html_mod);
 	}
     return $html;
 }
 add_filter('wps_screen_html','weepeeswiss_parallax_screen_html');
 
-// Conten Box in the Frontend Hook
+// Content Box in the Frontend Hook
 function weepeeswiss_parallax_front_box() {
 	$html = do_shortcode(get_theme_mod( 'front_box', ''));
-    echo $html;
+	if(empty( $html ) ){
+		return;
+	}
+    echo do_shortcode($html);
 }
 add_action('wps_front_section_before','weepeeswiss_parallax_front_box');
 
 // Full-Wide Front / Home Screen Background
 function weepeeswiss_full_screen($full_screen) {
-	$full_screen_mod = get_theme_mod( 'full_screen');
-	if( $full_screen_mod != false){
+	$full_screen_mod = get_theme_mod( 'full_screen', '');
+	if( !empty( $full_screen_mod ) ){
 		$full_screen = $full_screen_mod;
 	}
     return $full_screen;
@@ -568,8 +624,8 @@ add_filter( 'wps_full_screen', 'weepeeswiss_full_screen' );
 // Hook Footer Copyright Notice
 function weepeeswiss_copyright_notice($html) {
 	$footer_copyright = get_theme_mod( 'footer_copyright', '');
-	if(!empty($footer_copyright)){
-		$html = $footer_copyright;
+	if( !empty( $footer_copyright ) ){
+		$html = do_shortcode($footer_copyright);
 	}
     return $html;
 }

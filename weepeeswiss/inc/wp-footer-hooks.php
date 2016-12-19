@@ -20,6 +20,5 @@ function weepeeswiss_foot_scripts(){
   })
 </script>
 <?php   
-// Php goes here
 }
 add_action('wp_footer', 'weepeeswiss_foot_scripts');

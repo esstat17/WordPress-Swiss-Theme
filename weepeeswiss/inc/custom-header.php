@@ -79,7 +79,7 @@ if ( ! function_exists( 'weepeeswiss_admin_header_style' ) ) :
 function weepeeswiss_admin_header_style() {
 	if ( get_header_image() ) :
 ?>
-<style type="text/css" id="weepeeswiss-admin-header-css">
+<style type="text/css" id="wps-admin-header-css">
 	#primary-navigation { background-size: cover; }
 </style>
 <?php

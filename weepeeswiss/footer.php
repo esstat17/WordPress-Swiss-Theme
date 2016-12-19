@@ -9,9 +9,9 @@
  * @since Weepee Swiss 1.0
  */
 ?>
-
 		
-</div><!-- #content-body -->	
+</div><!-- #content-body -->
+<?php do_action( 'wps_after_content' ); ?>	
 <div id="footer" class="site-footer footer-bg color-5" role="contentinfo">
 	<div class="container">
 	<?php get_sidebar( 'footer' ); ?>	
@@ -20,19 +20,16 @@
 <div id="foot-note" class="site-footer color-5" role="contentinfo">
 	<div class="container">
 		<div class="copyright-notice row">
-		<?php do_action( 'weepeeswiss_foot_html_hook' ); ?>
 		<span><?php 
 			$wps_copyright = apply_filters( 'wps_copyright', __('Copyright &copy; 2016 - All Right Reserved.', 'weepeeswiss'));
 			echo esc_html($wps_copyright); ?></span>
 		</div><!-- .site-info -->
 	</div> <!-- .container-## -->		
 </div>
-<!-- SCROLLTOP -->
 <div class="scroll-up">
 	<a href="#totop"><i class="glyphicon glyphicon-menu-up"></i></a>
 </div>
-
-<!-- Modal Search -->
+<!-- SCROLLTOP -->
 <div class="search-modal modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog">
 		<div class="modal-content">

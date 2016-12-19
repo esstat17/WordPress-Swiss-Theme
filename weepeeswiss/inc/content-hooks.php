@@ -16,7 +16,7 @@
  * @return void
  */
 function weepeeswiss_content_top_hook($post_id) {
-	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	$get_meta = get_post_meta($post_id, 'wps_postmeta_key');
 	if (isset($get_meta) && !empty($get_meta)):
 		$already_printed = false;
 		$counting = 0;
@@ -25,13 +25,13 @@ function weepeeswiss_content_top_hook($post_id) {
 				$counting++;
 				if(!$already_printed): 
 ?>
-<div id="weepeeswiss-cont-top" class="weepeeswiss-cont-top weepeeswiss-meta-aside">
+<div id="wps-cont-top" class="wps-cont-top wps-meta-aside">
 <?php 
 				endif;
 ?>
-<div class="weepeeswiss-meta-box weepeeswiss-meta-<?php echo $counting; ?>">
+<div class="wps-meta-box wps-meta-<?php echo $counting; ?>">
 	<div class="container"><div class="row">
-		<div class="col-lg-12 weepeeswiss-box-pad"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
+		<div class="col-lg-12 wps-box-pad"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
 	</div></div>
 </div>
 <?php
@@ -39,13 +39,13 @@ function weepeeswiss_content_top_hook($post_id) {
 			endif;
 				if($already_printed && count($get_meta[0]) == $i+1):
 ?>
-</div> <!-- #weepeeswiss-cont-top -->
+</div> <!-- #wps-cont-top -->
 <?php
 				endif;
 		endfor;
 	endif;
 }
-add_action( 'weepeeswiss_content_top', 'weepeeswiss_content_top_hook');
+add_action( 'wps_content_top', 'weepeeswiss_content_top_hook');
 
 
 /**
@@ -54,7 +54,7 @@ add_action( 'weepeeswiss_content_top', 'weepeeswiss_content_top_hook');
  * @return void
  */
 function weepeeswiss_content_bottom_hook($post_id) {
-	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	$get_meta = get_post_meta($post_id, 'wps_postmeta_key');
 	if (isset($get_meta) && !empty($get_meta)):
 		$already_printed = false;
 		$counting = 0;
@@ -63,13 +63,13 @@ function weepeeswiss_content_bottom_hook($post_id) {
 				$counting++;
 				if(!$already_printed): 
 ?>
-<div id="weepeeswiss-cont-bottom" class="weepeeswiss-cont-bottom weepeeswiss-meta-aside">
+<div id="wps-cont-bottom" class="wps-cont-bottom wps-meta-aside">
 <?php 
 				endif;
 ?>
-<div class="weepeeswiss-meta-box weepeeswiss-meta-<?php echo $counting; ?>">
+<div class="wps-meta-box wps-meta-<?php echo $counting; ?>">
 	<div class="container"><div class="row">
-		<div class="col-lg-12 weepeeswiss-box-pad"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
+		<div class="col-lg-12 wps-box-pad"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
 	</div></div>
 </div>
 <?php
@@ -77,13 +77,13 @@ function weepeeswiss_content_bottom_hook($post_id) {
 			endif;
 				if($already_printed && count($get_meta[0]) == $i+1):
 ?>
-</div> <!-- #weepeeswiss-cont-bottom -->
+</div> <!-- #wps-cont-bottom -->
 <?php
 				endif;
 		endfor;
 	endif;
 }
-add_action( 'weepeeswiss_content_bottom', 'weepeeswiss_content_bottom_hook');
+add_action( 'wps_content_bottom', 'weepeeswiss_content_bottom_hook');
 
 /**
  * Content Right Hook
@@ -91,7 +91,7 @@ add_action( 'weepeeswiss_content_bottom', 'weepeeswiss_content_bottom_hook');
  * @return void
  */
 function weepeeswiss_content_right_hook($post_id) {
-	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	$get_meta = get_post_meta($post_id, 'wps_postmeta_key');
 	if (isset($get_meta) && !empty($get_meta) ):
 		$already_printed = false;
 		$counting = 0;
@@ -100,23 +100,23 @@ function weepeeswiss_content_right_hook($post_id) {
 				$counting++;
 				if(!$already_printed): 
 ?>
-<div id="weepeeswiss-cont-right" class="weepeeswiss-cont-right pull-right">
+<div id="wps-cont-right" class="wps-cont-right pull-right">
 <?php 
 				endif;
 ?>
-	<div class="weepeeswiss-cont-wrap weepeeswiss-meta-box weepeeswiss-meta-<?php echo $counting; ?> well"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
+	<div class="wps-cont-wrap wps-meta-box wps-meta-<?php echo $counting; ?> well"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
 <?php
 				$already_printed = true;
 			endif;
 				if($already_printed && count($get_meta[0]) == $i+1):
 ?>
-</div> <!-- #weepeeswiss-cont-right -->
+</div> <!-- #wps-cont-right -->
 <?php
 				endif;
 		endfor;
 	endif;
 }
-add_action( 'weepeeswiss_content_right', 'weepeeswiss_content_right_hook');
+add_action( 'wps_content_right', 'weepeeswiss_content_right_hook');
 
 
 /**
@@ -125,7 +125,7 @@ add_action( 'weepeeswiss_content_right', 'weepeeswiss_content_right_hook');
  * @return void
  */
 function weepeeswiss_content_comment_above_hook($post_id) {
-	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	$get_meta = get_post_meta($post_id, 'wps_postmeta_key');
 	if (isset($get_meta) && !empty($get_meta) ):
 		$already_printed = false;
 		$counting = 0;
@@ -134,23 +134,23 @@ function weepeeswiss_content_comment_above_hook($post_id) {
 				$counting++;
 				if(!$already_printed): 
 ?>
-<div id="weepeeswiss-cont-comment-above" class="weepeeswiss-cont-comment-above">
+<div id="wps-cont-comment-above" class="wps-cont-comment-above">
 <?php 
 				endif;
 ?>
-	<div class="weepeeswiss-cont-wrap weepeeswiss-box-pad weepeeswiss-meta-box weepeeswiss-meta-<?php echo $counting; ?>"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
+	<div class="wps-cont-wrap wps-box-pad wps-meta-box wps-meta-<?php echo $counting; ?>"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
 <?php
 				$already_printed = true;
 			endif;
 				if($already_printed && count($get_meta[0]) == $i+1):
 ?>
-</div> <!-- #weepeeswiss-cont-comment-above -->
+</div> <!-- #wps-cont-comment-above -->
 <?php
 				endif;
 		endfor;
 	endif;
 }
-add_action( 'weepeeswiss_content_comment_above', 'weepeeswiss_content_comment_above_hook');
+add_action( 'wps_content_comment_above', 'weepeeswiss_content_comment_above_hook');
 
 
 
@@ -160,7 +160,7 @@ add_action( 'weepeeswiss_content_comment_above', 'weepeeswiss_content_comment_ab
  * @return void
  */
 function weepeeswiss_content_comment_bottom_hook($post_id) {
-	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	$get_meta = get_post_meta($post_id, 'wps_postmeta_key');
 	if (isset($get_meta) && !empty($get_meta)):
 		$already_printed = false;
 		$counting = 0;
@@ -169,24 +169,24 @@ function weepeeswiss_content_comment_bottom_hook($post_id) {
 				$counting++;
 				if(!$already_printed):
 ?>
-<div id="weepeeswiss-cont-comment-bottom" class="weepeeswiss-cont-comment-bottom">
+<div id="wps-cont-comment-bottom" class="wps-cont-comment-bottom">
 <?php 
 				endif;
 ?>
 
-<div class="weepeeswiss-cont-wrap weepeeswiss-box-pad weepeeswiss-meta-box weepeeswiss-meta-<?php echo $counting; ?>"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
+<div class="wps-cont-wrap wps-box-pad wps-meta-box wps-meta-<?php echo $counting; ?>"><?php echo do_shortcode($get_meta[0][$i]); ?></div>
 <?php
 				$already_printed = true;
 			endif;
 				if($already_printed && count($get_meta[0]) == $i+1):
 ?>
-</div> <!-- #weepeeswiss-cont-comment-bottom -->
+</div> <!-- #wps-cont-comment-bottom -->
 <?php
 				endif;
 		endfor;
 	endif;
 }
-add_action( 'weepeeswiss_content_comment_bottom', 'weepeeswiss_content_comment_bottom_hook');
+add_action( 'wps_content_comment_bottom', 'weepeeswiss_content_comment_bottom_hook');
 
 
 /**
@@ -199,11 +199,11 @@ function weepeeswiss_meta_header_hook() {
 
 	global $post;
 	$post_id = $post->ID;
-	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	$get_meta = get_post_meta($post_id, 'wps_postmeta_key');
 	if (isset($get_meta) && !empty($get_meta)): 
 		for($i=0; $i<count($get_meta[0]); $i++):
 			if( $get_meta[1][$i]==7 && !empty($get_meta[0][$i]) && isset($get_meta[0][$i]) ):
- 				echo do_shortcode($get_meta[0][$i]) . "\n";
+ 				echo "\n" . do_shortcode($get_meta[0][$i]) . "\n";
 			endif;	
 		endfor;		
 	endif;
@@ -220,11 +220,11 @@ function weepeeswiss_meta_footer_hook() {
 
 	global $post;
 	$post_id = $post->ID;
-	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	$get_meta = get_post_meta($post_id, 'wps_postmeta_key');
 	if (isset($get_meta) && !empty($get_meta)): 
 		for($i=0; $i<count($get_meta[0]); $i++):
 			if( $get_meta[1][$i]==8 && !empty($get_meta[0][$i]) && isset($get_meta[0][$i]) ):
- 				echo do_shortcode($get_meta[0][$i]) . "\n";
+ 				echo "\n" . do_shortcode($get_meta[0][$i]) . "\n";
 			endif;	
 		endfor;		
 	endif;
@@ -238,7 +238,7 @@ add_action( 'wp_footer', 'weepeeswiss_meta_footer_hook');
  * @return void
  */
 function weepeeswiss_welcome_screen_hook($post_id) {
-	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	$get_meta = get_post_meta($post_id, 'wps_postmeta_key');
 	
 	// Return if not single
 	if (!is_single()) return;
@@ -255,7 +255,7 @@ function weepeeswiss_welcome_screen_hook($post_id) {
 		endfor;	
 	endif;
 }
-add_action( 'weepeeswiss_welcome_screen', 'weepeeswiss_welcome_screen_hook');
+add_action( 'wps_welcome_screen', 'weepeeswiss_welcome_screen_hook');
 
 
 /**
@@ -266,12 +266,12 @@ add_action( 'weepeeswiss_welcome_screen', 'weepeeswiss_welcome_screen_hook');
 function weepeeswiss_welcome_bg_hook($post_id) {
 	if ( !is_singular() ) return;
 
-	$get_meta = get_post_meta($post_id, 'weepeeswiss_postmeta_key');
+	$get_meta = get_post_meta($post_id, 'wps_postmeta_key');
 	if ( isset($get_meta) && !empty($get_meta) && !empty($get_meta[2][0]) ): 
  		echo do_shortcode($get_meta[2][0]);	
 	endif;
 }
-add_action( 'weepeeswiss_background_image', 'weepeeswiss_welcome_bg_hook');
+add_action( 'wps_background_image', 'weepeeswiss_welcome_bg_hook');
 
 
 

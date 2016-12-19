@@ -242,7 +242,7 @@ function weepeeswiss_post_thumbnail() {
 	<div class="post-thumbnail">
 	<?php
 		if ( ( ! is_active_sidebar( 'sidebar-1' ) && ! is_active_sidebar( 'sidebar-2' ) ) || is_page_template( 'page-templates/sidebars.php' ) ) {
-			the_post_thumbnail( 'weepeeswiss-full-width' );
+			the_post_thumbnail( 'wps-full-width' );
 		} else {
 			the_post_thumbnail( 'post-thumbnail', array( 'alt' => get_the_title() ) );	
 		}
