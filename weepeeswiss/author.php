@@ -38,8 +38,7 @@ get_header(); ?>
 				</div>
         		<?php endif; // no description, no author's meta ?>
 
-        	<h1 class="archive-title">
-					<?php
+        	<h1 class="archive-title"><?php
 						/*
 						 * Queue the first post, that way we know what author
 						 * we're dealing with (if that is the case).
@@ -49,9 +48,8 @@ get_header(); ?>
 						 */
 						the_post();
 
-						printf( __( 'Published by %s', 'weepeeswiss' ), get_the_author() );
-					?>
-			</h1>
+						printf( __( 'Published by ', 'weepeeswiss' ) . '%s', get_the_author() );
+			?></h1>
 
 			</div><!-- .archive-header -->
 

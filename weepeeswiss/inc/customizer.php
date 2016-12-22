@@ -319,7 +319,7 @@ function weepeeswiss_link_color_css() {
 	$color_5 			= get_theme_mod( 'color_5', '#bab0b0' );
 
 	// Hide or Display Site Title and Description
-	$display_header_text = empty(display_header_text())?'.site-name, .site-desc{clip:auto;position:static;}':'.site-name, .site-desc{clip: rect(1px 1px 1px 1px);position: absolute;}';
+	$display_header_text = !display_header_text()?'.site-name, .site-desc{clip:auto;position:static;}':'.site-name, .site-desc{clip: rect(1px 1px 1px 1px);position: absolute;}';
 	$header_image = false==get_header_image()?'':'#primary-navigation{background-image:url("'.get_header_image().'");}';
 	
 

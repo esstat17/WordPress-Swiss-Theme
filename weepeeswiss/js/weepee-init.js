@@ -104,7 +104,7 @@
 			}		
 		}
 		// Min Height Fixes
-		$(superWrap).css({'min-height':winHeight+.25*winHeight});
+		$("#content-body").css({'min-height':winHeight});
 
 		$(window).scroll(function() {
 			scrollHide(this);
@@ -119,7 +119,7 @@
 		}
 				
 		// Navigation Menu
-		$('#primary-menu').superfish();
+		$('#primary-menu, #menu-main-menu').superfish();
 		
 		// Setting background of modules
 		modules.each(function() {

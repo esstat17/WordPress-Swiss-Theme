@@ -126,8 +126,8 @@ function weepeeswiss_post_nav() {
 			if ( is_attachment() ) :
 				previous_post_link( '%link', __( '<span class="meta-nav">Published In</span>%title', 'weepeeswiss' ) );
 			else :
-				previous_post_link( '%link', __( '<span class="meta-nav btn btn-default" data-prev-post="%title"><i class="glyphicon glyphicon-menu-left"></i>%title</span>', 'weepeeswiss' ) );
-				next_post_link( '%link', __( '<span class="meta-nav btn btn btn-default pull-right" data-next-post="%title">%title<i class="glyphicon glyphicon-menu-right"></i></span>', 'weepeeswiss' ) );
+				previous_post_link( '%link', __( '<span class="meta-nav btn btn-default" data-prev-post="%title"><i class="nav-prev">&larr;</i> %title</span>', 'weepeeswiss' ) );
+				next_post_link( '%link', __( '<span class="meta-nav btn btn btn-default pull-right" data-next-post="%title">%title <i class="nav-next">&rarr;</i></span>', 'weepeeswiss' ) );
 			endif;
 			?>
 		</div><!-- .nav-links -->
@@ -331,7 +331,7 @@ function weepeeswiss_breadcrumb_lists() {
 		$itemproptitle_after = '</span>';
 		$link         = $link_before . '<a' . $link_attr . ' href="%1$s">' . $itemproptitle_before . '%2$s' . $itemproptitle_after . '</a>' . $link_after;
 		$home_str	  = '' . $link_before . '<a href="' . $home_link . '" ' . $link_attr . '>' . $itemproptitle_before . $text['home'] . $itemproptitle_after . '</a>' . $link_after;
-		
+		$parent_id = 0;
 		if( !empty($post) ){
 			$parent_id 	= $parent_id_2 = $post->post_parent;
 		}
@@ -341,6 +341,22 @@ function weepeeswiss_breadcrumb_lists() {
 
 			if ($show_on_home == 1) echo '<div id="breadcrumb-wraps" class="breadcrumb-wraps"><div class="container"><div class="row"><div class="col-xs-12"><div class="breadcrumbs btn-group btn-breadcrumb">' .$link_before. '<a href="' . $home_link . '">' . $itemproptitle_before . $text['home'] . $itemproptitle_after . '</a>' .$link_after. '</div>';	
 
+			if( is_home() && !is_front_page() ){
+
+				echo '<div id="breadcrumb-wraps" class="breadcrumb-wraps"><div class="container"><div class="row"><div class="col-xs-12"><div class="breadcrumbs btn-group btn-breadcrumb">';
+					if ($show_home_link == 1) {
+						echo $home_str;
+						if ($frontpage_id == 0 || $parent_id != $frontpage_id) echo $delimiter;
+					}
+					if( single_post_title( '', false) ){
+						echo $delimiter . $before . single_post_title( '', false ) . $after;
+					}
+					if ( get_query_var('paged') ) {	
+						echo $before . __('Page', 'weepeeswiss' ). get_query_var('paged') . $after;
+					}	
+
+				echo '</div></div></div></div></div><!-- breadcrumb-wraps end -->';	
+			}
 		} else {	
 
 			echo '<div id="breadcrumb-wraps" class="breadcrumb-wraps"><div class="container"><div class="row"><div class="col-xs-12"><div class="breadcrumbs btn-group btn-breadcrumb">';
@@ -512,15 +528,14 @@ function weepeeswiss_breadcrumb_lists() {
 			}	
 
 			if ( get_query_var('paged') ) {	
+				// if ($show_home_link == 1) {
+// 					echo $home_str;
+// 					if ($frontpage_id == 0 || $parent_id != $frontpage_id) echo $delimiter;
+// 				}	
 
-				if ($show_home_link == 1) {
-					echo $home_str;
-					if ($frontpage_id == 0 || $parent_id != $frontpage_id) echo $delimiter;
-				}	
-
-				if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ' (';
-					printf( __('Page %s', 'weepeeswiss' ) . ' ' . get_query_var('paged') );
-				if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ')';
+				if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ){
+					echo $before . __('Page', 'weepeeswiss' ). get_query_var('paged') . $after;
+				}
 			}	
 
 			echo '</div></div></div></div></div><!-- breadcrumb-wraps end -->';	

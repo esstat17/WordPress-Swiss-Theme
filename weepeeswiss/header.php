@@ -73,8 +73,8 @@
 				</div>
 				<div class="navi-scroll-left navi-hide navi-left-show">
 					<a class="mobile-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<?php $wps_logo_uri = apply_filters( 'wps_logo', get_template_directory_uri().'/images/mlogo@2x.png'); ?>
-						<img src="<?php echo esc_url($wps_logo_uri); ?>">
+						<?php $wps_mlogo_uri = apply_filters( 'wps_mlogo', get_template_directory_uri().'/images/mlogo@2x.png'); ?>
+						<img src="<?php echo esc_url($wps_mlogo_uri); ?>">
 					</a>
 				</div>
 				<?php if ( has_nav_menu( 'primary' ) ) : ?>

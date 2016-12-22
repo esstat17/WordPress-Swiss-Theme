@@ -28,6 +28,10 @@ get_header(); ?>
 		<div id="primary" class="content-area ">
 			<div id="content" class="site-content" role="main">	
 
+			<?php if(is_home()) : ?>			
+				<h1 class="archive-title"><?php single_post_title(); ?></h1>
+			<?php endif; ?>
+
 			<?php
 				if ( have_posts() ) :
 					// Start the Loop.

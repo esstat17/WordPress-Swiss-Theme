@@ -13,6 +13,18 @@
 if( !defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Color Picker Enqueue
+ */
+function weepeeswiss_enqueue_colorpicker( $hook_suffix ){
+	if ($hook_suffix == "post-new.php" || "post.php"){
+    // first check that $hook_suffix is appropriate for your admin page
+    	wp_enqueue_style( 'wp-color-picker');
+    	wp_enqueue_script( 'wp-color-picker');
+    }
+}
+add_action( 'admin_enqueue_scripts', 'weepeeswiss_enqueue_colorpicker' );
+
+/**
  * Register Two (2) Meta Boxes for POST.
  * @link Add Meta Box https://developer.wordpress.org/reference/functions/add_meta_box/
  * @link Save Post https://codex.wordpress.org/Plugin_API/Action_Reference/save_post
@@ -277,5 +289,3 @@ function weepeeswiss_save_meta_box($post_id){
 	}
 }
 add_action( 'save_post', 'weepeeswiss_save_meta_box' );
-
-

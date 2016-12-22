@@ -25,7 +25,7 @@ General Styles
 
 body {
 	background: #fff;
-	font: 400 16px/1.6 "Open Sans", sans-serif;
+	font: 400 15px/1.5 "Open Sans", sans-serif;
 	color: #333;
 }
 @media (max-width: 767px){
@@ -41,6 +41,10 @@ img {
  
 iframe {
 	border: 0;
+}
+
+p {
+    margin: 0 0 20px;
 }
 
 /* ------------------------------------------------------------------
@@ -89,7 +93,7 @@ a:hover, a:focus {
 }
 
 h1 {
-    font-size: 180%;
+    font-size: 200%;
 }
 
 blockquote {
@@ -100,43 +104,74 @@ blockquote {
 Pagination
 ------------------------------------------------------------------- */
 
-.pagination > li {
-	display: inline-block;
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
 }
-
-.pagination > li > a,
-.pagination > li > span {
-	background: #f7f7f7;
-	border: 0;
-	height: 32px;
-	width: 32px;
-	padding: 0;
-	margin: 0;
-	text-align: center;
-	line-height: 32px;
-	font-size: 10px;
-	color: #111;
-	-webkit-border-radius: 2px;
-	   -moz-border-radius: 2px;
-	     -o-border-radius: 2px;
-	        border-radius: 2px;
+.pagination > span {
+  display: inline;
 }
-
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
-	background: #111;
+.pagination > a,
+.pagination > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  color: #bab0b0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-left: -1px;
 }
-
-.pagination > li > a:hover,
-.pagination > li > span:hover,
-.pagination > li > a:focus,
-.pagination > li > span:focus {
-	background: #f0f0f0;
-	color: #111;
+.pagination > a:first-child,
+.pagination > span:first-child {
+  margin-left: 0;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.pagination > a:last-child,
+.pagination > span:last-child {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.pagination > a:hover,
+.pagination > span:hover,
+.pagination > a:focus,
+.pagination > span:focus {
+  z-index: 2;
+  background-color: #eeeeee;
+  border-color: #ddd;
+}
+.pagination > a.current,
+.pagination > span.current,
+.pagination > a.current:hover,
+.pagination > span.current:hover,
+.pagination > a.current:focus,
+.pagination > span.current:focus {
+  z-index: 3;
+  color: #fff;
+  background-color: #bab0b0;
+  border-color: #bab0b0;
+  cursor: default;
+}
+.pagination > span.disabled,
+.pagination > span.disabled:hover,
+.pagination > span.disabled:focus,
+.pagination > a.disabled,
+.pagination > a.disabled:hover,
+.pagination > a.disabled:focus {
+  color: #777777;
+  background-color: #fff;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
 }
 
 /* ------------------------------------------------------------------
@@ -311,21 +346,21 @@ Overlays
 }
 
 .bg-dark-30:before {
-	background: rgba(34, 34, 34, 0.3);
+	background: rgba(0, 0, 0, 0.3);
 	content: "";
 	left: 0;
 	top: 0;
 }
 
 .bg-dark-60:before {
-	background: rgba(34, 34, 34, 0.6);
+	background: rgba(0, 0, 0, 0.6);
 	content: "";
 	left: 0;
 	top: 0;
 }
 
 .bg-dark-90:before {
-	background: rgba(34, 34, 34, 0.9);
+	background: rgba(0, 0, 0, 0.9);
 	content: "";
 	left: 0;
 	top: 0;
@@ -436,7 +471,7 @@ Navigation
 .head-section-1 {
     padding-bottom: 5px;
 }
-.nav-menu {
+.sf-menu {
     letter-spacing: 0.5px;
 }
 .head-section-2 div > div {
@@ -535,7 +570,7 @@ Navigation
 }
 .mobil-menu {
 	float: left;
-	font-size: 26px;
+	font-size: 30px;
 }
 @media (min-width: 768px){
 	.mobil-menu {
@@ -626,8 +661,20 @@ Hero
     padding: 5em 0;
 }
 
+@media (max-width: 480px) {
+	.half-wide #hero {
+    	padding: 4em 0;
+	}
+}
+
 .half-wide #hero {
     padding: 10em 0;
+}
+
+@media (max-width: 480px) {
+	.half-wide #hero {
+    	padding: 6em 0;
+	}
 }
 
 .module-hero {
@@ -985,6 +1032,11 @@ Post author
 }
 .author-foto {
     margin-right: 2%;
+}
+.archive-title {
+    text-align: center;
+    font-weight: 400;
+    padding-bottom: 0.5em;
 }
 
 /* ------------------------------------------------------------------
@@ -1577,6 +1629,11 @@ Superfish Navigation
 ------------------------------------------------------------------- */
 
 /*** Superfish ESSENTIAL STYLES ***/
+.sf-menu {
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+}
 .sf-menu, .sf-menu * {
 	margin: 0;
 	padding: 0;
@@ -1662,15 +1719,15 @@ Superfish Navigation
 
 /*** arrows (for all except IE7) **/
 .sf-arrows .sf-with-ul {
-	padding-right: 2em;
-	*padding-right: 1em; /* no CSS arrows for IE7 (lack pseudo-elements) */
+	padding-right: 1.4em;
+	*padding-right: 1.4em; /* no CSS arrows for IE7 (lack pseudo-elements) */
 }
 /* styling for both css and generated arrows */
 .sf-arrows .sf-with-ul:after {
 	content: '';
 	position: absolute;
 	top: 50%;
-	right: 1em;
+	right: 0.5em;
 	margin-top: -2px;
 	height: 0;
 	width: 0;
@@ -1720,7 +1777,8 @@ Superfish Navigation
 }
 .mobile-logo img {
     height: auto;
-    width: 50px;
+    max-height: 42px;
+    width: auto;
 }
 .logo img {
     height: auto;
@@ -1790,7 +1848,7 @@ Welcome Screen and Front Styles
 .wc-text {
     font-size: 300%;
     font-size: 4.5vw;
-    font-weight: bold;
+    font-weight: 600;
     letter-spacing: -0.2vw;
 }
 @media (max-width: 767px){
@@ -1810,7 +1868,7 @@ Welcome Screen and Front Styles
 .shorty-hr {
     border-width: 3px;
     margin: 30px auto;
-    width: 10%;
+    width: 5%;
 }
 @media (max-width: 767px){
 	.shorty-hr {
@@ -2422,8 +2480,8 @@ Special Boxes
 Author
 ------------------------------------------------------------------- */
 #author-meta {
-    border: 1px solid #eee;
     border-radius: 4px;
+    margin-bottom: 4em;
 }
 #author-meta img {
     float: left;
@@ -2439,7 +2497,6 @@ Author
 }
 
 .author-desc {
-    font-weight: 300;
 }
 
 /* -------------------------------------------------------------------
@@ -2458,10 +2515,6 @@ input[type=search] {
 .home-intro p.lead {
   font-size: 16px;
 } 
-
-.admin-bar {
-    margin-top: -46px !important;
-}
 
 .page-header {
     margin-top: 0;
