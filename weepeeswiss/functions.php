@@ -22,7 +22,7 @@
  *
  * @package WordPress
  * @subpackage Weepee_Swiss
- * @since Weepee Swiss 1.4
+ * @since Weepee Swiss 1.5
  *
  * @see Interchangeable Text or String
  *	Weepee Swiss - Title in the comment header
@@ -51,7 +51,16 @@ if ( ! isset( $content_width ) ) {
  */
 if ( version_compare( $GLOBALS['wp_version'], '3.6', '<' ) ) {
 	require get_template_directory() . '/inc/back-compat.php';
+	return;
 }
+
+/**
+ * Starter Content for WordPress 4.7 or later.
+ */
+if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '>' ) ) {
+	require get_template_directory() . '/inc/starter-content.php';
+}
+
 
 if ( ! function_exists( 'weepeeswiss_setup' ) ) :
 /**

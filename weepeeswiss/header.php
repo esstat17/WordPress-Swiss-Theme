@@ -96,7 +96,7 @@
 				// Right Navigation Appears when Scroll Down
 				if ( is_active_sidebar( 'nav-scroll-right' ) ):
 				?>
-					<div class="navi-scroll-right <?php apply_filters('wps_show_nav', 'navi-scroll-show navi-hide'); ?>">
+					<div class="navi-scroll-right <?php apply_filters('wps_always_show_right_nav', 'navi-scroll-show navi-hide'); ?>">
 					<?php dynamic_sidebar( 'nav-scroll-right' ); ?>
 					</div>
 				<?php endif; ?>

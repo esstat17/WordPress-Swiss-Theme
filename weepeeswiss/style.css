@@ -4,7 +4,7 @@ Theme URI: http://www.innovedesigns.com/
 Author: esstat17
 Author URI: http://www.innovedesigns.com/author/esstat17/
 Description: Adopted from Twenty Fourteen Wordpress Default Theme w/ Integrated Bootstrap 3.0.
-Version: 1.4
+Version: 1.5
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, left-sidebar, right-sidebar, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
@@ -13,11 +13,6 @@ Text Domain: weepeeswiss
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
-
-/* ------------------------------------------------------------------
-Project: weepeeswiss
-Version: 1.4
------------------------------------------------------------------- */
 
 /* ------------------------------------------------------------------
 General Styles
@@ -267,6 +262,39 @@ Content box
 	margin: 0 0 18px;
 }
 
+
+/* ------------------------------------------------------------------
+Buttons
+------------------------------------------------------------------- */
+
+.btn-oval {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 300px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.btn-circle {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 18px;
+    line-height: 1.428571429;
+    border-radius: 20px;
+}
+
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+
 /* ------------------------------------------------------------------
 Gallery box
 ------------------------------------------------------------------- */
@@ -488,6 +516,10 @@ Navigation
     float: left;
     margin-right: 0;
     letter-spacing: -0.2px;
+    margin-left: 10px;
+}
+.topmost-navigation ul li:first-child {
+	margin-left: 0;
 }
 .topmost-navigation {
     font-size: 11px;
@@ -495,6 +527,7 @@ Navigation
 }
 .top-menu {
     float: right;
+    padding: 10px 0;
 }
 .top-menu .menu {
     display: none;
@@ -635,30 +668,13 @@ Modal Override & Nav Search
 #primary-navigation #searchform {
     display: none;
 }
-.btn-circle {
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    padding: 8px 0;
-    font-size: 18px;
-    line-height: 1.428571429;
-    border-radius: 20px;
-}
-.btn-circle.btn-lg {
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 25px;
-}
 
 /* ------------------------------------------------------------------
 Hero
 ------------------------------------------------------------------- */
 
 #hero {
-    padding: 5em 0;
+    padding: 10em 0;
 }
 
 @media (max-width: 480px) {
@@ -1814,6 +1830,14 @@ Superfish Navigation
     border-image: initial;
     padding: 20px;
 }
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+}
 .divider {
 	margin: 0;
 }
@@ -1875,9 +1899,9 @@ Welcome Screen and Front Styles
 		margin: 10px auto;
 	}
 }
-section.section-front {
-    padding-bottom: 5%;
-    padding-top: 3%;
+.section-front {
+    padding-bottom: 5em;
+    padding-top: 5em;
 }
 
 /* -------------------------------------------------------------------
@@ -2497,6 +2521,22 @@ Author
 }
 
 .author-desc {
+}
+
+/* -------------------------------------------------------------------
+Glyphicons
+------------------------------------------------------------------- */
+.glyph2x {
+    font-size: 200%;
+}
+.glyph3x {
+    font-size: 300%;
+}
+.glyph4x {
+    font-size: 400%;
+}
+.glyph5x {
+    font-size: 500%;
 }
 
 /* -------------------------------------------------------------------

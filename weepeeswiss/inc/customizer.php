@@ -4,13 +4,12 @@
  *
  * @package WordPress
  * @subpackage Custom_Plate
- * @since Weepee Swiss 1.0
  */
 
 /**
  * Implement Customizer additions and adjustments.
  *
- * @since Weepee Swiss 1.0
+ * @since Weepee Swiss 1.4
  * @link Customizer Advanced Topic https://developer.wordpress.org/themes/advanced-topics/customizer-api/
  * @param WP_Customize_Manager $wp_customize Customizer object.
  */
@@ -35,7 +34,7 @@ function weepeeswiss_customize_register( $wp_customize ) {
 
 	// Add the featured content layout setting and control.
 	$wp_customize->add_setting( 'always_show_nav_right', array(
-		'default'           => 'yes',
+		'default'           => 'no',
 		'sanitize_callback' => 'weepeeswiss_sanitize_answer',
 	) );
 
@@ -100,6 +99,9 @@ function weepeeswiss_customize_register( $wp_customize ) {
 		'default'	=> 
 '<style type="text/css">
 	/* CSS inline goes here */
+	.home .header-txt a{
+		color: #fff!important;
+	}
 </style>
 <script type="text/javascript">
 	// Javascript inline goes here
@@ -194,7 +196,7 @@ function weepeeswiss_customize_register( $wp_customize ) {
 
 	// Upload Welcome Screen Background
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Image_Control', 'welcome_bg', '', 'Upload Welcome Screen Background', 'Suggested Dimension <b>1920 x 1080</b>px', 'static_front_page', 'weepeeswiss_sanitize_img_uri', 'refresh');
-	
+
 	/*
 	// Color setting and control. 5 Customized Colors.
 	$wp_customize->add_setting( 'color_1', array(
@@ -211,6 +213,38 @@ function weepeeswiss_customize_register( $wp_customize ) {
 	*/
 }
 add_action( 'customize_register', 'weepeeswiss_customize_register' );
+
+function weepeeswiss_selective_refresh( WP_Customize_Manager $wp_customize ) {
+ 
+    // Abort if selective refresh is not available.
+    if ( ! isset( $wp_customize->selective_refresh ) ) {
+        return;
+    }
+ 
+	$wp_customize->selective_refresh->add_partial( 'blogname', array(
+		'selector' => '.site-name',
+	) );
+	$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
+		'selector' => '.site-desc',
+	) ); 
+	$wp_customize->selective_refresh->add_partial( 'footer_copyright', array(
+		'selector' => '.site-footer .copyright-txt',
+	) );
+	$wp_customize->selective_refresh->add_partial( 'add_logo', array(
+		'selector' => '.logo',
+	) ); 
+	$wp_customize->selective_refresh->add_partial( 'add_mlogo', array(
+		'selector' => '.mlogo',
+	) );
+	$wp_customize->selective_refresh->add_partial( 'parallax_screen', array(
+		'selector' => '.wc-wrap',
+	) );
+	$wp_customize->selective_refresh->add_partial( 'front_box', array(
+		'selector' => '.front-box-1 .row',
+	) );
+
+}
+add_action( 'customize_register', 'weepeeswiss_selective_refresh' );
 
 /**
  * Color setting and controls.
@@ -241,6 +275,26 @@ function weepeeswiss_customize_color($wp_customize, $new_control, $setting_id, $
 		'section'     => $section,
 		'description' => $desc
 	) ) );
+}
+
+/**
+ * Render the site title for the selective refresh partial.
+ *
+ * @since Twenty Seventeen 1.0
+ * @return void
+ */
+function weepeeswiss_ustomize_partial_blogname() {
+	bloginfo( 'name' );
+}
+
+/**
+ * Render the site tagline for the selective refresh partial.
+ *
+ * @since Twenty Seventeen 1.0
+ * @return void
+ */
+function weepeeswiss_ustomize_partial_blogdescription() {
+	bloginfo( 'description' );
 }
 
 /**
@@ -469,34 +523,34 @@ h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
 	border-color: {$css['color_5']};
 }
 .color-1, .color-1 a {
-	color: {$css['color_1']};
+	color: {$css['color_1']}!important;
 }
 .color-2, .color-2 a{
-	color: {$css['color_2']};
+	color: {$css['color_2']}!important;
 }
 .color-3, .color-3 a{
-	color: {$css['color_3']};
+	color: {$css['color_3']}!important;
 }
 .color-4, .color-4 a{
-	color: {$css['color_4']};
+	color: {$css['color_4']}!important;
 }
 .color-5, .color-5 a{
-	color: {$css['color_5']};
+	color: {$css['color_5']}!important;
 }
 .bg-color-1, .bg-color-1:hover {
-	background-color: {$css['color_1']};
+	background-color: {$css['color_1']}!important;
 }
 .bg-color-2, .bg-color-2:hover {
-	background-color: {$css['color_2']};
+	background-color: {$css['color_2']}!important;
 }
 .bg-color-3, .bg-color-3:hover {
-	background-color: {$css['color_3']};
+	background-color: {$css['color_3']}!important;
 }
 .bg-color-4, .bg-color-4:hover {
-	background-color: {$css['color_4']};
+	background-color: {$css['color_4']}!important;
 }
 .bg-color-5, .bg-color-5:hover {
-	background-color: {$css['color_5']};
+	background-color: {$css['color_5']}!important;
 }
 {$css['display_header_text']}
 {$css['header_image']}

@@ -20,7 +20,7 @@
 <div id="foot-note" class="site-footer color-5" role="contentinfo">
 	<div class="container">
 		<div class="copyright-notice row">
-		<span><?php 
+		<span class="copyright-txt"><?php 
 			$wps_copyright = apply_filters( 'wps_copyright', __('Copyright &copy; 2016 - All Right Reserved.', 'weepeeswiss'));
 			echo esc_html($wps_copyright); ?></span>
 		</div><!-- .site-info -->
