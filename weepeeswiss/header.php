@@ -26,7 +26,6 @@
 
 <body <?php body_class(); ?>>
 <div id="super-wrap" class="wrapper hfeed site">
-
 <?php 
 	$wps_wc_bg_uri	 = apply_filters( 'wps_welcome_bg', get_template_directory_uri().'/images/bg-parallax.png');
 	$wps_full_screen = apply_filters( 'wps_full_screen', "yes");

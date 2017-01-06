@@ -111,21 +111,25 @@ function weepeeswiss_470_setup() {
 				// 'thumbnail' => '{{image-espresso}}',
 			),	
 		),
-
-		'attachments' => array(
-			'image-espresso' => array(
-				'post_title' => _x( 'Espresso', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
-				'file' => 'assets/images/espresso.jpg',
-			),
-			'image-sandwich' => array(
-				'post_title' => _x( 'Sandwich', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
-				'file' => 'assets/images/sandwich.jpg',
-			),
-			'image-coffee' => array(
-				'post_title' => _x( 'Coffee', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
-				'file' => 'assets/images/coffee.jpg',
-			),
-		),
+//
+//		'attachments' => array(
+//			'image-espresso' => array(
+//				'post_title' => _x( 'Espresso', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
+//				'file' => 'assets/images/espresso.jpg',
+//			),
+//			'image-sandwich' => array(
+//				'post_title' => _x( 'Sandwich', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
+//				'file' => 'assets/images/sandwich.jpg',
+//			),
+//			'image-coffee' => array(
+//				'post_title' => _x( 'Coffee', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
+//				'file' => 'assets/images/coffee.jpg',
+//			),
+//			'image-front-parallax' => array(
+//				'post_title' => _x( 'Parallax', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
+//				'file' => 'images/bg-parallax.png',
+//			),
+//		),
 
 		'options' => array(
 			'show_on_front' => 'page',
@@ -207,7 +211,7 @@ function weepeeswiss_470_setup() {
 								'<a class="page-scroll btn btn-default btn-oval">',
 								_x( 'Get Started', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
 								'</a></p></div></div></div></div>'
- 							))
+ 							)),
  		),
 
 		'nav_menus' => array(
