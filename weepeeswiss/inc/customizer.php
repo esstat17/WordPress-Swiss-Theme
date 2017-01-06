@@ -587,7 +587,7 @@ add_filter( 'wps_welcome_bg', 'weepeeswiss_wc_screen_bg' );
 // Always show Navigation Scroll Right show_nav_right
 function weepeeswiss_show_nav_scroll($nav_scroll) {
 	$nav_scroll_mod = get_theme_mod( 'always_show_nav_right');
-	if(empty($nav_scroll_mod) || $nav_scroll_mod =="yes"){
+	if($nav_scroll_mod =="yes"){
 		$nav_scroll = 'navi-always-show';
 	}
     echo $nav_scroll;
