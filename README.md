@@ -104,7 +104,7 @@ Go to Theme > Customizer > Static Front Page > Content Box
 Why not to start another section of your story here? Happy to hear your thoughts!
 </p>
 <p>
-<a class="page-scroll btn btn-default btn-oval">Get Started!</a>
+<a class="page-scroll btn btn-default btn-oval bg-color-2">Get Started!</a>
 </p>
 </div>
 </div></div>

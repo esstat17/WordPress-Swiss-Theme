@@ -36,7 +36,7 @@
 	// Right Navigation Appears when Scroll Down
 	if ( is_active_sidebar( 'top-toolbar' ) ):
 ?>
-	<div id="top-toolbar" class="top-toolbar">
+	<div id="top-toolbar" class="top-toolbar top-toolbar-bg top-toolbar-txt">
 		<div class="container"><div class="row"><div class="col-lg-12"><?php dynamic_sidebar( 'top-toolbar' ); ?></div></div></div>
 	</div><!-- #top-toolbar -->
 <?php endif; ?>
@@ -67,7 +67,7 @@
 		</div>
 		<div class="row head-section-2">
 			<div class="col-lg-12">
-				<div class="mobil-menu color-1">
+				<div class="mobil-menu">
 					<span class="list-icon-span"><a class="glyphicon glyphicon-list" href="#navi-mobil"></a></span>
 				</div>
 				<div class="navi-scroll-left navi-hide navi-left-show">
@@ -118,6 +118,4 @@
 ?>
 	<?php do_action( 'wps_welcome_screen', get_the_ID()); ?>
 </div><!-- #welcome-wrap -->
-
 <div id="content-body" class="site-main">
-<?php weepeeswiss_breadcrumb_lists(); ?>

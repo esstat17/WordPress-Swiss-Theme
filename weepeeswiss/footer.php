@@ -9,15 +9,15 @@
  * @since Weepee Swiss 1.0
  */
 ?>
-		
+<?php weepeeswiss_breadcrumb_lists(); ?>
 </div><!-- #content-body -->
 <?php do_action( 'wps_after_content' ); ?>	
-<div id="footer" class="site-footer footer-bg color-5" role="contentinfo">
+<div id="footer" class="site-footer footer-bg-rgba footer-txt-rgba" role="contentinfo">
 	<div class="container">
 	<?php get_sidebar( 'footer' ); ?>	
 	</div>		
 </div>
-<div id="foot-note" class="site-footer color-5" role="contentinfo">
+<div id="foot-note" class="site-footer footer-bg footer-txt" role="contentinfo">
 	<div class="container">
 		<div class="copyright-notice row">
 		<span class="copyright-txt"><?php 

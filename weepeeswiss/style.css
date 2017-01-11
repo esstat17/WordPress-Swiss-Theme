@@ -488,7 +488,6 @@ Navigation
     font-size: 14px;
 }
 .full-wide #primary-navigation {
-    background-color: initial;
 }
 .full-wide #primary-navigation.scrolled-down {
     background-color: #fff;
@@ -618,8 +617,6 @@ Top Toolbar
     max-width: 305px;
 }
 #top-toolbar {
-    background: #111;
-    color: #ababab;
     font-size: 12px;
 }
 #top-toolbar .widget {
@@ -1160,10 +1157,8 @@ Footer
 }
 #footer {
     font-weight: 100;
-    opacity: .98;
 }
 #foot-note {
-	background: #1d1d1d;
     padding: 10px 20px;
 }
 @media (max-width: 480px) {
