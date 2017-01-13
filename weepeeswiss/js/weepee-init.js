@@ -1,5 +1,5 @@
 /*	
- * Direct JS call and initialize the scripts.js
+ * JS Kicks
  */
 
 (function($){
@@ -8,15 +8,15 @@
 
 	$(document).ready(function() {
 
-		                
-      //  $('#navi-mobil').mlmenu({
-//        	extensions: ['slide-effects', 'pageshadow'],
-//           	slidemenu: {
-//            	navtitle: '<div id="ml-logo">LOGO</div>'
-//            }
-//      	});
-		// $('.topmost-navigation ul').addClass('sf-menu sf-arrows');
-
+		/**	                
+        $('#navi-mobil').mlmenu({
+        	extensions: ['slide-effects', 'pageshadow'],
+           	slidemenu: {
+            	navtitle: '<div id="ml-logo">LOGO</div>'
+            }
+      	});
+		$('.topmost-navigation ul').addClass('sf-menu sf-arrows');
+		*/
 		/* ---------------------------------------------- /*
 		 * App variables
 		/* ---------------------------------------------- */
@@ -36,21 +36,18 @@
 		 * Full height module
 		/* ---------------------------------------------- */
 
-		function buildModuleHero() {
+		function moduleHeroHandler() {
+			var toolbarID = "#top-toolbar",
+			toolbarHeight = $(toolbarID).length > 0 ? $(toolbarID).height() : 0;
 			if (moduleHero.length > 0) {
 				if (moduleHero.hasClass('full-wide')) {
-					moduleHero.css({"min-height": winHeight});
+					moduleHero.css({"min-height": winHeight - toolbarHeight});
 				} else {
-					moduleHero.css({ "min-height": winHeight * 0.75});
+					moduleHero.css({ "min-height": winHeight * 0.75 - toolbarHeight });
 				}
 			}
-		}
-
-		function initModuleHero(){
-			buildModuleHero();
-		}
-		
-		$(window).ready(initModuleHero).resize(initModuleHero);
+		}		
+		$(window).ready(moduleHeroHandler).resize(moduleHeroHandler);
 
 		function hideIfScrollDown(me){
 			var scrolling = $(me).scrollTop();
