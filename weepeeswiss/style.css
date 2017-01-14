@@ -487,12 +487,26 @@ Navigation
 #primary-navigation {
     font-size: 14px;
 }
+@media (max-width: 767px) {
+	#primary-navigation.nav-on {
+	    padding-top: 10px;
+	    padding-bottom: 10px;
+	}
+	#primary-navigation.nav-off {
+		padding-top: 0;
+	    padding-bottom: 0;
+	}
+}
+#primary-navigation.scrolling-down.nav-on {
+    padding-top: 3px;
+    padding-bottom: 0;
+}
 .full-wide #primary-navigation {
 }
-.full-wide #primary-navigation.scrolled-down {
+#primary-navigation.scrolling-down {
     background-color: #fff;
 }
-.scrolled-down.nav-on {
+.scrolling-down.nav-on {
 	border-bottom: 1px solid #eee;
 }
 .head-section-1 {
@@ -545,16 +559,11 @@ Navigation
     float: right;
     padding-bottom: 0;
 }
-.navi-scroll-left {
-    float: left;
-}
 .navi-hide {
 	display: none;
 }
 .navi-middle {
     float: left;
-}
-.nav-scroll-down {
 }
 #navi-mobil {
 	display: none;
@@ -567,13 +576,16 @@ Navigation
     border-bottom: 1px solid #eee;
     border-top: inherit;
 }
-.scrolled-down {
+.scrolling-down {
     padding: 3px 0;
 }
-.nav-scrolled-down #primary-menu {
+.show-on-scroll {
+	display: none;
+}
+.nav-scrolling-down #primary-menu {
     padding-top: 2%;
 }
-.scrolled-down .navi-middle {
+.scrolling-down .navi-middle {
     padding-top: 1%;
 }
 /** Just the present and previous link */
@@ -602,7 +614,6 @@ Navigation
 }
 .mobil-menu {
 	float: left;
-	font-size: 30px;
 }
 @media (min-width: 768px){
 	.mobil-menu {
@@ -1047,9 +1058,10 @@ Post author
     margin-right: 2%;
 }
 .archive-title {
-    text-align: center;
     font-weight: 400;
+    font-size: 16px;
     padding-bottom: 0.5em;
+    text-transform: uppercase;
 }
 
 /* ------------------------------------------------------------------
@@ -1307,80 +1319,8 @@ Responsive Media Querries
 	.mh-line-size-6 {
 		font-size: 13px;
 	}
-
-
-
-	/* Portfolio filters */
-
-	.filters li {
-		display: block;
-		margin: 0 10px 10px;
-	}
-
-	.filters li:last-child {
-		margin: 0 10px 140px;
-	}
-
-	/* Portfolio grid */
-
-	.work-item,
-	.grid-sizer {
-		width: 50%;
-	}
-
-	.work-item.wide,
-	.work-item.wide-tall {
-		width: 100%;
-	}
-
 }
 
-@media (max-width: 500px) {
-
-	/* Hero captions */
-
-	.mh-line-size-1 {
-		letter-spacing: 12px;
-		font-size: 26px;
-	}
-
-	.mh-line-size-2 {
-		letter-spacing: 6px;
-		font-size: 14px;
-	}
-
-	.mh-line-size-3 {
-		letter-spacing: 4px;
-		font-size: 13px;
-	}
-
-	.mh-line-size-4 {
-		letter-spacing: 4px;
-		font-size: 12px;
-	}
-
-	.mh-line-size-5 {
-		letter-spacing: 2px;
-		font-size: 11px;
-	}
-
-	.mh-line-size-6 {
-		font-size: 12px;
-	}
-
-	/* Portfolio grid */
-
-	.work-item,
-	.grid-sizer {
-		width: 100%;
-	}
-
-	.work-item.wide,
-	.work-item.wide-tall {
-		width: 100%;
-	}
-
-}
 
 /* -------------------------------------------------------------------
 Alignment
@@ -1661,7 +1601,7 @@ Superfish Navigation
 	left: 0;
 	z-index: 99;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	.sub-menu ul {
     	position: initial;
 	    margin-left: 10px;
@@ -1796,6 +1736,15 @@ Superfish Navigation
     width: 100%;
     min-width: 100px;
 }
+.logo-foot {
+    height: auto;
+    max-width: 160px;
+}
+.site-foot-name {
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
 /* -------------------------------------------------------------------
  Essentials
 ------------------------------------------------------------------- */
@@ -2500,7 +2449,7 @@ Author
 ------------------------------------------------------------------- */
 #author-meta {
     border-radius: 4px;
-    margin-bottom: 4em;
+    margin-bottom: 5em;
 }
 #author-meta img {
     float: left;
@@ -2516,6 +2465,7 @@ Author
 }
 
 .author-desc {
+    min-height: 1px;
 }
 
 /* -------------------------------------------------------------------
@@ -2532,6 +2482,32 @@ Glyphicons
 }
 .glyph5x {
     font-size: 500%;
+}
+
+/* -------------------------------------------------------------------
+Breakpoints Media Query
+------------------------------------------------------------------- */
+
+/* Medium Devices, e.g. Tablets */
+@media screen and (max-width : 992px) {
+	.show-tablet {
+	    display: block !important;
+	}
+}
+/* Small Devices, header nav breakpoint */
+@media (max-width: 767px) {
+	.show-mobile {
+	    display: block !important;
+	}
+}
+/* Extra Small Devices, e.g. Iphone */
+@media (max-width: 480px) {
+	.show-smartphone {
+	    display: block !important;
+	}
+	.hide-smartphone {
+	    display: none !important;
+	}
 }
 
 /* -------------------------------------------------------------------

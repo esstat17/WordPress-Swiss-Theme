@@ -45,7 +45,7 @@
 
 		// 5 Custom Colors
 		if(setting_id=='color_1' || setting_id=='color_2' || setting_id=='color_3' || setting_id=='color_4' || setting_id=='color_5'){
-			cssStyles += '.' + selector + ',.' +selector + ' a {color:' + to +';} ',
+			cssStyles += '.' + selector + ',.' +selector + ' a {color:' + to +'!important;} ',
 			cssStyles += '.bg-' + selector + ', .bg-' +selector + ' a {background-color:' + to +';} ',
 			cssStyles += '.border-' + selector + ' {border-color:' + to +';} ';
 		}

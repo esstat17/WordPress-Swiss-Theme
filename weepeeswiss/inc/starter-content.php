@@ -22,7 +22,7 @@ function weepeeswiss_470_setup() {
 	 * specifically font, colors, and column width.
  	 */
 	// add_editor_style( array( 'assets/css/editor-style.css', weepeeswiss_fonts_url() ) );
-
+	$wps_logo_uri = apply_filters( 'wps_logo', get_template_directory_uri().'/images/logo@2x.png');
 	add_theme_support( 'starter-content', array(
 		'widgets' => array(
 			'sidebar-1' => array(
@@ -36,18 +36,22 @@ function weepeeswiss_470_setup() {
 				'text_about' => array(
 					'title' => '',
 					'text' => join( '', array(
-								'<div class="site-foot-name"><strong>',
+								"<br><br><br>",
+								'<div class="logo-foot clearfix"><a class="logo-foot" href="',
+								esc_url( home_url( "/" ) ),
+								'" rel="home">',
+								'<img src="',
+								esc_url($wps_logo_uri),
+								'" />',
+								'</a></div>',
+								'<div class="site-foot-name">',
 								get_bloginfo( 'name' ),
-								'</strong></div>',
-								'<div class="site-foot-desc"><strong>',
-								get_bloginfo( 'description'),
-								'</strong></div>',
+								'</div>',
 					)),
 				)
 			),
 			
 			'sidebar-4' => array(
-				// 'text_business_info',
 				'text_business_info' => array(
 					'title' => _x( 'Info', 'Wordpress 4.7 and Up', 'weepeeswiss'),
 					'text' => join( '', array(
@@ -64,9 +68,35 @@ function weepeeswiss_470_setup() {
 				'recent-posts',
 			),
 			'sidebar-6' => array(
-				'search' => array(
-					'title' => _x( 'Search', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
+				'text_business_info' => array(
+					'title' => _x( 'Contact Us', 'Wordpress 4.7 and Up', 'weepeeswiss'),
+					'text' => join( '', array(
+						'<form class="form-footer" action="" method="post"><fieldset>',
+						'<div class="clearfix"></div>',
+						'<div class="form-group clearfix">',
+						'<input type="text" name="name" value="" size="40" class="form-control" placeholder="',
+						_x( 'your name', 'Wordpress 4.7 and Up', 'weepeeswiss'),
+						'">',
+						'</div>',
+						'<div class="form-group clearfix">',
+						'<input type="email" name="email" value="your@email.com" size="40" class="form-control">',
+						'</div>',
+						'<div class="form-group clearfix">',
+						'<textarea name="message" cols="40" rows="4" class="form-control">',
+						_x( 'your message here ...', 'Wordpress 4.7 and Up', 'weepeeswiss'),
+						'</textarea>',
+						'</div>',
+						'<div class="form-group clearfix">',
+						'<div class="text-right"><input type="submit" value="',
+						_x( 'Send', 'Wordpress 4.7 and Up', 'weepeeswiss'),
+						'" class="btn bg-color-2 color-4" id="send-me"></div>',
+						'</div>',
+						'</fieldset></form>',
+					) ),
 				),
+//				'search' => array(
+//					'title' => _x( 'Search', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
+//				),
 			),
 			'top-right-nav' => array(
 				'text_about' => array(
@@ -76,7 +106,6 @@ function weepeeswiss_470_setup() {
 						'<li>' . _x( '<a href="#">Login</a>', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</li>',
 						'<li>' . _x( '<a href="#">Pricing</a>', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</li>',
 						'<li>' . _x( '<a href="#">Shop</a>', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</li>',
-						'<li>' . _x( '<a href="#">Cart</a>', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</li>',
 						'</ul></div>'
 					)),
 				),
@@ -84,7 +113,16 @@ function weepeeswiss_470_setup() {
 			'nav-scroll-right' => array(
 				'text_about' => array(
 					'title' => '',
-					'text' => '<a href="#" class="btn btn-primary bg-color-1 color-2 btn-oval page-scroll">' . _x( 'Explore', 'Wordpress 4.7 and Up', 'weepeeswiss' ) . '</a>',
+					'text' => join( '', array(
+ 								'<a href="#" class="icon-cart"><i class="glyph2x color-1 glyphicon glyphicon-shopping-cart"></i>',
+ 								'<span class="cart-txt">',
+	 							_x( 'Cart', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
+	 							'</span></a>',
+	 							"\n",
+ 								'<a href="#" class="btn btn-primary bg-color-1 color-2 btn-oval show-on-scroll">',
+	 							_x( 'Explore', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
+	 							'</a>',
+ 					)),
 				),
 			),
 			'top-toolbar' => array(
@@ -201,14 +239,14 @@ function weepeeswiss_470_setup() {
  								'<div class="section-front front-box-2 bg-color-1">',
 								'<div class="container"><div class="row">',
 								'<div class="col-lg-8 col-lg-offset-2 text-center">',
-								'<h2 class="section-heading color-4">',
+								'<h2 class="section-heading color-2">',
 								_x( 'Just Another Section', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
 								'</h2>',
 								'<hr class="shorty-hr border-color-2">',
 								'<p class="lead color-2">',
 								_x( 'Why not to start another section of your story here? Happy to hear your thoughts!', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
 								'</p><p>',
-								'<a class="page-scroll btn btn-default btn-oval bg-color-2">',
+								'<a class="btn btn-default btn-oval bg-color-2">',
 								_x( 'Get Started', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
 								'</a></p></div></div></div></div>'
  							)),

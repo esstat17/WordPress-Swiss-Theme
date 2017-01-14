@@ -12,11 +12,11 @@ function weepeeswiss_foot_scripts(){
   jQuery(document).ready(function($) { 
   	$('#navi-mobil').mlmenu({
     	extensions: ['slide-effects', 'pageshadow'],
-        	slidemenu: {
-            	navtitle: '<a class="mobile-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php $wps_logo_uri = apply_filters( 'wps_logo', get_template_directory_uri().'/images/mlogo@2x.png'); ?><img src="<?php echo esc_url($wps_logo_uri); ?>"></a>'
-            }
-      	});
-		$('.topmost-navigation ul.menu').addClass('sf-menu');
+        slidemenu: {
+    		navtitle: '<a class="mobile-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php $wps_logo_uri = apply_filters( 'wps_logo', get_template_directory_uri().'/images/mlogo@2x.png'); ?><img src="<?php echo esc_url($wps_logo_uri); ?>"></a>'
+    	}
+    });
+	$('.topmost-navigation ul.menu').addClass('sf-menu');
   })
 </script>
 <?php   

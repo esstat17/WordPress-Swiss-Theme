@@ -98,7 +98,7 @@ Go to Theme > Customizer > Static Front Page > Content Box
 <div class="section-front front-box-2 bg-color-1">
 <div class="container"><div class="row">
 <div class="col-lg-8 col-lg-offset-2 text-center">
-<h2 class="section-heading color-4">Just Another Section</h2>
+<h2 class="section-heading color-2">Just Another Section</h2>
 <hr class="shorty-hr border-color-2">
 <p class="lead color-2">
 Why not to start another section of your story here? Happy to hear your thoughts!

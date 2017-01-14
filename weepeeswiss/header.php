@@ -27,9 +27,10 @@
 <body <?php body_class(); ?>>
 <div id="super-wrap" class="wrapper hfeed site">
 <?php 
-	$wps_wc_bg_uri	 = apply_filters( 'wps_welcome_bg', get_template_directory_uri().'/images/bg-parallax.png');
-	$wps_full_screen = apply_filters( 'wps_full_screen', "yes");
-	$wps_screen_html = apply_filters( 'wps_screen_html', '');
+	$wps_wc_bg_uri	 	= apply_filters( 'wps_welcome_bg', get_template_directory_uri().'/images/bg-parallax.png');
+	$wps_full_screen 	= apply_filters( 'wps_full_screen', "yes");
+	$wps_hide_section 	= apply_filters( 'wps_top_section_hide', "yes");
+	$wps_screen_html 	= apply_filters( 'wps_screen_html', '');
 ?>
 <div id="welcome-wrap" class="welcome-wrap <?php echo $wps_full_screen == "yes" && is_front_page() ? "module-hero module-parallax bg-dark-30 full-wide" : "half-wide"; ?>" data-background="<?php echo $wps_full_screen == 'yes' && is_front_page() ? $wps_wc_bg_uri: ''; ?>">
 <?php 
@@ -40,9 +41,9 @@
 		<div class="container"><div class="row"><div class="col-lg-12"><?php dynamic_sidebar( 'top-toolbar' ); ?></div></div></div>
 	</div><!-- #top-toolbar -->
 <?php endif; ?>
-<div id="primary-navigation" class="site-navigation primary-navigation navbar navbar-custom navbar-transparent header-bg header-txt nav-off" role="navigation">
+<div id="primary-navigation" class="site-navigation primary-navigation navbar navbar-custom navbar-transparent header-bg header-txt nav-on" role="navigation">
 	<div class="container">
-		<div class="row head-section-1">
+		<div class="row head-section-1 <?php echo 'yes' == $wps_hide_section ? 'hidden-xs':'' ?>">
 			<!-- LOGO OR SIMPLE TEXT -->
 			<div class="brand-section col-xs-4 col-md-4">
 						<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
@@ -68,9 +69,9 @@
 		<div class="row head-section-2">
 			<div class="col-lg-12">
 				<div class="mobil-menu">
-					<span class="list-icon-span"><a class="glyphicon glyphicon-list" href="#navi-mobil"></a></span>
+					<span class="list-icon-span"><a class="glyphicon glyphicon-list glyph2x" href="#navi-mobil"></a></span>
 				</div>
-				<div class="navi-scroll-left navi-hide navi-left-show">
+				<div class="navi-mlogo pull-left navi-hide mobile-switch <?php echo 'yes' == $wps_hide_section ? 'show-mobile':'' ?>">
 					<a class="mobile-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 						<?php $wps_mlogo_uri = apply_filters( 'wps_mlogo', get_template_directory_uri().'/images/mlogo@2x.png'); ?>
 						<img src="<?php echo esc_url($wps_mlogo_uri); ?>">
@@ -95,7 +96,7 @@
 				// Right Navigation Appears when Scroll Down
 				if ( is_active_sidebar( 'nav-scroll-right' ) ):
 				?>
-					<div class="navi-scroll-right <?php apply_filters('wps_always_show_right_nav', 'navi-scroll-show navi-hide'); ?>">
+					<div class="navi-scroll-right">
 					<?php dynamic_sidebar( 'nav-scroll-right' ); ?>
 					</div>
 				<?php endif; ?>

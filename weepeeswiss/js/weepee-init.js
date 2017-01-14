@@ -56,7 +56,7 @@
    			if (scrolling > prevScroll){
    				if(scrolling - 10 > prevScroll){
    					if($(primeNav).hasClass('nav-on')){
-   						$(primeNav).removeClass('nav-on').addClass('nav-off').css({'top':-navHeight});
+   						$(primeNav).removeClass('nav-on').addClass('nav-off').css({'top':-navHeight-10});
    					}
    				}
 			// scroll up!
@@ -75,8 +75,9 @@
 			var scrolling = $(window).scrollTop(),
 				headSection = $('.head-section-1'),
 				section2 = $('.head-section-2'),
-				naviLeft = $('.navi-scroll-left'),
-				naviRight = $('.navi-scroll-right.navi-scroll-show');
+				mobileSwitch = $('.mobile-switch'),
+				// naviRight = $('.navi-scroll-right.navi-scroll-show');
+				naviRight = $('.show-on-scroll');
 			
 			// Kicks After Navigation
 			if (scrolling > navHeight) {
@@ -84,19 +85,19 @@
 				hideIfScrollDown(me);
 				// Hide Section 1
 				headSection.hide();
-				naviLeft.show();
+				mobileSwitch.show();
 				naviRight.show();
-				if(!$(primeNav).hasClass('scrolled-down')){
- 					$(primeNav).addClass('scrolled-down').css({'top':-navHeight }).addClass('navbar-fixed-top');
+				if(!$(primeNav).hasClass('scrolling-down')){
+ 					$(primeNav).addClass('scrolling-down').addClass('navbar-fixed-top');
  				}
 			} else {
 				$(superWrap).css({'padding-top':'inherit'});
 				// Hide Section 1
 				headSection.show();
-				naviLeft.hide();
+				mobileSwitch.hide();
 				naviRight.hide();
-				if( $(primeNav).hasClass('scrolled-down')){
- 					$(primeNav).removeClass('scrolled-down').css({'top':0 }).removeClass('navbar-fixed-top'); 
+				if( $(primeNav).hasClass('scrolling-down')){
+ 					$(primeNav).removeClass('scrolling-down').removeClass('navbar-fixed-top'); 
  				}
 			}		
 		}
