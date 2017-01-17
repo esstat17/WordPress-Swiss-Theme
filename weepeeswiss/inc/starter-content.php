@@ -22,7 +22,7 @@ function weepeeswiss_470_setup() {
 	 * specifically font, colors, and column width.
  	 */
 	// add_editor_style( array( 'assets/css/editor-style.css', weepeeswiss_fonts_url() ) );
-	$wps_logo_uri = apply_filters( 'wps_logo', get_template_directory_uri().'/images/logo@2x.png');
+	$wps_logo_uri = apply_filters( 'wps_logo', get_template_directory_uri().'/assets/images/logo@2x.png');
 	add_theme_support( 'starter-content', array(
 		'widgets' => array(
 			'sidebar-1' => array(
@@ -37,7 +37,7 @@ function weepeeswiss_470_setup() {
 					'title' => '',
 					'text' => join( '', array(
 								"<br><br><br>",
-								'<div class="logo-foot clearfix"><a class="logo-foot" href="',
+								'<div class="logo-foot clearfix"><a class="logo" href="',
 								esc_url( home_url( "/" ) ),
 								'" rel="home">',
 								'<img src="',
@@ -55,11 +55,11 @@ function weepeeswiss_470_setup() {
 				'text_business_info' => array(
 					'title' => _x( 'Info', 'Wordpress 4.7 and Up', 'weepeeswiss'),
 					'text' => join( '', array(
-						'<p><strong>' . _x( '<i class="glyphicon glyphicon-map-marker"></i>&nbsp; Address', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</strong><br />',
+						'<p><strong>' . _x( '<i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp; Address', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</strong><br />',
 						_x( '123 Main Street', 'Wordpress 4.7 and Up', 'weepeeswiss') . '<br />' . _x( 'New York, NY 10001', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</p>',
-						'<p><strong>' . _x( '<i class="glyphicon glyphicon-time"></i>&nbsp; Hours', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</strong><br />',
+						'<p><strong>' . _x( '<i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; Hours', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</strong><br />',
 						_x( 'Monday&mdash;Friday: 9:00AM&ndash;5:00PM', 'Wordpress 4.7 and Up', 'weepeeswiss') . '<br /></p>',
-						'<p><strong>' . _x( '<i class="glyphicon glyphicon-envelope"></i>&nbsp; Email me', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</strong><br />',
+						'<p><strong>' . _x( '<i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp; Email me', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</strong><br />',
 						_x( '<a href="mailto:hello@wordpress.com">hello@wordpress.com</a>', 'Wordpress 4.7 and Up', 'weepeeswiss') . '<br /></p>') 
 					),
 				)
@@ -89,40 +89,53 @@ function weepeeswiss_470_setup() {
 						'<div class="form-group clearfix">',
 						'<div class="text-right"><input type="submit" value="',
 						_x( 'Send', 'Wordpress 4.7 and Up', 'weepeeswiss'),
-						'" class="btn bg-color-2 color-4" id="send-me"></div>',
+						'" class="btn bg-color-2 color-4 pull-right" id="send-me"></div>',
 						'</div>',
 						'</fieldset></form>',
 					) ),
 				),
-//				'search' => array(
-//					'title' => _x( 'Search', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
-//				),
 			),
-			'top-right-nav' => array(
+			'nav-top-right' => array(
 				'text_about' => array(
 					'title' => '',
 					'text' => join( '', array(
-						'<div class="nav-list-starter"><ul>',
-						'<li>' . _x( '<a href="#">Login</a>', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</li>',
-						'<li>' . _x( '<a href="#">Pricing</a>', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</li>',
-						'<li>' . _x( '<a href="#">Shop</a>', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</li>',
+						'<div class="nav-list-starter"><ul class="item-group">',
+						'<li class="item-list">' . _x( '<a href="#">Login</a>', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</li>',
+						'<li class="item-list">' . _x( '<a href="#">Pricing</a>', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</li>',
+						'<li class="item-list">' . _x( '<a href="#">Shop</a>', 'Wordpress 4.7 and Up', 'weepeeswiss') . '</li>',
 						'</ul></div>'
 					)),
 				),
 			),
-			'nav-scroll-right' => array(
+			'bottom-right-nav' => array(
 				'text_about' => array(
 					'title' => '',
 					'text' => join( '', array(
- 								'<a href="#" class="icon-cart"><i class="glyph2x color-1 glyphicon glyphicon-shopping-cart"></i>',
- 								'<span class="cart-txt">',
-	 							_x( 'Cart', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
-	 							'</span></a>',
-	 							"\n",
- 								'<a href="#" class="btn btn-primary bg-color-1 color-2 btn-oval show-on-scroll">',
+								'<div class="item-group">',
+								'<a href="#" class="item-list icon-language hide-smartphone">',
+								'<span class="fa fa-globe fa-2x color-1"></span><span class="lang-txt display-block">',
+								_x( 'EN', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
+								'</span></a>',
+								"\n",
+								'<a href="#" class="item-list icon-currency hide-smartphone">',
+								'<span class="fa fa-eur fa-2x color-1"></span><span class="currency-txt display-block">',
+								_x( 'EUR', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
+								'</span></a>',
+								"\n",
+								'<a href="#" class="item-list icon-cart">',
+								'<span class="fa fa-shopping-cart fa-2x color-1"></span><span class="cart-txt display-block">',
+								_x( 'Cart', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
+								'</span></a>',
+
+	 							'<a href="#" class="item-list btn btn-primary bg-color-1 color-2 btn-oval show-on-scroll">',
 	 							_x( 'Explore', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
 	 							'</a>',
+	 							'</div>',						
  					)),
+				),
+
+				'search' => array(
+					'title' => _x( '', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
 				),
 			),
 			'top-toolbar' => array(
@@ -165,7 +178,7 @@ function weepeeswiss_470_setup() {
 //			),
 //			'image-front-parallax' => array(
 //				'post_title' => _x( 'Parallax', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
-//				'file' => 'images/bg-parallax.png',
+//				'file' => 'assets/images/bg-parallax.png',
 //			),
 //		),
 
@@ -199,7 +212,7 @@ function weepeeswiss_470_setup() {
  								'</h2>',
  								'<hr class="shorty-hr border-color-1">',
  								'<div class="col-xs-6 col-sm-3 text-center">',
- 								'<div class="service-box"><i class="glyphicon glyphicon-apple glyph5x color-1"></i>',
+ 								'<div class="service-box"><i class="fa fa-cogs fa-5x color-1" aria-hidden="true"></i>',
  								'<h3>',
  								_x( 'Box One', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
  								'</h3>',
@@ -208,7 +221,7 @@ function weepeeswiss_470_setup() {
  								'</p>',
  								'</div></div>',
  								'<div class="col-xs-6 col-sm-3 text-center">',
- 								'<div class="service-box"><i class="glyphicon glyphicon-cloud glyph5x color-1"></i>',
+ 								'<div class="service-box"><i class="fa fa-handshake-o fa-5x color-1" aria-hidden="true"></i>',
  								'<h3>',
  								_x( 'Box Two', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
  								'</h3>',
@@ -217,7 +230,7 @@ function weepeeswiss_470_setup() {
  								'</p>',
  								'</div></div>',
  								'<div class="col-xs-6 col-sm-3 text-center">',
- 								'<div class="service-box"><i class="glyphicon glyphicon-grain glyph5x color-1"></i>',
+ 								'<div class="service-box"><i class="fa fa-area-chart fa-5x color-1" aria-hidden="true"></i>',
  								'<h3>',
  								_x( 'Box Three', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
  								'</h3>',
@@ -226,7 +239,7 @@ function weepeeswiss_470_setup() {
  								'</p>',
  								'</div></div>',
  								'<div class="col-xs-6 col-sm-3 text-center">',
- 								'<div class="service-box"><i class="glyphicon glyphicon-cog glyph5x color-1"></i>',
+ 								'<div class="service-box"><i class="fa fa-tachometer fa-5x color-1" aria-hidden="true"></i>',
  								'<h3>',
  								_x( 'Box Four', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
  								'</h3>',

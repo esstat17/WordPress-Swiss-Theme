@@ -442,9 +442,9 @@ class Featured_Content {
 	 * @access public
 	 * @since Weepee Swiss 1.0
 	 */
-	public static function enqueue_scripts() {
-		wp_enqueue_script( 'featured-content-suggest', get_template_directory_uri() . '/js/featured-content-admin.js', array( 'jquery', 'suggest' ), '20131022', true );
-	}
+//	public static function enqueue_scripts() {
+//		wp_enqueue_script( 'featured-content-suggest', get_template_directory_uri() . '/assets/js/featured-content-admin.js', array( 'jquery', 'suggest' ), '20131022', true );
+//	}
 
 	/**
 	 * Get featured content settings.

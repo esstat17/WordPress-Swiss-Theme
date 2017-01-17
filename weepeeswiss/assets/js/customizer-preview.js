@@ -61,11 +61,11 @@
 
 		if(setting_id=='header_txt'){
 			cssStyles += '.' + selector + ',.' +selector + ' a {color:' + to +';} ',
-			cssStyles += '.' + selector + '.scrolled-down.nav-on, .' +selector + '.scrolled-down.nav-on a {color:' + to +';} ';
+			cssStyles += '.' + selector + '.scrolling-down.nav-on, .' +selector + '.scrolling-down.nav-on a, .' +selector + '.scrolling-down.nav-on span {color:' + to +';} ';
 		}
 
 		if( setting_id=='home_header_txt' ){
-			cssStyles += '.home .' + selector + ', .home .' +selector + ' a {color:' + to +';} ';
+			cssStyles += '.home .' + selector + ', .home .' +selector + ' a, .home .' +selector + ' span {color:' + to +';} ';
 		}
 
 		if(setting_id=='footer_txt'){

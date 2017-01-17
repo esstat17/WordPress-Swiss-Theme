@@ -4,7 +4,7 @@ Theme URI: http://www.innovedesigns.com/
 Author: esstat17
 Author URI: http://www.innovedesigns.com/author/esstat17/
 Description: Adopted from Twenty Fourteen Wordpress Default Theme w/ Integrated Bootstrap 3.0.
-Version: 1.5
+Version: 1.6
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, left-sidebar, right-sidebar, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
@@ -170,56 +170,6 @@ Pagination
 }
 
 /* ------------------------------------------------------------------
-Social links
-------------------------------------------------------------------- */
-
-.social-text-links,
-.social-icon-links {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.socicon-round > li > a {
-	-webkit-border-radius: 2px;
-	   -moz-border-radius: 2px;
-	     -o-border-radius: 2px;
-	        border-radius: 2px;
-}
-
-.socicon-circle > li > a {
-	-webkit-border-radius: 100%;
-	   -moz-border-radius: 100%;
-	     -o-border-radius: 100%;
-	        border-radius: 100%;
-}
-
-.social-text-links > li {
-	display: inline-block;
-	margin: 0 10px 20px;
-}
-
-.social-icon-links > li {
-	display: inline-block;
-	margin: 0 5px 10px 0;
-}
-
-.social-icon-links > li > a {
-	display: inline-block;
-	background: #f7f7f7;
-	height: 36px;
-	width: 36px;
-	text-align: center;
-	line-height: 36px;
-	font-size: 14px;
-	color: #111;
-}
-
-.social-icon-links > li > a:hover {
-	background: #f0f0f0;
-}
-
-/* ------------------------------------------------------------------
 Content box
 ------------------------------------------------------------------- */
 
@@ -280,7 +230,7 @@ Buttons
     width: 40px;
     height: 40px;
     text-align: center;
-    padding: 8px 0;
+    padding: 0;
     font-size: 18px;
     line-height: 1.428571429;
     border-radius: 20px;
@@ -293,43 +243,6 @@ Buttons
   font-size: 18px;
   line-height: 1.33;
   border-radius: 25px;
-}
-
-/* ------------------------------------------------------------------
-Gallery box
-------------------------------------------------------------------- */
-
-.gallery-box {
-	text-align: center;
-	margin: 35px 0;
-}
-
-.gallery-box-text {
-	font-size: 12px;
-}
-
-.gallery-box .gallery {
-	display: block;
-	margin: 20px 0 0;
-}
-
-.gallery-box .gallery:after {
-	background: rgba(255, 255, 255, 0.3);
-	position: absolute;
-	content: "";
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	opacity: 0;
-	-webkit-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-	   -moz-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-	     -o-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-	        transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-}
-
-.gallery-box:hover .gallery:after {
-	opacity: 1;
 }
 
 /* ------------------------------------------------------------------
@@ -498,13 +411,25 @@ Navigation
 	}
 }
 #primary-navigation.scrolling-down.nav-on {
-    padding-top: 3px;
+    padding-top: 2px;
     padding-bottom: 0;
 }
 .full-wide #primary-navigation {
 }
 #primary-navigation.scrolling-down {
     background-color: #fff;
+}
+#primary-navigation .widget {
+	float: left;
+	margin: 0 15px 0 0;
+}
+@media (max-width: 767px) {
+	#primary-navigation .widget {
+    	margin: 0 10px 0 0;
+	}
+}
+#primary-navigation .widget:last-child{
+	margin: 0;
 }
 .scrolling-down.nav-on {
 	border-bottom: 1px solid #eee;
@@ -514,12 +439,6 @@ Navigation
 }
 .sf-menu {
     letter-spacing: 0.5px;
-}
-.head-section-2 div > div {
-    padding-right: 10px;
-}
-.head-section-2 div > div:last-child {
-    padding-right: 0;
 }
 #menu-main-menu {
     padding: 0;
@@ -548,14 +467,7 @@ Navigation
 .top-menu .sf-menu {
     display: block;
 }
-.topmost-navigation > div, .navi-scroll-right > div {
-    float: left;
-    margin-left: 10px;
-}
-.topmost-navigation > div:first-child {
-    margin-left: 0;
-}
-.navi-scroll-right {
+.navi-below-right {
     float: right;
     padding-bottom: 0;
 }
@@ -567,6 +479,9 @@ Navigation
 }
 #navi-mobil {
 	display: none;
+}
+.navi-mlogo {
+    margin-right: 10px;
 }
 #navi-mobil.ml-opened {
     display: block;
@@ -614,6 +529,7 @@ Navigation
 }
 .mobil-menu {
 	float: left;
+    margin-right: 8px;
 }
 @media (min-width: 768px){
 	.mobil-menu {
@@ -670,7 +586,7 @@ Modal Override & Nav Search
 .search-modal #searchsubmit {
     height: 45px;
 }
-.search-modal .glyphicon-search, .search-modal .form-control {
+.search-modal .fa-search, .search-modal .form-control {
     font-size: 150%;
 }
 #primary-navigation #searchform {
@@ -776,68 +692,6 @@ Modules
 
 .module-title + .module-subtitle {
 	margin-top: -35px;
-}
-
-/* ------------------------------------------------------------------
-Portfolio Filter
-------------------------------------------------------------------- */
-
-.filters {
-	text-align: center;
-	list-style: none;
-	padding: 0;
-	margin: 0 0 70px;
-}
-
-.filters > li {
-	display: inline-block;
-	margin: 5px 30px;
-}
-
-.filters > li sup {
-	top: -.7em;
-	font-size: 80%;
-	color: #999;
-}
-
-.filters > li > a {
-	text-transform: uppercase;
-	color: #111;
-}
-
-.filters > li > a:hover, .filters > li > a.current,
-.filters > li > a:hover sup, .filters > li > a.current sup {
-	color: #999;
-}
-
-/* ------------------------------------------------------------------
-Portfolio Single
-------------------------------------------------------------------- */
-
-.image-caption {
-	position: relative;
-	margin: 0 0 20px;
-}
-
-.image-caption .caption-text {
-	position: absolute;
-	display: table;
-	bottom: 0;
-	height: 100%;
-	width: 100%;
-	z-index: 2;
-	padding: 20px;
-	font-size: 12px;
-}
-
-.project-details {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.project-details li {
-	padding: 0 0 10px;
 }
 
 /* ------------------------------------------------------------------
@@ -1121,7 +975,7 @@ Comments and Comment form
 }
 .comment-content {
     width: 100%;
-    float: left;
+    display: table;
 }
 .comments-title {
     font-weight: 100;
@@ -1133,10 +987,6 @@ Widgets
 
 .widget {
 	margin: 0 0 45px;
-}
-
-#primary-navigation .widget {
-    margin: 0;
 }
 
 .widget-title {
@@ -1272,21 +1122,6 @@ Responsive Media Querries
 	}
 }
 
-@media (max-width: 992px) {
-
-	/* Portfolio grid */
-
-	.work-item,
-	.grid-sizer {
-		width: 33.3333%;
-	}
-
-	.work-item.wide,
-	.work-item.wide-tall {
-		width: 66.6666%;
-	}
-}
-
 @media (max-width: 767px) {
 
 	/* Hero captions */
@@ -1413,66 +1248,6 @@ div.wp-caption.alignright img[class*="wp-image-"],
 div.wp-caption.alignright .wp-caption-text {
 	padding-left: 10px;
 	padding-right: 0;
-}
-
-/* -------------------------------------------------------------------
-Multi-columns-row
-------------------------------------------------------------------- */
-
-.multi-columns-row .first-in-row {
-	clear: left;
-}
-
-.multi-columns-row .col-xs-6:nth-child(2n + 3) { clear: left; }
-.multi-columns-row .col-xs-4:nth-child(3n + 4) { clear: left; }
-.multi-columns-row .col-xs-3:nth-child(4n + 5) { clear: left; }
-.multi-columns-row .col-xs-2:nth-child(6n + 7) { clear: left; }
-.multi-columns-row .col-xs-1:nth-child(12n + 13) { clear: left; }
-
-@media (min-width: 768px) {
-
-	.multi-columns-row .col-xs-6:nth-child(2n + 3) { clear: none; }
-	.multi-columns-row .col-xs-4:nth-child(3n + 4) { clear: none; }
-	.multi-columns-row .col-xs-3:nth-child(4n + 5) { clear: none; }
-	.multi-columns-row .col-xs-2:nth-child(6n + 7) { clear: none; }
-	.multi-columns-row .col-xs-1:nth-child(12n + 13) { clear: none; }
-
-	.multi-columns-row .col-sm-6:nth-child(2n + 3) { clear: left; }
-	.multi-columns-row .col-sm-4:nth-child(3n + 4) { clear: left; }
-	.multi-columns-row .col-sm-3:nth-child(4n + 5) { clear: left; }
-	.multi-columns-row .col-sm-2:nth-child(6n + 7) { clear: left; }
-	.multi-columns-row .col-sm-1:nth-child(12n + 13) { clear: left; }
-}
-
-@media (min-width: 992px) {
-
-	.multi-columns-row .col-sm-6:nth-child(2n + 3) { clear: none; }
-	.multi-columns-row .col-sm-4:nth-child(3n + 4) { clear: none; }
-	.multi-columns-row .col-sm-3:nth-child(4n + 5) { clear: none; }
-	.multi-columns-row .col-sm-2:nth-child(6n + 7) { clear: none; }
-	.multi-columns-row .col-sm-1:nth-child(12n + 13) { clear: none; }
-
-	.multi-columns-row .col-md-6:nth-child(2n + 3) { clear: left; }
-	.multi-columns-row .col-md-4:nth-child(3n + 4) { clear: left; }
-	.multi-columns-row .col-md-3:nth-child(4n + 5) { clear: left; }
-	.multi-columns-row .col-md-2:nth-child(6n + 7) { clear: left; }
-	.multi-columns-row .col-md-1:nth-child(12n + 13) { clear: left; }
-}
-
-@media (min-width: 1200px) {
-
-	.multi-columns-row .col-md-6:nth-child(2n + 3) { clear: none; }
-	.multi-columns-row .col-md-4:nth-child(3n + 4) { clear: none; }
-	.multi-columns-row .col-md-3:nth-child(4n + 5) { clear: none; }
-	.multi-columns-row .col-md-2:nth-child(6n + 7) { clear: none; }
-	.multi-columns-row .col-md-1:nth-child(12n + 13) { clear: none; }
-
-	.multi-columns-row .col-lg-6:nth-child(2n + 3) { clear: left; }
-	.multi-columns-row .col-lg-4:nth-child(3n + 4) { clear: left; }
-	.multi-columns-row .col-lg-3:nth-child(4n + 5) { clear: left; }
-	.multi-columns-row .col-lg-2:nth-child(6n + 7) { clear: left; }
-	.multi-columns-row .col-lg-1:nth-child(12n + 13) { clear: left; }
-
 }
 
 /* -------------------------------------------------------------------
@@ -1735,10 +1510,6 @@ Superfish Navigation
     height: auto;
     width: 100%;
     min-width: 100px;
-}
-.logo-foot {
-    height: auto;
-    max-width: 160px;
 }
 .site-foot-name {
     text-transform: uppercase;
@@ -2469,22 +2240,6 @@ Author
 }
 
 /* -------------------------------------------------------------------
-Glyphicons
-------------------------------------------------------------------- */
-.glyph2x {
-    font-size: 200%;
-}
-.glyph3x {
-    font-size: 300%;
-}
-.glyph4x {
-    font-size: 400%;
-}
-.glyph5x {
-    font-size: 500%;
-}
-
-/* -------------------------------------------------------------------
 Breakpoints Media Query
 ------------------------------------------------------------------- */
 
@@ -2510,6 +2265,34 @@ Breakpoints Media Query
 	}
 }
 
+/* -------------------------------------------------------------------
+Utilities
+------------------------------------------------------------------- */
+.make-center {
+	vertical-align: -50%;	
+}
+.make-center-before:before {
+    vertical-align: -25%;
+}
+.display-block {
+	display: block;
+}
+.item-group {
+    display: inline;
+    font-size: 12px;
+}
+.item-list {
+    float: left;
+    margin-right: 15px;
+}
+.item-group a:last-child {
+    margin-right: 0;
+}
+@media (max-width: 767px) {
+	.item-list {
+    	margin-right: 10px;
+	}
+}
 /* -------------------------------------------------------------------
 Custom
 ------------------------------------------------------------------- */

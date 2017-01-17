@@ -27,7 +27,7 @@
 	</div> <!-- .container-## -->		
 </div>
 <div class="scroll-up">
-	<a href="#totop"><i class="glyphicon glyphicon-menu-up"></i></a>
+	<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
 </div>
 <!-- SCROLLTOP -->
 <div class="search-modal modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
@@ -35,7 +35,7 @@
 		<div class="modal-content">
 			<div class="modal-header clearfix">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					<span class="fa fa-times" aria-hidden="true"></span>
 				</button>
 			</div>
 	        <div id="modal-body" class="modal-body"></div>

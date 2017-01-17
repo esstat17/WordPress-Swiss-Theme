@@ -177,7 +177,7 @@ function weepeeswiss_customize_register( $wp_customize ) {
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'top_toolbar_bg', '#141414', __('Top Toolbar Background', 'weepeeswiss' ), __('', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'top_toolbar_txt', '#adadad', __('Top Toolbar Text', 'weepeeswiss' ), __('', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'header_bg', '#f5f5f5', __('Header Background', 'weepeeswiss' ), '', 'colors', 'sanitize_hex_color', 'postMessage');
-	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'header_txt', '#000000', __('Header Text Color', 'weepeeswiss' ), __('', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
+	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'header_txt', '#0a0a0a', __('Header Text Color', 'weepeeswiss' ), __('', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'home_header_txt', '#ffffff', __('Home Header Text Color', 'weepeeswiss' ), __('', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'footer_bg', '#141414', __('Footer Background', 'weepeeswiss' ), '', 'colors', 'sanitize_hex_color', 'postMessage');
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'footer_txt', '#adadad', __('Footer Text Color', 'weepeeswiss' ), '', 'colors', 'sanitize_hex_color', 'postMessage');
@@ -185,7 +185,7 @@ function weepeeswiss_customize_register( $wp_customize ) {
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_1', '#f68712', __('Color #1', 'weepeeswiss' ), __('Insert <code>.color-1</code> or <code>.bg-color-1</code> class.', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_2', '#ffffff', __('Color #2', 'weepeeswiss' ), __('Insert <code>.color-2</code> or <code>.bg-color-2</code> class.', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_3', '#92c095', __('Color #3', 'weepeeswiss' ), __('Insert <code>.color-3</code> or <code>.bg-color-3</code> class.', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
-	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_4', '#000000', __('Color #4', 'weepeeswiss' ), __('Insert <code>.color-4</code> or <code>.bg-color-4</code> class.', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
+	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_4', '#0a0a0a', __('Color #4', 'weepeeswiss' ), __('Insert <code>.color-4</code> or <code>.bg-color-4</code> class.', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 	weepeeswiss_customize_color($wp_customize, 'WP_Customize_Color_Control', 'color_5', '#adadad', __('Color #5', 'weepeeswiss' ), __('Insert <code>.color-5</code> or <code>.bg-color-5</code> class.', 'weepeeswiss'), 'colors', 'sanitize_hex_color', 'postMessage' );
 
 	// Upload Logo
@@ -333,9 +333,10 @@ function weepeeswiss_sanitize_img_uri($value){
  * @since Weepee Swiss 1.0
  */
 function weepeeswiss_customize_preview_js() {
-	wp_enqueue_script( 'weepeeswiss_customizer', get_template_directory_uri() . '/js/customizer-preview.js', array( 'customize-preview' ), '20161205', true );
+	wp_enqueue_script( 'weepeeswiss_customizer', get_template_directory_uri() . '/assets/js/customizer-preview.js', array( 'customize-preview' ), '20161205', true );
 }
 add_action( 'customize_preview_init', 'weepeeswiss_customize_preview_js' );
+
 
 /**
  * Enqueues front-end CSS for the link color.
@@ -352,7 +353,7 @@ function weepeeswiss_link_color_css() {
 	$top_toolbar_bg 	= get_theme_mod( 'top_toolbar_bg', '#141414' );
 	$top_toolbar_txt 	= get_theme_mod( 'top_toolbar_txt', '#adadad' );
 	$header_bg 			= get_theme_mod( 'header_bg', '#f5f5f5' );
-	$header_txt 		= get_theme_mod( 'header_txt', '#000000' );
+	$header_txt 		= get_theme_mod( 'header_txt', '#0a0a0a' );
 	$home_header_txt 	= get_theme_mod( 'home_header_txt', '#ffffff' );
 	$footer_bg 			= get_theme_mod( 'footer_bg', '#141414' );
 	$footer_txt 		= get_theme_mod( 'footer_txt', '#adadad' );
@@ -361,7 +362,7 @@ function weepeeswiss_link_color_css() {
 	$color_1 			= get_theme_mod( 'color_1', '#f68712' );
 	$color_2 			= get_theme_mod( 'color_2', '#ffffff' );
 	$color_3 			= get_theme_mod( 'color_3', '#92c095' );
-	$color_4 			= get_theme_mod( 'color_4', '#000000' );
+	$color_4 			= get_theme_mod( 'color_4', '#0a0a0a' );
 	$color_5 			= get_theme_mod( 'color_5', '#adadad' );
 
 	// Hide or Display Site Title and Description
@@ -496,10 +497,13 @@ h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
 .header-txt, .header-txt a {
 	color: {$css['header_txt']};
 }
-.home .header-txt, .home .header-txt a {
+.home .header-txt, .home .header-txt a,
+.home .header-txt, .home .header-txt span {
 	color: {$css['home_header_txt']};
 }
-.header-txt.scrolling-down.nav-on, .header-txt.scrolling-down.nav-on a {
+.header-txt.scrolling-down.nav-on,
+.header-txt.scrolling-down.nav-on a,
+.header-txt.scrolling-down.nav-on span {
 	color: {$css['header_txt']};
 }
 .header-txt.scrolling-down.nav-on .color-2.btn {
@@ -516,6 +520,7 @@ h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
 	color: {$css['footer_txt']};
 }
 .footer-txt-rgba, .footer-txt-rgba a {
+	{$css['footer_txt']};
 	color: {$footer_txt_rgba};
 }
 .well-bg {

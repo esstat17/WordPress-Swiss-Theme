@@ -15,7 +15,7 @@
         	<input type="text" class="form-control" placeholder="<?php _e('Search', 'weepeeswiss' ); ?>" value="<?php echo get_search_query(); ?>" name="s" id="s">
             <span class="input-group-btn">
                 <button id="searchsubmit" class="btn bg-color-1 color-2" type="submit">
-                	<i class="glyphicon glyphicon-search"></i>
+                	<i class="fa fa-search" aria-hidden="true"></i>
                 </button>
             </span>
         </div>

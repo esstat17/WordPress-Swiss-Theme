@@ -126,7 +126,7 @@ function weepeeswiss_post_nav() {
 			if ( is_attachment() ) :
 				previous_post_link( '%link', __( '<span class="meta-nav">Published In</span>%title', 'weepeeswiss' ) );
 			else :
-				previous_post_link( '%link', __( '<span class="meta-nav btn btn-default" data-prev-post="%title"><i class="nav-prev">&larr;</i> %title</span>', 'weepeeswiss' ) );
+				previous_post_link( '%link', __( '<span class="meta-nav btn btn-default" data-prev-post="%title"><i class="nav-prev">&larr;</i>%title</span>', 'weepeeswiss' ) );
 				next_post_link( '%link', __( '<span class="meta-nav btn btn btn-default pull-right" data-next-post="%title">%title <i class="nav-next">&rarr;</i></span>', 'weepeeswiss' ) );
 			endif;
 			?>
@@ -142,7 +142,7 @@ if ( ! function_exists( 'weepeeswiss_posted_on' ) ) :
  *
  * @since Weepee Swiss 1.0
  */
-function weepeeswiss_posted_on() {
+function weepeeswiss_posted_on($post) {
 	if ( is_sticky() && is_home() && ! is_paged() ) {
 		echo '<span class="featured-post">' . __( 'Sticky', 'weepeeswiss' ) . '</span>';
 	}
@@ -157,11 +157,10 @@ function weepeeswiss_posted_on() {
 		get_the_author()
 	);
 	*/
-	printf( '<span class="entry-date"><i class="glyphicon glyphicon-time"></i> <span rel="bookmark"><time class="entry-date" datetime="%2$s">%3$s <span class="time-passed-label">%4$s</span></time></span> <span class="ndash">&mdash;</span> <span class="author vcard"><a class="url author-url" href="%5$s" rel="author">%6$s</a></span>',
+	printf( '<span class="entry-date"><i class="fa fa-clock-o" aria-hidden="true"></i> <span rel="bookmark"><time class="entry-date" datetime="%2$s">%3$s</time></span> <span class="ndash">&mdash;</span> <span class="author vcard"><a class="url author-url" href="%4$s" rel="author">%5$s</a></span>',
 		esc_url( get_permalink() ),
 		esc_attr( get_the_date( 'c' ) ),
-		esc_html( weepeeswiss_convert_date(current_time('timestamp')) ),
-		__('ago', 'weepeeswiss'),
+		weepeeswiss_convert_date($post, current_time('timestamp')),
 		esc_url( get_author_posts_url( get_the_author_meta('ID') ) ),
 		get_the_author()
 	);
@@ -175,8 +174,18 @@ if ( ! function_exists( 'weepeeswiss_convert_date' ) ) :
  * @link Human Time Diff https://codex.wordpress.org/Function_Reference/human_time_diff
  * @since Weepee Swiss 1.1
  */
-function weepeeswiss_convert_date( $current_time ) {
-	return human_time_diff( get_the_time('U'), $current_time );
+function weepeeswiss_convert_date($post, $current_time ) {
+	$m_time = $post->post_date;
+	$time = get_post_time( 'G', true, $post );
+	$time_diff = time() - $time;
+	if ( $time_diff > 0 && $time_diff < MONTH_IN_SECONDS ) {
+		$h_time = sprintf( '<span class="time-passed-label">%s '.__(  'ago', 'weepeeswiss') . '</span>', esc_html( human_time_diff( $time ) ) );
+	} else {
+		// $h_time = mysql2date( __( 'Y/m/d' ), $m_time );
+		$h_time = get_the_date();
+	}
+	// return human_time_diff( get_the_time('U'), $current_time );
+	return apply_filters ('weepee_human_time', $h_time);
 }
 endif;
 
@@ -305,7 +314,7 @@ function weepeeswiss_breadcrumb_lists() {
 	if ( !is_home() || !is_front_page() ):
 
 		/* === OPTIONS === */
-		$text['home']     = '<i class="glyphicon glyphicon-home"></i>'; // string for the 'Home' link
+		$text['home']     = '<i class="fa fa-home" aria-hidden="true"></i>'; // string for the 'Home' link
 		$text['category'] = __( 'Published in ', 'weepeeswiss' ) . '&#39;%s&#39;'; // string for a category page
 		$text['search']   = __( 'Query results ', 'weepeeswiss' ) . '"%s"'; // string for a search results page
 		$text['tag']      = __( 'Tagged in ', 'weepeeswiss' ) . ' "%s"'; // string for a tag page
@@ -348,7 +357,7 @@ function weepeeswiss_breadcrumb_lists() {
 						echo $home_str;
 						if ($frontpage_id == 0 || $parent_id != $frontpage_id) echo $delimiter;
 					}
-					if( single_post_title( '', false) ){
+					if( !empty(single_post_title( '', false )) ){
 						echo $delimiter . $before . single_post_title( '', false ) . $after;
 					}
 					if ( get_query_var('paged') ) {	

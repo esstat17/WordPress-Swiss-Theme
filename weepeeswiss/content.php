@@ -23,7 +23,7 @@
 		<div class="entry-meta">
 			<?php
 				if ( 'post' == get_post_type() )
-					weepeeswiss_posted_on();
+					weepeeswiss_posted_on($post);
 
 				if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) :
 			?>

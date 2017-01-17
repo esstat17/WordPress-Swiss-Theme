@@ -92,7 +92,7 @@ if ( post_password_required() ) {
         // change the title of send button 
         'label_submit'			=> __( 'Submit', 'weepeeswiss' ),
         // change the title of the reply section
-        'title_reply_before' 	=> '<div id="reply-title" class="comment-reply-title"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>',
+        'title_reply_before' 	=> '<div id="reply-title" class="comment-reply-title"><span class="fa fa-commenting" aria-hidden="true"></span>',
         'title_reply_after'		=> '</div>',
         'title_reply'			=> __( ' Leave Your Thought', 'weepeeswiss' ),
         'comment_notes_before' => '',

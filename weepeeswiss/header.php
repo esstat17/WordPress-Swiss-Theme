@@ -18,8 +18,8 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<!--[if lt IE 9]>
-	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.min.js"></script>
-	<script src="<?php echo get_template_directory_uri(); ?>/js/respond.min.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/assets/js/html5.min.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/assets/js/respond.min.js"></script>
 	<![endif]-->
 	<?php wp_head(); ?>
 </head>
@@ -27,7 +27,7 @@
 <body <?php body_class(); ?>>
 <div id="super-wrap" class="wrapper hfeed site">
 <?php 
-	$wps_wc_bg_uri	 	= apply_filters( 'wps_welcome_bg', get_template_directory_uri().'/images/bg-parallax.png');
+	$wps_wc_bg_uri	 	= apply_filters( 'wps_welcome_bg', get_template_directory_uri().'/assets/images/bg-parallax.png');
 	$wps_full_screen 	= apply_filters( 'wps_full_screen', "yes");
 	$wps_hide_section 	= apply_filters( 'wps_top_section_hide', "yes");
 	$wps_screen_html 	= apply_filters( 'wps_screen_html', '');
@@ -47,8 +47,8 @@
 			<!-- LOGO OR SIMPLE TEXT -->
 			<div class="brand-section col-xs-4 col-md-4">
 						<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-							<?php $wps_logo_uri = apply_filters( 'wps_logo', get_template_directory_uri().'/images/logo@2x.png'); ?>
-							<img src="<?php echo esc_url($wps_logo_uri); ?>">
+							<?php $wps_logo_uri = apply_filters( 'wps_logo', get_template_directory_uri().'/assets/images/logo@2x.png'); ?>
+							<img class="make-center" src="<?php echo esc_url($wps_logo_uri); ?>">
 						</a>
 						<span class="site-name"><?php bloginfo( 'name' ); ?></span>
 						<span class="site-desc"><?php  bloginfo( 'description'); ?></span>					
@@ -58,9 +58,9 @@
 					<div class="topmost-navigation">
 						<?php 
 							// Better Safe
-							// if ( is_active_sidebar( 'top-right-nav' ) ) {
-								dynamic_sidebar( 'top-right-nav' );
-							// }
+							if ( is_active_sidebar( 'nav-top-right' ) ) {
+								dynamic_sidebar( 'nav-top-right' );
+							}
 							// wp_nav_menu( array( 'theme_location' => 'topmost' ) ); 
 							?></div>
 				</div>
@@ -69,12 +69,12 @@
 		<div class="row head-section-2">
 			<div class="col-lg-12">
 				<div class="mobil-menu">
-					<span class="list-icon-span"><a class="glyphicon glyphicon-list glyph2x" href="#navi-mobil"></a></span>
+					<span class="list-icon-span"><a class="fa fa-bars fa-2x make-center-before" href="#navi-mobil"></a></span>
 				</div>
 				<div class="navi-mlogo pull-left navi-hide mobile-switch <?php echo 'yes' == $wps_hide_section ? 'show-mobile':'' ?>">
 					<a class="mobile-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<?php $wps_mlogo_uri = apply_filters( 'wps_mlogo', get_template_directory_uri().'/images/mlogo@2x.png'); ?>
-						<img src="<?php echo esc_url($wps_mlogo_uri); ?>">
+						<?php $wps_mlogo_uri = apply_filters( 'wps_mlogo', get_template_directory_uri().'/assets/images/mlogo@2x.png'); ?>
+						<img class="make-center" src="<?php echo esc_url($wps_mlogo_uri); ?>">
 					</a>
 				</div>
 				<?php if ( has_nav_menu( 'primary' ) ) : ?>
@@ -94,10 +94,10 @@
 
 				<?php 
 				// Right Navigation Appears when Scroll Down
-				if ( is_active_sidebar( 'nav-scroll-right' ) ):
+				if ( is_active_sidebar( 'bottom-right-nav' ) ):
 				?>
-					<div class="navi-scroll-right">
-					<?php dynamic_sidebar( 'nav-scroll-right' ); ?>
+					<div class="navi-below-right">
+					<?php dynamic_sidebar( 'bottom-right-nav' ); ?>
 					</div>
 				<?php endif; ?>
 

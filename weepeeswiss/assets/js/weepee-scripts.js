@@ -358,7 +358,7 @@
                                 }
 
                                 var $slidemenu = $('<div class="' + objc.slidemenu + '" />'),
-                                    closex = '<a class="ml-close ml-btn glyphicon glyphicon-remove" href="#ml-0"></a>';
+                                    closex = '<a class="ml-close ml-btn fa fa-times" href="#ml-0"></a>';
 
                                 if ($p.length) {
                                     var id = $p.attr('id');
@@ -515,7 +515,7 @@
                                 }
 
                                 //	Close menu. Default: true if preventDefault, false otherwise
-                                if (that.__valueOrFn(that.opts.onClick.close, $t, preventDefault)) {
+                                if (that.__valueOrFn(that.opts.onClick.closex, $t, preventDefault)) {
                                     that.close();
                                 }
                             }

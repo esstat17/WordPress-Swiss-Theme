@@ -76,7 +76,7 @@
 				headSection = $('.head-section-1'),
 				section2 = $('.head-section-2'),
 				mobileSwitch = $('.mobile-switch'),
-				// naviRight = $('.navi-scroll-right.navi-scroll-show');
+				// naviRight = $('.navi-below-right.navi-scroll-show');
 				naviRight = $('.show-on-scroll');
 			
 			// Kicks After Navigation
@@ -111,7 +111,7 @@
 		// Search Form Modal
 		if (searchWidget.length > 0) {
 			$(searchWidget).each(function(){
-				$(this).append('<button type="button" class="btn btn-circle color-2 bg-color-1" data-toggle="modal" data-target="#login-modal"><i class="glyphicon glyphicon-search"></i></button>');			
+				$(this).append('<button type="button" class="btn btn-circle color-2 bg-color-1" data-toggle="modal" data-target="#login-modal"><i class="fa fa-search" aria-hidden="true"></i></button>');			
 			});
 			$("#primary-navigation #searchform:first").appendTo('#modal-body');
 		}

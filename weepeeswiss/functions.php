@@ -22,7 +22,7 @@
  *
  * @package WordPress
  * @subpackage Weepee_Swiss
- * @since Weepee Swiss 1.5
+ * @since Weepee Swiss 1.6
  *
  * @see Interchangeable Text or String
  *	Weepee Swiss - Title in the comment header
@@ -87,7 +87,7 @@ function weepeeswiss_setup() {
 	load_theme_textdomain( 'weepeeswiss', get_template_directory() . '/languages' );
 
 	// This theme styles the visual editor to resemble the theme style.
-	add_editor_style( array( 'css/editor-style.css', weepeeswiss_font_url(), 'fonts/genericons/genericons.css' ) );
+	add_editor_style( array( 'assets/css/editor-style.css', weepeeswiss_font_url(), '/assets/css/font-awesome.min.cs' ) );
 
 	// Add RSS feed links to <head> for posts and comments.
 	add_theme_support( 'automatic-feed-links' );
@@ -207,8 +207,8 @@ function weepeeswiss_widgets_init() {
 		'after_title'   => '</span>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Top Right Navigation', 'weepeeswiss' ),
-		'id'            => 'top-right-nav',
+		'name'          => __( 'Navigation Upper Right', 'weepeeswiss' ),
+		'id'            => 'nav-top-right',
 		'description'   => __( 'Appears in the Top Right Nav Section', 'weepeeswiss' ),
 		'before_widget' => '<div id="%1$s" class="widget widget-top %2$s">',
 		'after_widget'  => '</div>',
@@ -216,8 +216,8 @@ function weepeeswiss_widgets_init() {
 		'after_title'   => '</span>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Bottom Right Navigation', 'weepeeswiss' ),
-		'id'            => 'nav-scroll-right',
+		'name'          => __( 'Navigation Lower Right', 'weepeeswiss' ),
+		'id'            => 'bottom-right-nav',
 		'description'   => __( 'Appears in the Bottom Right Nav Section. e.g. Cart Icons, Call to action buttons, etc.', 'weepeeswiss' ),
 		'before_widget' => '<div id="%1$s" class="widget widget-top %2$s">',
 		'after_widget'  => '</div>',
@@ -305,16 +305,16 @@ function weepeeswiss_scripts() {
 	wp_enqueue_style( 'weepeeswiss-lato', weepeeswiss_font_url(), array(), null );
 	
 	// Add Bootstrap 3.0 stylesheet.
-	wp_enqueue_style( 'wps-bootstrap-style', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '3.3.4' );
+	wp_enqueue_style( 'wps-bootstrap-style', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '3.3.4' );
 	
 	// Font Awesome
-	// wp_enqueue_style( 'wps-font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.3.0' );
+	wp_enqueue_style( 'wps-font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.7.0' );
 
 	// Load our main stylesheet.
 	wp_enqueue_style( 'weepeeswiss-style', get_stylesheet_uri() );
 
 	// Load the Internet Explorer specific stylesheet.
-	// wp_enqueue_style( 'weepeeswiss-ie', get_template_directory_uri() . '/css/ie.css', array( 'weepeeswiss-style' ), '20131205' );
+	// wp_enqueue_style( 'weepeeswiss-ie', get_template_directory_uri() . '/assets/css/ie.css', array( 'weepeeswiss-style' ), '20131205' );
 	// wp_style_add_data( 'weepeeswiss-ie', 'conditional', 'lt IE 9' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -322,13 +322,13 @@ function weepeeswiss_scripts() {
 	}
 
 	if ( is_singular() && wp_attachment_is_image() ) {
-		wp_enqueue_script( 'weepeeswiss-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20130402', true );
+		wp_enqueue_script( 'weepeeswiss-keyboard-image-navigation', get_template_directory_uri() . '/assets/js/keyboard-image-navigation.js', array( 'jquery' ), '20130402', true );
 	}
 
-	wp_enqueue_script( 'wps-bootstrap-script', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '3.3.4', false );
-	wp_enqueue_script( 'wps-superfish-script', get_template_directory_uri() . '/js/superfish.min.js', array( 'jquery' ), '1.7.5', false );
-	wp_enqueue_script( 'wps-weepee-scripts', get_template_directory_uri() . '/js/weepee-scripts.min.js', array( 'jquery' ), '1.0.1', false );
-	wp_enqueue_script( 'wps-init-script', get_template_directory_uri() . '/js/weepee-init.js', array( 'jquery' ), '1.0.3', true );
+	wp_enqueue_script( 'wps-bootstrap-script', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '3.3.4', false );
+	wp_enqueue_script( 'wps-superfish-script', get_template_directory_uri() . '/assets/js/superfish.min.js', array( 'jquery' ), '1.7.5', false );
+	wp_enqueue_script( 'wps-weepee-scripts', get_template_directory_uri() . '/assets/js/weepee-scripts.min.js', array( 'jquery' ), '1.0.1', false );
+	wp_enqueue_script( 'wps-init-script', get_template_directory_uri() . '/assets/js/weepee-init.js', array( 'jquery' ), '1.0.3', true );
 }
 add_action( 'wp_enqueue_scripts', 'weepeeswiss_scripts' );
 
@@ -338,9 +338,9 @@ function weepeeswiss_admin_scripts($pagenow) {
 	if ( 'widgets.php' != $pagenow) {
 		return;
 	}
-	// 	wp_enqueue_script( 'weepeeswiss_customizer_ajax', get_template_directory_uri() . '/js/customizer-ajax.js', array( 'customize-preview' ), '20161008', true );
+	// 	wp_enqueue_script( 'weepeeswiss_customizer_ajax', get_template_directory_uri() . '/assets/js/customizer-ajax.js', array( 'customize-preview' ), '20161008', true );
 	// Add Bootstrap 3.0 stylesheet.
-	wp_enqueue_script( 'wps-admin-ajax-js', get_template_directory_uri() . '/js/customizer-ajax.js', array('jquery', 'customize-prev'), '1.0.1' );
+	wp_enqueue_script( 'wps-admin-ajax-js', get_template_directory_uri() . '/assets/js/customizer-ajax.js', array('jquery', 'customize-prev'), '1.0.1' );
 }
 add_action( 'admin_enqueue_scripts', 'weepeeswiss_admin_scripts' );
 
