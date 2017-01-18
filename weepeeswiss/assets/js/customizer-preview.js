@@ -44,10 +44,16 @@
 		}
 
 		// 5 Custom Colors
-		if(setting_id=='color_1' || setting_id=='color_2' || setting_id=='color_3' || setting_id=='color_4' || setting_id=='color_5'){
-			cssStyles += '.' + selector + ',.' +selector + ' a {color:' + to +'!important;} ',
-			cssStyles += '.bg-' + selector + ', .bg-' +selector + ' a {background-color:' + to +';} ',
+		if(setting_id=='color_1' || setting_id=='color_3' || setting_id=='color_4' || setting_id=='color_5'){
+			cssStyles += '.' + selector + ',.' +selector + ' a,.' +selector + ':hover {color:' + to +';} ',
+			cssStyles += '.bg-' + selector + ', .bg-' +selector + ' a, .bg-' +selector + ':hover {background-color:' + to +';} ',
 			cssStyles += '.border-' + selector + ' {border-color:' + to +';} ';
+		}
+
+		if(setting_id=='color_2'){
+			cssStyles += '.' + selector + ',.' +selector + ' a,.' +selector + ':hover {color:' + to +'!important;} ',
+			cssStyles += '.bg-' + selector + ', .bg-' +selector + ' a, .bg-' +selector + ':hover {background-color:' + to +'!important;} ',
+			cssStyles += '.border-' + selector + ' {border-color:' + to +'!important;} ';
 		}
 
 		// Text Colors

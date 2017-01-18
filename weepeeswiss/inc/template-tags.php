@@ -19,7 +19,7 @@ function weepeeswiss_cat_and_tags() {
 <div class="entry-meta">
 <?php		
 		// Hide if Category Page
-		if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && weepeeswiss_categorized_blog() && !is_category() ) : 
+		if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && !is_category() ) : 
 		$get_cats = get_the_category_list(' ');
 		$count_cats = count(explode(",", $get_cats));
 		$cat_str_single = __('Category:', 'weepeeswiss');
@@ -29,7 +29,7 @@ function weepeeswiss_cat_and_tags() {
 ?>
 	<div class="tag cat-link"><?php echo $cat_txt; ?></div>
 <?php 
-		endif; // end of cat
+		endif; // end of category
 			// Hide if Tag Page
 			if (!is_tag()):
 				$tag_str_single = __('Tag:', 'weepeeswiss');
@@ -357,7 +357,8 @@ function weepeeswiss_breadcrumb_lists() {
 						echo $home_str;
 						if ($frontpage_id == 0 || $parent_id != $frontpage_id) echo $delimiter;
 					}
-					if( !empty(single_post_title( '', false )) ){
+					$single_post_str = single_post_title( '', false ); 
+					if ( !empty($single_post_str) ){
 						echo $delimiter . $before . single_post_title( '', false ) . $after;
 					}
 					if ( get_query_var('paged') ) {	

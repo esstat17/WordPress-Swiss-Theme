@@ -1,5 +1,6 @@
-/*	
- * mlmenu v1.0.2
+/*  
+ * mlmenu v1.0.3 - Mobile Navigation Menu
+ * - IOS inspired
  */
 (function($) {
 
@@ -7,7 +8,7 @@
         _ADDON_ = 'offCanvas';
 
 
-    //	Plugin already exists
+    //  Plugin already exists
     if ($[SLIDEMENU]) {
         return;
     }
@@ -29,7 +30,6 @@
 
         this._initAddons();
         this.init($panels);
-
         return this;
     };
 
@@ -42,12 +42,13 @@
         slidemenu: {
             add: true,
             navtitle: 'Menu',
-            titleLink: 'panel'
+            titleLink: 'panel',
+            mainWrapper: '#main-wrapper'
         },
         onClick: {
-            //			close			: true,
-            //			blockUI			: null,
-            //			preventDefault	: null,
+            //          close           : true,
+            //          blockUI         : null,
+            //          preventDefault  : null,
             setSelected: true
         },
         slidingSubmenus: true
@@ -93,7 +94,7 @@
         openPanel: function($panel) {
             var $l = $panel.parent();
 
-            //	Vertical
+            //  Vertical
             if ($l.hasClass(objc.vertical)) {
                 var $sub = $l.parents('.' + objc.subopened);
                 if ($sub.length) {
@@ -102,7 +103,7 @@
                 $l.addClass(objc.opened);
             }
 
-            //	Horizontal
+            //  Horizontal
             else {
                 if ($panel.hasClass(objc.current)) {
                     return;
@@ -125,7 +126,7 @@
 
                 $panel.removeClass(objc.hidden).addClass(objc.current);
 
-                //	Without the timeout, the animation won't work because the element had display: none;
+                //  Without the timeout, the animation won't work because the element had display: none;
                 setTimeout(
                     function() {
                         $panel.removeClass(objc.subopened).addClass(objc.opened);
@@ -139,7 +140,7 @@
         closePanel: function($panel) {
             var $l = $panel.parent();
 
-            //	Vertical only
+            //  Vertical only
             if ($l.hasClass(objc.vertical)) {
                 $l.removeClass(objc.opened);
                 this.trigger('closePanel', $panel);
@@ -147,14 +148,14 @@
         },
 
         closeAllPanels: function() {
-            //	Vertical
+            //  Vertical
             this.$menu.find('.' + objc.listview)
                 .children()
                 .removeClass(objc.selected)
                 .filter('.' + objc.vertical)
                 .removeClass(objc.opened);
 
-            //	Horizontal
+            //  Horizontal
             var $pnls = this.$menu.children('.' + objc.panel),
                 $frst = $pnls.first();
 
@@ -172,7 +173,7 @@
         togglePanel: function($panel) {
             var $l = $panel.parent();
 
-            //	Vertical only
+            //  Vertical only
             if ($l.hasClass(objc.vertical)) {
                 this[$l.hasClass(objc.opened) ? 'closePanel' : 'openPanel']($panel);
             }
@@ -202,7 +203,7 @@
         _initMenu: function() {
             var that = this;
 
-            //	Clone if needed
+            //  Clone if needed
             if (this.opts.offCanvas && this.conf.clone) {
                 this.$menu = this.$menu.clone(true);
                 this.$menu.add(this.$menu.find('[id]')).filter('[id]').each(
@@ -214,7 +215,7 @@
                     );
             }
 
-            //	Strip whitespace
+            //  Strip whitespace
             this.$menu.contents()
                 .each(
                     function() {
@@ -231,12 +232,12 @@
 
             var clsn = [objc.menu];
 
-            //	Add direction class
+            //  Add direction class
             if (!this.opts.slidingSubmenus) {
                 clsn.push(objc.vertical);
             }
 
-            //	Add extensions
+            //  Add extensions
             this.opts.extensions = (this.opts.extensions.length) ? 'ml-' + this.opts.extensions.join(' ml-') : '';
 
             if (this.opts.extensions) {
@@ -249,7 +250,7 @@
         _initPanels: function($panels) {
             var that = this;
 
-            //	Add List class
+            //  Add List class
             var $lists = this.__findAddBack($panels, 'ul, ol');
 
             this.__refactorClass($lists, this.conf.classNames.inset, 'inset')
@@ -261,19 +262,19 @@
             var $lis = this.__findAddBack($panels, '.' + objc.listview)
                 .children();
 
-            //	Refactor Selected class
+            //  Refactor Selected class
             this.__refactorClass($lis, this.conf.classNames.selected, 'selected');
 
-            //	Refactor divider class
+            //  Refactor divider class
             this.__refactorClass($lis, this.conf.classNames.divider, 'divider');
 
-            //	Refactor Spacer class
+            //  Refactor Spacer class
             this.__refactorClass($lis, this.conf.classNames.spacer, 'spacer');
 
-            //	Refactor Panel class
+            //  Refactor Panel class
             this.__refactorClass(this.__findAddBack($panels, '.' + this.conf.classNames.panel), this.conf.classNames.panel, 'panel');
 
-            //	Create panels
+            //  Create panels
             var $curpanels = $(),
                 $oldpanels = $panels
                 .add($panels.find('.' + objc.panel))
@@ -315,7 +316,7 @@
 
             var $allpanels = $('.' + objc.panel, this.$menu);
 
-            //	Add open and close links to menu items
+            //  Add open and close links to menu items
             $curpanels
                 .each(
                     function(i) {
@@ -328,7 +329,7 @@
                             $t.data(objd.parent, $p);
                         }
 
-                        //	Open link
+                        //  Open link
                         if (!$p.children('.' + objc.next).length) {
                             if ($p.parent()
                                 .is('.' + objc.listview)) {
@@ -342,23 +343,23 @@
                             }
                         }
 
-                        //	Navbar
+                        //  Navbar
                         if (!$t.children('.' + objc.slidemenu).length) {
                             if (!$p.hasClass(objc.vertical)) {
                                 if ($p.parent()
                                     .is('.' + objc.listview)) {
-                                    //	Listview, the panel wrapping this panel
+                                    //  Listview, the panel wrapping this panel
                                     var $p = $p.closest('.' + objc.panel);
                                 } else {
-                                    //	Non-listview, the first panel that has an anchor that links to this panel
+                                    //  Non-listview, the first panel that has an anchor that links to this panel
                                     var $a = $p.closest('.' + objc.panel)
                                         .find('a[href="#' + $t.attr('id') + '"]')
                                         .first(),
                                         $p = $a.closest('.' + objc.panel);
                                 }
-
                                 var $slidemenu = $('<div class="' + objc.slidemenu + '" />'),
-                                    closex = '<a class="ml-close ml-btn fa fa-times" href="#ml-0"></a>';
+                                    mainWrap = that.opts.slidemenu.mainWrapper;
+                                    slideOff = '<a id="ml-close" class="ml-close ml-btn" href="'+mainWrap+'">&times;</a>';
 
                                 if ($p.length) {
                                     var id = $p.attr('id');
@@ -381,7 +382,7 @@
                                     $slidemenu
                                         .append('<a class="' + objc.btn + ' ' + objc.prev + '" href="#' + id + '" data-target="#' + id + '"></a>')
                                         .append('<a class="' + objc.navtitle + '"' + (_url ? ' href="' + _url + '"' : '') + '>' + $a.text() + '</a>')
-                                        .append(closex)
+                                        .append(slideOff)
                                         .prependTo($t);
 
                                     if (that.opts.slidemenu.add) {
@@ -390,7 +391,7 @@
                                 } else if (that.opts.slidemenu.navtitle) {
                                     $slidemenu
                                         .append('<a class="' + objc.navtitle + '">' + that.opts.slidemenu.navtitle + '</a>')
-                                        .append(closex)
+                                        .append(slideOff)
                                         .prependTo($t);
 
                                     if (that.opts.slidemenu.add) {
@@ -403,7 +404,7 @@
                 );
 
 
-            //	Add opened-classes to parents
+            //  Add opened-classes to parents
             var $s = this.__findAddBack($panels, '.' + objc.listview)
                 .children('.' + objc.selected)
                 .removeClass(objc.selected)
@@ -422,7 +423,7 @@
                 );
 
 
-            //	Add opened-classes to child
+            //  Add opened-classes to child
             $s.children('.' + objc.panel)
                 .not('.' + objc.vertical)
                 .addClass(objc.opened)
@@ -433,7 +434,7 @@
                 .addClass(objc.subopened);
 
 
-            //	Set current opened
+            //  Set current opened
             var $current = $allpanels.filter('.' + objc.opened);
             if (!$current.length) {
                 $current = $curpanels.first();
@@ -444,7 +445,7 @@
                 .addClass(objc.current);
 
 
-            //	Rearrange markup
+            //  Rearrange markup
             $curpanels
                 .not('.' + objc.vertical)
                 .not($current.last())
@@ -466,14 +467,14 @@
                             fired = false,
                             inMenu = that.$menu.find($t).length;
 
-                        //	Find behavior for addons
+                        //  Find behavior for addons
                         for (var a in $[SLIDEMENU].addons) {
-                            if (fired = $[SLIDEMENU].addons[a].clickAnchor.call(that, $t, inMenu)) {
+                            if (fired == $[SLIDEMENU].addons[a].clickAnchor.call(that, $t, inMenu)) {
                                 break;
                             }
                         }
 
-                        //	Open/Close panel
+                        //  Open/Close panel
                         if (!fired && inMenu) {
                             var _h = $t.attr('href');
                             if (_h.length > 1 && _h.slice(0, 1) == '#') {
@@ -493,29 +494,29 @@
                         }
 
 
-                        //	All other anchors in lists
+                        //  All other anchors in lists
                         if (!fired && inMenu) {
                             if ($t.is('.' + objc.listview + ' > li > a') && !$t.is('[rel="external"]') && !$t.is('[target="_blank"]')) {
 
-                                //	Set selected item
+                                //  Set selected item
                                 if (that.__valueOrFn(that.opts.onClick.setSelected, $t)) {
                                     that.setSelected($(e.target)
                                         .parent());
                                 }
 
-                                //	Prevent default / don't follow link. Default: false
+                                //  Prevent default / don't follow link. Default: false
                                 var preventDefault = that.__valueOrFn(that.opts.onClick.preventDefault, $t, _h.slice(0, 1) == '#');
                                 if (preventDefault) {
                                     e.preventDefault();
                                 }
 
-                                //	Block UI. Default: false if preventDefault, true otherwise
+                                //  Block UI. Default: false if preventDefault, true otherwise
                                 if (that.__valueOrFn(that.opts.onClick.blockUI, $t, !preventDefault)) {
                                     glbl.$html.addClass(objc.blocking);
                                 }
 
-                                //	Close menu. Default: true if preventDefault, false otherwise
-                                if (that.__valueOrFn(that.opts.onClick.closex, $t, preventDefault)) {
+                                //  Close menu. Default: true if preventDefault, false otherwise
+                                if (that.__valueOrFn(that.opts.onClick.slideOff, $t, preventDefault)) {
                                     that.close();
                                 }
                             }
@@ -525,13 +526,13 @@
         },
 
         _initAddons: function() {
-            //	Add add-ons to plugin
+            //  Add add-ons to plugin
             for (var a in $[SLIDEMENU].addons) {
                 $[SLIDEMENU].addons[a].add.call(this);
                 $[SLIDEMENU].addons[a].add = function() {};
             }
 
-            //	Setup adds-on for menu
+            //  Setup adds-on for menu
             for (var a in $[SLIDEMENU].addons) {
                 $[SLIDEMENU].addons[a].setup.call(this);
             }
@@ -603,10 +604,10 @@
     /** jQuery plugin **/
 
     $.fn[SLIDEMENU] = function(opts, conf) {
-        //	First time plugin is fired
+        //  First time plugin is fired
         initPlugin();
 
-        //	Extend options
+        //  Extend options
         opts = $.extend(true, {}, $[SLIDEMENU].defaults, opts);
         conf = $.extend(true, {}, $[SLIDEMENU].configuration, conf);
 
@@ -628,7 +629,7 @@
         touch: 'ontouchstart' in window || navigator.msMaxTouchPoints
     };
 
-    //	Global variables
+    //  Global variables
     var objc, objd, obje, glbl;
 
     function initPlugin() {
@@ -643,7 +644,7 @@
         };
 
 
-        //	Classnames, Datanames, Eventnames
+        //  Classnames, Datanames, Eventnames
         objc = {};
         objd = {};
         obje = {};
@@ -658,7 +659,7 @@
             }
         );
 
-        //	Classnames
+        //  Classnames
         objc.mm = function(c) {
             return 'ml-' + c;
         };
@@ -670,13 +671,13 @@
             return c;
         };
 
-        //	Datanames
+        //  Datanames
         objd.mm = function(d) {
             return 'ml-' + d;
         };
         objd.add('parent sub');
 
-        //	Eventnames
+        //  Eventnames
         obje.mm = function(e) {
             return e + '.mm';
         };
@@ -691,7 +692,7 @@
 
     $[SLIDEMENU].addons[_ADDON_] = {
 
-        //	setup: fired once per menu
+        //  setup: fired once per menu
         setup: function() {
             if (!this.opts[_ADDON_]) {
                 return;
@@ -704,17 +705,17 @@
             glbl = $[SLIDEMENU].glbl;
 
 
-            //	Add methods to api
+            //  Add methods to api
             this._api = $.merge(this._api, ['open', 'close', 'setPage']);
 
 
-            //	Debug positioning
+            //  Debug positioning
             if (opts.position == 'top' || opts.position == 'bottom') {
                 opts.zposition = 'front';
             }
 
 
-            //	Extend configuration
+            //  Extend configuration
             if (typeof conf.pageSelector != 'string') {
                 conf.pageSelector = '> ' + conf.pageNodetype;
             }
@@ -724,7 +725,7 @@
                 .add(this.$menu);
 
 
-            //	Setup the menu
+            //  Setup the menu
             this.vars.opened = false;
 
             var clsn = [objc.offcanvas];
@@ -742,20 +743,20 @@
                 .removeClass(objc.wrapper);
 
 
-            //	Setup the page
+            //  Setup the page
             this.setPage(glbl.$page);
 
 
-            //	Setup the UI blocker and the window
+            //  Setup the UI blocker and the window
             this._initBlocker();
             this['_initWindow_' + _ADDON_]();
 
 
-            //	Append to the body
+            //  Append to the body
             this.$menu[conf.menuInjectMethod + 'To'](conf.menuWrapperSelector);
         },
 
-        //	add: fired once per page load
+        //  add: fired once per page load
         add: function() {
             objc = $[SLIDEMENU].objc;
             objd = $[SLIDEMENU].objd;
@@ -766,13 +767,13 @@
             obje.add('resize');
         },
 
-        //	clickAnchor: prevents default behavior when clicking an anchor
+        //  clickAnchor: prevents default behavior when clicking an anchor
         clickAnchor: function($a, inMenu) {
             if (!this.opts[_ADDON_]) {
                 return false;
             }
 
-            //	Open menu
+            //  Open menu
             var id = this.$menu.attr('id');
             if (id && id.length) {
                 if (this.conf.clone) {
@@ -784,7 +785,7 @@
                 }
             }
 
-            //	Close menu
+            //  Close menu
             if (!glbl.$page) {
                 return;
             }
@@ -802,7 +803,7 @@
     };
 
 
-    //	Default options and configuration
+    //  Default options and configuration
     $[SLIDEMENU].defaults[_ADDON_] = {
         position: 'left',
         zposition: 'back',
@@ -818,7 +819,7 @@
     };
 
 
-    //	Methods
+    //  Methods
     $[SLIDEMENU].prototype.open = function() {
         if (this.vars.opened) {
             return;
@@ -828,7 +829,7 @@
 
         this._openSetup();
 
-        //	Without the timeout, the animation won't work because the element had display: none;
+        //  Without the timeout, the animation won't work because the element had display: none;
         setTimeout(
             function() {
                 that._openFinish();
@@ -840,10 +841,10 @@
     $[SLIDEMENU].prototype._openSetup = function() {
         var that = this;
 
-        //	Close other menus
+        //  Close other menus
         this.closeAllOthers();
 
-        //	Store style and position
+        //  Store style and position
         glbl.$page.each(
             function() {
                 $(this).data(objd.style, $(this)
@@ -851,12 +852,12 @@
             }
         );
 
-        //	Trigger window-resize to measure height
+        //  Trigger window-resize to measure height
         glbl.$wndw.trigger(obje.resize + '-offcanvas', [true]);
 
         var clsn = [objc.opened];
 
-        //	Add options
+        //  Add options
         if (this.opts[_ADDON_].modal) {
             clsn.push(objc.modal);
         }
@@ -874,7 +875,7 @@
         }
         glbl.$html.addClass(clsn.join(' '));
 
-        //	Open
+        //  Open
         setTimeout(function() {
             that.vars.opened = true;
         }, this.conf.openingInterval);
@@ -885,14 +886,14 @@
     $[SLIDEMENU].prototype._openFinish = function() {
         var that = this;
 
-        //	Callback
+        //  Callback
         this.__transitionend(glbl.$page.first(),
             function() {
                 that.trigger('opened');
             }, this.conf.transitionDuration
         );
 
-        //	Opening
+        //  Opening
         glbl.$html.addClass(objc.opening);
         this.trigger('opening');
     };
@@ -904,7 +905,7 @@
 
         var that = this;
 
-        //	Callback
+        //  Callback
         this.__transitionend(glbl.$page.first(),
             function() {
                 that.$menu.removeClass(objc.current).removeClass(objc.opened);
@@ -915,7 +916,7 @@
                     glbl.$html.removeClass(that.opts.extensions);
                 }
 
-                //	Restore style and position
+                //  Restore style and position
                 glbl.$page.each(
                     function() {
                         $(this).attr('style', $(this)
@@ -929,7 +930,7 @@
             }, this.conf.transitionDuration
         );
 
-        //	Closing
+        //  Closing
         glbl.$html.removeClass(objc.opening);
         this.trigger('close');
         this.trigger('closing');
@@ -973,7 +974,7 @@
     };
 
     $[SLIDEMENU].prototype['_initWindow_' + _ADDON_] = function() {
-        //	Prevent tabbing
+        //  Prevent tabbing
         glbl.$wndw
             .off(obje.keydown + '-offcanvas')
             .on(obje.keydown + '-offcanvas',
@@ -987,7 +988,7 @@
                 }
             );
 
-        //	Set page min-height to window height
+        //  Set page min-height to window height
         var _h = 0;
         glbl.$wndw
             .off(obje.resize + '-offcanvas')

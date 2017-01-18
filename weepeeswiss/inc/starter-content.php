@@ -259,7 +259,7 @@ function weepeeswiss_470_setup() {
 								'<p class="lead color-2">',
 								_x( 'Why not to start another section of your story here? Happy to hear your thoughts!', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
 								'</p><p>',
-								'<a class="btn btn-default btn-oval bg-color-2">',
+								'<a href="#" class="btn btn-default btn-oval bg-color-2">',
 								_x( 'Get Started', 'Wordpress 4.7 and Up', 'weepeeswiss' ),
 								'</a></p></div></div></div></div>'
  							)),

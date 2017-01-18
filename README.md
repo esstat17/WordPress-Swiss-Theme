@@ -229,3 +229,7 @@ This theme still needs in-depth documentation, I will gradually fill the readme 
 It is very recommended for newly installed Wordpress platform, though it can work for your existing wordpress website, all you have to do is to manually edit it. 
 
 Feel free to use it, enjoy!
+<br>
+- Defense Counselling over Udrp related cases
+<br>
+- Defense litigation as well as preparation of response

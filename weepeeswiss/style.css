@@ -28,7 +28,11 @@ body {
 		font-size: 14px;
 	}
 }
-
+@media (max-width: 480px){
+	body {
+		font-size: 12px;
+	}
+}
 img {
 	max-width: 100%;
 	height: auto;
@@ -80,17 +84,43 @@ Typography
 a {
 	color: rgba(17, 17, 17, 0.55);
 }
-
 a:hover, a:focus {
     text-decoration: none;
     opacity: .7;
     outline: 0;
 }
-
 h1 {
     font-size: 200%;
 }
-
+h2 {
+    font-size: 180%;
+}
+h3 {
+    font-size: 160%;
+}
+h4 {
+    font-size: 140%;
+}
+h5 {
+    font-size: 130%;
+}
+@media (max-width: 767px) {
+	h1 {
+    	font-size: 180%;
+	}
+	h2 {
+    	font-size: 160%;
+	}
+	h3 {
+    	font-size: 140%;
+	}
+	h4 {
+    	font-size: 130%;
+	}
+	h5 {
+    	font-size: 120%;
+	}
+}
 blockquote {
 	border-color: #f7f7f7;
 }
@@ -224,6 +254,13 @@ Buttons
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+	.btn-oval {
+		padding: 10px 24px;
+		font-size: 14px;
+	}
 }
 
 .btn-circle {
@@ -411,7 +448,7 @@ Navigation
 	}
 }
 #primary-navigation.scrolling-down.nav-on {
-    padding-top: 2px;
+    padding-top: 3px;
     padding-bottom: 0;
 }
 .full-wide #primary-navigation {
@@ -425,7 +462,7 @@ Navigation
 }
 @media (max-width: 767px) {
 	#primary-navigation .widget {
-    	margin: 0 10px 0 0;
+    	margin: 0 6px 0 0;
 	}
 }
 #primary-navigation .widget:last-child{
@@ -823,6 +860,7 @@ Content Body
 }
 
 .nav-links span {
+	margin-bottom: 10px;
     white-space: normal;
 }
 
@@ -1829,18 +1867,13 @@ li.ml-vertical.ml-opened > .ml-panel {
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-#ml-1 .ml-slidemenu {
-    padding: 0;
-}
-#ml-1 .ml-close {
-    display: none;
-}
 .ml-slidemenu {
     border-bottom: 1px solid transparent;
     text-align: center;
-    line-height: 35px;
-    padding: 0 35px;
+    line-height: 22px;
+    padding: 0 20px 0 20px;
     margin: 0;
+    min-height: 52px;
     top: 0;
     left: 0;
     right: 0;
@@ -1860,20 +1893,22 @@ li.ml-vertical.ml-opened > .ml-panel {
 }
 .ml-slidemenu .ml-btn {
     box-sizing: border-box;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     position: absolute;
     z-index: 999;
 }
 .ml-slidemenu .ml-btn:first-child {
-    padding-left: 20px;
+	background: rgba(0, 0, 0, .2);
     left: 0;
-    width: 50px;
 }
 .ml-slidemenu .ml-btn:last-child {
-    text-align: right;
-    padding-top: 15px;
+    background: rgba(0, 0, 0, .2);
+    font-size: 18px;
+    line-height: 35px;
     right: 0;
+    top: 0;
+    position: absolute;
 }
 .ml-current.ml-opened .ml-slidemenu {
     position: absolute;
@@ -1941,7 +1976,7 @@ li.ml-vertical.ml-opened > .ml-panel {
     left: 20px;
 }
 .ml-listview .ml-next {
-    background: rgba(0, 0, 0, .1);
+    background: rgba(0, 0, 0, .2);
     width: 50px;
     padding: 0;
     position: absolute;
@@ -2031,7 +2066,7 @@ li.ml-vertical.ml-opened > .ml-panel {
 .ml-prev:before {
     border-right: none;
     border-bottom: none;
-    left: 20px;
+    left: 15px;
 }
 .ml-next:after,
 .ml-arrow:after {
@@ -2285,7 +2320,7 @@ Utilities
     float: left;
     margin-right: 15px;
 }
-.item-group a:last-child {
+.item-list:last-child {
     margin-right: 0;
 }
 @media (max-width: 767px) {
