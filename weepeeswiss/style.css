@@ -66,18 +66,6 @@ Selection
 }
 
 /* ------------------------------------------------------------------
-Transition elsements
-------------------------------------------------------------------- */
-
-a,
-.btn {
-	-webkit-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-	   -moz-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-	     -o-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-	        transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
-}
-
-/* ------------------------------------------------------------------
 Typography
 ------------------------------------------------------------------- */
 
@@ -87,8 +75,8 @@ a {
 a:hover, a:focus {
     text-decoration: none;
     opacity: .7;
-    outline: 0;
 }
+
 h1 {
     font-size: 200%;
 }
@@ -864,6 +852,13 @@ Content Body
     white-space: normal;
 }
 
+.nav-links a {
+    -webkit-transition: initial;
+    -moz-transition: initial;
+    -o-transition: initial;
+    transition: initial;
+}
+
 /* ------------------------------------------------------------------
 Tags
 ------------------------------------------------------------------- */
@@ -1404,14 +1399,29 @@ Superfish Navigation
 	list-style: none;
 }
 .sf-menu li {
+    background: transparent;
+    padding: 0;
     position: relative;
-    padding-left: 2px;
+    white-space: nowrap;
+    padding: 10px 10px 0 10px;
+    -webkit-transition: background .2s;
+    transition: background .2s;
+}
+.sf-menu > li:first-child {
+    padding-left: 0;
+}
+.sf-menu li:last-child {
+    padding-bottom: 10px;
 }
 .sf-menu ul {
-	position: absolute;
+	background: rgba(255, 255, 255, 1);
+	box-shadow: 4px 4px 12px rgba(0,0,0,0.2);
 	display: none;
-	top: 100%;
 	left: 0;
+	position: absolute;
+	top: 100%;
+	min-width: 2em; /* allow long menu items to determine submenu width */
+	*width: 2em; /* no auto sub width for IE7, see white-space comment below */
 	z-index: 99;
 }
 @media (max-width: 767px) {
@@ -1419,6 +1429,12 @@ Superfish Navigation
     	position: initial;
 	    margin-left: 10px;
 	}
+}
+.home .sf-menu ul {
+    background: rgba(0, 0, 0, 0.2);
+}
+.home .scrolling-down.nav-on .sf-menu ul {
+    background-color: #fff;
 }
 .sf-menu > li {
 	float: left;
@@ -1428,10 +1444,6 @@ Superfish Navigation
 	display: block;
 }
 
-.sf-menu a {
-	display: block;
-	position: relative;
-}
 @media (max-width: 480px) {
 	.sf-menu a {
     	padding: 10px 5px 1px 1px;
@@ -1442,37 +1454,22 @@ Superfish Navigation
 	top: 0;
 	left: 100%;
 }
-
-/*** Custom Superfish ***/
-.sf-menu ul {
-	box-shadow: 2px 2px 6px rgba(0,0,0,.2);
-	min-width: 2em; /* allow long menu items to determine submenu width */
-	*width: 2em; /* no auto sub width for IE7, see white-space comment below */
-}
 .sf-menu a {
+	display: block;
+	position: relative;
 	border-left: 1px solid transparent;
 	border-top: 1px solid transparent; /* fallback colour must use full shorthand */
 	border-top: 1px solid transparent;
-	padding: 10px 10px 10px 0;
 	text-decoration: none;
 	zoom: 1; /* IE7 */
-}
-.sf-menu li {
-	background: transparent;
-	padding-left: 0;
-	white-space: nowrap; /* no need for Supersubs plugin */
-	*white-space: normal; /* ...unless you support IE7 (let it wrap) */
-	-webkit-transition: background .2s;
-	transition: background .2s;
 }
 .sf-menu ul li a {
     padding-left: 8px;
 }
 .sf-menu ul li {
-	background: #fff;
 }
 .sf-menu ul ul li {
-	background: #fff;
+	padding-right: 10px;
 }
 .sf-menu li:hover,
 .sf-menu li.sfHover {
@@ -1503,7 +1500,7 @@ Superfish Navigation
 .sf-arrows > li > .sf-with-ul:focus:after,
 .sf-arrows > li:hover > .sf-with-ul:after,
 .sf-arrows > .sfHover > .sf-with-ul:after {
-	border-top-color: white; /* IE8 fallback colour */
+	border-top-color: rgba(0,0,0,0.5); /* IE8 fallback colour */
 }
 /* styling for right-facing arrows */
 .sf-arrows ul .sf-with-ul:after {
@@ -1516,7 +1513,7 @@ Superfish Navigation
 .sf-arrows ul li > .sf-with-ul:focus:after,
 .sf-arrows ul li:hover > .sf-with-ul:after,
 .sf-arrows ul .sfHover > .sf-with-ul:after {
-	border-left-color: white;
+	border-left-color: rgba(0,0,0,0.5);
 }
 	
 @media (max-width: 767px){

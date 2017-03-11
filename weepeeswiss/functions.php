@@ -211,7 +211,7 @@ function weepeeswiss_widgets_init() {
 		'id'            => 'nav-top-right',
 		'description'   => __( 'Appears in the Top Right Nav Section', 'weepeeswiss' ),
 		'before_widget' => '<div id="%1$s" class="widget widget-top %2$s">',
-		'after_widget'  => '</div>',
+		'after_widget'  => '</div><!-- #nav-top-right -->',
 		'before_title'  => '<span class="widget-title">',
 		'after_title'   => '</span>',
 	) );
@@ -220,7 +220,7 @@ function weepeeswiss_widgets_init() {
 		'id'            => 'bottom-right-nav',
 		'description'   => __( 'Appears in the Bottom Right Nav Section. e.g. Cart Icons, Call to action buttons, etc.', 'weepeeswiss' ),
 		'before_widget' => '<div id="%1$s" class="widget widget-top %2$s">',
-		'after_widget'  => '</div>',
+		'after_widget'  => '</div><!-- #bottom-right-nav -->',
 		'before_title'  => '<span class="widget-title">',
 		'after_title'   => '</span>',
 	) );

@@ -468,9 +468,9 @@ function weepeeswiss_css_factory($css) {
 		'color_4'       		=> '',
 		'color_5'       		=> '',
 	));
-	$footer_rgba = weepeeswiss_hex2rgba($css['footer_bg'], 0.95);
+	$footer_rgba = weepeeswiss_hex2rgba($css['footer_bg'], 0.98);
 	$footer_txt_rgba = weepeeswiss_hex2rgba($css['footer_txt'], 0.72);
-	$header_bg_fixed = $css['header_bg'] == '#f5f5f5' ? "initial" : $css['header_bg'];
+	$header_bg_fixed = $css['header_bg'] == '#f5f5f5' ? "inherit" : $css['header_bg'];
 
 	$style = <<<CSS
 .custom-background {

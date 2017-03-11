@@ -40,7 +40,7 @@
 
 		if(setting_id=='footer_bg'){
 			cssStyles += '.' + selector + ' {background-color:' + to +';} ',
-			cssStyles += '.' + selector + '-rgba {background-color:' + to +'; opacity: 0.95;} ';
+			cssStyles += '.' + selector + '-rgba {background-color:' + to +'; opacity: 0.98;} ';
 		}
 
 		// 5 Custom Colors

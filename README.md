@@ -56,40 +56,49 @@ Go to Theme > Customizer > Static Front Page > Content Box
 
 ```html
 <div class="section-front front-box-1">
-<div class="container">
-<div class="row">
-<h2 class="section-heading text-center">4 Cool Boxes</h2>
-<hr class="primary border-color-1">
-	<div class="col-xs-6 col-sm-3 text-center">
-		<div class="service-box">
-        	<i class="fa fa-cogs fa-5x color-1" aria-hidden="true"></i>
-    		<h3>Box One</h3>
-        	<p class="box-txt">Let me tell you the story for box one.</p>
+    <div class="container">
+        <div class="row">
+            <h2 class="section-heading text-center">4 Cool Boxes</h2>
+            <hr class="shorty-hr border-color-1">
+            <div class="col-xs-6 col-sm-3 text-center">
+                <div class="service-box"><i class="fa fa-cogs fa-5x color-1" aria-hidden="true"></i>
+                    <h3>Box One</h3>
+                    <p class="box-txt">Let me tell you the story for box one.</p>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 text-center">
+                <div class="service-box"><i class="fa fa-handshake-o fa-5x color-1" aria-hidden="true"></i>
+                    <h3>Box Two</h3>
+                    <p class="box-txt">Let me tell you the story for box two.</p>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 text-center">
+                <div class="service-box"><i class="fa fa-area-chart fa-5x color-1" aria-hidden="true"></i>
+                    <h3>Box Three</h3>
+                    <p class="box-txt">Let me tell you the story for box three.</p>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 text-center">
+                <div class="service-box"><i class="fa fa-tachometer fa-5x color-1" aria-hidden="true"></i>
+                    <h3>Box Four</h3>
+                    <p class="box-txt">Let me tell you the story for box four.</p>
+                </div>
+            </div>
         </div>
-	</div>
-    <div class="col-xs-6 col-sm-3 text-center">
-		<div class="service-box">
-    		<div class="service-box"><i class="fa fa-handshake-o fa-5x color-1" aria-hidden="true"></i>
-		<h3>Box Two</h3>
-    		<p class="box-txt">Let me tell you the story for box two.</p>
-    	</div>
-    </div>
-    <div class="col-xs-6 col-sm-3 text-center">
-    	<div class="service-box">
-        	<i class="fa fa-area-chart fa-5x color-1" aria-hidden="true"></i>
-        	<h3>Box Three</h3>
-            <p class="box-txt">Let me tell you the story for box three.</p>
-        </div>
-    </div>
-    <div class="col-xs-6 col-sm-3 text-center">
-    	<div class="service-box">
-        <i class="fa fa-tachometer fa-5x color-1" aria-hidden="true"></i>
-        <h3>Box Four</h3>
-        <p class="box-txt">Let me tell you the story for box four.</p>
-    	</div>
     </div>
 </div>
-</div>
+<div class="section-front front-box-2 bg-color-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading color-2">Just Another Section</h2>
+                <hr class="shorty-hr border-color-2">
+                <p class="lead color-2">Why not to start another section of your story here? Happy to hear your thoughts!</p>
+                <p><a href="#" class="btn btn-default btn-oval bg-color-2">Get Started</a>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 
 ```
@@ -131,19 +140,19 @@ Go to Theme > Customizer > Widgets > Add Text
 ### Navigation Lower Right ###
 ```html
 <div class="item-group">
-	<a href="#" class="item-list icon-language hide-smartphone">
-      <span class="fa fa-globe fa-2x color-1"></span>
-      <span class="lang-txt display-block">EN</span>
-	</a>
+    <a href="#" class="item-list icon-language hide-smartphone">
+        <span class="fa fa-globe fa-2x color-1"></span>
+        <span class="lang-txt display-block">EN</span>
+    </a>
     <a href="#" class="item-list icon-currency hide-smartphone">
-      <span class="fa fa-eur fa-2x color-1"></span>
-      <span class="currency-txt display-block">EUR</span>
- 	</a>
-	<a href="#" class="item-list icon-cart">
-      <span class="fa fa-shopping-cart fa-2x color-1"></span>
-      <span class="cart-txt display-block">Cart</span>
-	</a>
-	<a href="#" class="item-list btn btn-primary bg-color-1 color-2 btn-oval show-on-scroll">Explore</a>
+        <span class="fa fa-eur fa-2x color-1"></span>
+        <span class="currency-txt display-block">EUR</span>
+    </a>
+    <a href="#" class="item-list icon-cart">
+        <span class="fa fa-shopping-cart fa-2x color-1"></span>
+        <span class="cart-txt display-block">Cart</span>
+    </a>
+    <a href="#" class="item-list btn btn-primary bg-color-1 color-2 btn-oval show-on-scroll">Explore</a>
 </div>
 ```
 Also try to add search widget, it will automatically turn into modal search popup
@@ -166,17 +175,6 @@ Also try to add search widget, it will automatically turn into modal search popu
 ### Footer Widget Area (4) ###
 Just add Contact Us chars as title
 ```html
-<p><strong><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp; Address</strong>
-    <br />123 Main Street
-    <br />New York, NY 10001</p>
-<p><strong><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; Hours</strong>
-    <br />Monday&mdash;Friday: 9:00AM&ndash;5:00PM
-    <br />
-</p>
-<p><strong><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp; Email me</strong>
-    <br /><a href="mailto:hello@wordpress.com">hello@wordpress.com</a>
-    <br />
-</p>
 <form class="form-footer" action="" method="post">
     <fieldset>
         <div class="clearfix"></div>
@@ -229,7 +227,5 @@ This theme still needs in-depth documentation, I will gradually fill the readme 
 It is very recommended for newly installed Wordpress platform, though it can work for your existing wordpress website, all you have to do is to manually edit it. 
 
 Feel free to use it, enjoy!
-<br>
-- Defense Counselling over Udrp related cases
-<br>
-- Defense litigation as well as preparation of response
+
+

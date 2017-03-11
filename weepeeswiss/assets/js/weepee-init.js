@@ -25,7 +25,7 @@
 			primeNav  = "#primary-navigation",
 			superWrap = $("#super-wrap"),
 			searchWidget = "#primary-navigation .widget_search",
-			navHeight = $(primeNav).height(),
+			navHeight = 0,
 			winHeight = $(window).height(),
 			winWidth = Math.max($(window).width(), window.innerWidth),
 			navbar      = $('.navbar-custom'),
@@ -56,6 +56,7 @@
    			if (scrolling > prevScroll){
    				if(scrolling - 10 > prevScroll){
    					if($(primeNav).hasClass('nav-on')){
+   						navHeight = $(primeNav).height();
    						$(primeNav).removeClass('nav-on').addClass('nav-off').css({'top':-navHeight-10});
    					}
    				}
