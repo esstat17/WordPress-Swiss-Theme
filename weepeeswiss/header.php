@@ -119,4 +119,5 @@
 ?>
 	<?php do_action( 'wps_welcome_screen', get_the_ID()); ?>
 </div><!-- #welcome-wrap -->
+
 <div id="content-body" class="site-main">

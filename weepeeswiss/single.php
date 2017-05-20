@@ -14,7 +14,8 @@ get_header(); ?>
 <div class="content-skin single-skin">
 <div class="container">
 <div class="row">
-	<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array(get_the_ID())); ?>">	
+	<div id="main-content" class="main-content <?php apply_filters( 'primary_class', array(get_the_ID())); ?>">
+		<?php weepeeswiss_breadcrumb_lists(); ?>
 		<?php do_action( 'wps_content_right', get_the_ID()); ?>	
 		<div id="content" class="site-content" role="main">
 			<?php

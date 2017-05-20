@@ -60,23 +60,6 @@ add_action( 'add_meta_boxes', 'weepeeswiss_metabox_page' );
 
 
 /**
- * Register Two (2) Meta Boxes.
- * @link Add Meta Box https://developer.wordpress.org/reference/functions/add_meta_box/
- * @link Save Post https://codex.wordpress.org/Plugin_API/Action_Reference/save_post
- */
-function weepeeswiss_post_meta_boxes() {
-		$post_type = 'page';
-		add_meta_box( 
-			'weepeeswiss_normal_high', __( 'Add Meta Contents', 'weepeeswiss' ),  
-			'weepeeswiss_display_normal_high_metabox', // Callback function
-			$post_type, 
-			'normal', 
-			'high' 
-		);
-}
-add_action( 'add_meta_boxes', 'weepeeswiss_post_meta_boxes' );
-
-/**
  * Metabox for post IDs dropdown
  *
  * @since 1.0.0

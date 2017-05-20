@@ -348,11 +348,11 @@ function weepeeswiss_breadcrumb_lists() {
 
 		if (is_home() || is_front_page()) {	
 
-			if ($show_on_home == 1) echo '<div id="breadcrumb-wraps" class="breadcrumb-wraps"><div class="container"><div class="row"><div class="col-xs-12"><div class="breadcrumbs btn-group btn-breadcrumb">' .$link_before. '<a href="' . $home_link . '">' . $itemproptitle_before . $text['home'] . $itemproptitle_after . '</a>' .$link_after. '</div>';	
+			if ($show_on_home == 1) echo '<div id="breadcrumb-wraps" class="breadcrumb-wraps"><div class="breadcrumbs btn-group btn-breadcrumb">' .$link_before. '<a href="' . $home_link . '">' . $itemproptitle_before . $text['home'] . $itemproptitle_after . '</a>' .$link_after. '</div>';	
 
 			if( is_home() && !is_front_page() ){
 
-				echo '<div id="breadcrumb-wraps" class="breadcrumb-wraps"><div class="container"><div class="row"><div class="col-xs-12"><div class="breadcrumbs btn-group btn-breadcrumb">';
+				echo '<div id="breadcrumb-wraps" class="breadcrumb-wraps"><div class="breadcrumbs btn-group btn-breadcrumb">';
 					if ($show_home_link == 1) {
 						echo $home_str;
 						if ($frontpage_id == 0 || $parent_id != $frontpage_id) echo $delimiter;
@@ -365,11 +365,11 @@ function weepeeswiss_breadcrumb_lists() {
 						echo $before . __('Page', 'weepeeswiss' ). get_query_var('paged') . $after;
 					}	
 
-				echo '</div></div></div></div></div><!-- breadcrumb-wraps end -->';	
+				echo '</div></div><!-- breadcrumb-wraps end -->';	
 			}
 		} else {	
 
-			echo '<div id="breadcrumb-wraps" class="breadcrumb-wraps"><div class="container"><div class="row"><div class="col-xs-12"><div class="breadcrumbs btn-group btn-breadcrumb">';
+			echo '<div id="breadcrumb-wraps" class="breadcrumb-wraps"><div class="breadcrumbs btn-group btn-breadcrumb">';
 			if ( is_category() ) {
 				$this_cat = get_category(get_query_var('cat'), false);
 				if ($this_cat->parent != 0) {	
@@ -548,7 +548,7 @@ function weepeeswiss_breadcrumb_lists() {
 				}
 			}	
 
-			echo '</div></div></div></div></div><!-- breadcrumb-wraps end -->';	
+			echo '</div></div><!-- breadcrumb-wraps end -->';	
 
 		} // endif
 	

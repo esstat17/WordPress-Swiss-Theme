@@ -25,6 +25,7 @@ get_header(); ?>
 <div class="container">
 <div class="row">
 	<div id="main-content" class="main-content col-lg-12">
+	<?php weepeeswiss_breadcrumb_lists(); ?>
 	<?php do_action( 'wps_content_right', get_the_ID()); ?>	
 	<?php
 		if ( is_front_page() && weepeeswiss_has_featured_posts() ) {

@@ -1371,16 +1371,10 @@ Breadcrumb
     border-color: #eee;
 }
 #breadcrumb-wraps .breadcrumbs {
-    padding-top: 2.5%;
     padding-bottom: 1%;
 }
 .home #breadcrumb-wraps .breadcrumbs {
     display: none;
-}
-@media (max-width: 480px) {
-	#breadcrumb-wraps .breadcrumbs {
-    	padding-top: 6.5%;
-	}
 }
 
 /* -------------------------------------------------------------------
@@ -2356,4 +2350,8 @@ input[type=search] {
 }
 .tag {
     margin-bottom: 5px;
+}
+
+#breadcrumb-wraps .btn.btn-default:hover {
+    background-color: inherit;
 }

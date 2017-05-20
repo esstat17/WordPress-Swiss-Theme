@@ -332,18 +332,6 @@ function weepeeswiss_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'weepeeswiss_scripts' );
 
-
-function weepeeswiss_admin_scripts($pagenow) {
-
-	if ( 'widgets.php' != $pagenow) {
-		return;
-	}
-	// 	wp_enqueue_script( 'weepeeswiss_customizer_ajax', get_template_directory_uri() . '/assets/js/customizer-ajax.js', array( 'customize-preview' ), '20161008', true );
-	// Add Bootstrap 3.0 stylesheet.
-	wp_enqueue_script( 'wps-admin-ajax-js', get_template_directory_uri() . '/assets/js/customizer-ajax.js', array('jquery', 'customize-prev'), '1.0.1' );
-}
-add_action( 'admin_enqueue_scripts', 'weepeeswiss_admin_scripts' );
-
 /**
  * Enqueue Google fonts style to admin screen for custom header display.
  *
