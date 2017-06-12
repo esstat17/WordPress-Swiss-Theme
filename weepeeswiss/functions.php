@@ -565,7 +565,7 @@ function weepeeswiss_secondary_class_attr(){
 
 	// if sidebar 2 is not active
 	if ( !is_active_sidebar( 'sidebar-2' ) ){
-		$classes[] = "col-xs-6 col-md-4";
+		$classes[] = "col-xs-12 col-sm-4";
 	} else {
 		$classes[] = "col-xs-6 col-sm-3";
 	}
@@ -587,7 +587,7 @@ add_filter( 'secondary_class', 'weepeeswiss_secondary_class_attr' );
 function weepeeswiss_secondary2_class_attr(){
 	// if sidebar 1 is not active
 	if ( !is_active_sidebar( 'sidebar-1' ) ){
-		$classes[] = "col-xs-6 col-md-4";
+		$classes[] = "col-xs-12 col-sm-4";
 	} else {
 		$classes[] = "col-xs-6 col-sm-3";	
 	}

@@ -2335,11 +2335,6 @@ input[type=search] {
 .home-intro p.lead {
   font-size: 16px;
 } 
-
-.page-header {
-    margin-top: 0;
-}
-
 .screen-reader-text {
     display: none;
 }

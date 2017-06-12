@@ -93,7 +93,7 @@ function weepeeswiss_paging_nav() {
 	if ( $links ) :
 
 	?>
-	<nav class="navigation paging-navigation" role="navigation">
+	<nav class="navigation paging-navigation clearfix" role="navigation">
 		<span class="screen-reader-text"><?php _e( 'Posts navigation', 'weepeeswiss' ); ?></span>
 		<div class="pagination loop-pagination">
 			<?php echo $links; ?>
@@ -291,6 +291,8 @@ if ( ! function_exists( 'weepeeswiss_author_meta' ) ) :
  *
  */
 function weepeeswiss_author_meta() {
+	//bail if no author description
+	if( strlen(the_author_meta('description') ) != 0 ):
 	?>
      <div id="author-meta" class="author-meta well well-bg">
   		<span class="author-avatar"><?php if (function_exists('get_avatar')) echo get_avatar( get_the_author_meta('email'), '80' ); ?></span>
@@ -298,7 +300,9 @@ function weepeeswiss_author_meta() {
         <p class="author-desc"><?php the_author_meta('description') ?></p>
      </div><!-- end of #author-meta -->
 
-<?php }
+<?php 
+	endif;
+}
 endif;
 
 
@@ -437,7 +441,7 @@ function weepeeswiss_breadcrumb_lists() {
 				if ( get_post_type() != 'post' ) {
 					$post_type = get_post_type_object(get_post_type());
 					$slug = $post_type->rewrite;
-					printf($link, $home_link . '/' . $slug['slug'] . '/', $post_type->labels->singular_name);
+					printf($link, $home_link . $slug['slug'] . '/', $post_type->labels->singular_name);
 					if ($show_current == 1) echo $delimiter . $before . get_the_title() . $after;
 				} else {
 					$cat = get_the_category(); 
@@ -461,8 +465,7 @@ function weepeeswiss_breadcrumb_lists() {
 				}	
 
 				$post_type = get_post_type_object(get_post_type());
-				echo $before . $post_type->labels->singular_name . $after;	
-
+				echo $before . !isset($post_type->labels->singular_name) ? '' : $post_type->labels->singular_name . $after;	
 			} elseif ( is_attachment() ) {	
 
 				$parent = get_post($parent_id);
